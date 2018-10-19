@@ -1,0 +1,511 @@
+
+#include "SkillSystemOptions.event"
+#include "Internals/SkillSystem.event"
+#include "skill_lists.event" //who learns what skills when
+#include "BattleCalculations.event" //battle calcs
+#include "charge_table.event"
+SkillIcons:
+ORG 16*16/2*0xFF+SkillIcons //give space to the icons installer
+PUSH
+ORG SkillIcons
+#incext Png2Dmp "SkillIcons.png"
+POP
+//new macros and lists for easy skill swapping, can be used as the same time as the csvs (but will write over them)
+#ifdef __USE_DESCRIPTION_MACROS__
+#include "skill_descriptions.event"
+#endif
+#ifdef __USE_ICON_MACROS__
+#include "skill_icons.event"
+#endif
+PUSH
+
+//Dazzle (can't be countered)
+ORG 0x2c864
+jumpToHack(DazzleCheck)
+
+//Rightful X
+ORG $2a52e //modifies the 1RN roll skill to check for rightful skills
+SHORT 0x46C0
+jumpToHack(RightfulCheck)
+
+//acrobat
+ORG $1a4cc
+jumpToHack(AcrobatCheck)
+
+//LockTouch
+ORG $23E8C //ignore vanilla locktouch routine
+jumpToHack(LockTouch)
+
+//Pass
+ORG $800 //modifies movement ARM code
+WORD 0xE59FC000 0xE12FFF1C //ldr r12,Pass; bx r12
+POIN PassCheck|1
+
+// //Post combat skills
+// ORG $1D258
+// callHack_r1(PostCombatSkills)
+// SHORT 0x2800 0xD017 0xE006 //cmp r0,0; beq RetFalse; b NextPart
+
+//waryfighter
+ORG $2AF90
+#incbin "TeqSkills/Wary Fighter.dmp"
+POIN SkillTester
+WORD WaryFighterID
+
+//Provoke
+ORG $3DF78
+jumpToHack(Provoke)
+
+//LethalitySkill
+ORG $2ACF8  //ignore the vanilla lethality routine
+SHORT 0x4770
+
+//Frenzy
+ORG $2AB4C
+callHack_r3(Frenzy)
+
+//renewal
+ORG $1a258
+jumpToHack(Renewal)
+
+//Discipline
+ORG $2c13c
+callHack_r3(Discipline)
+
+//vantage
+ORG $2af7c
+jumpToHack(Vantage)
+
+//desperation
+ORG $2af0a
+SHORT 0
+jumpToHack(Desperation)
+
+//live to serve
+ORG $2ebd4
+jumpToHack(LiveToServe)
+
+//paragon
+ORG $2b960
+jumpToHack(Paragon)
+
+//lunge
+ORG $18744
+callHack_r3(Lunge)
+ORG $187b0
+jumpToHack(LungeUpdate)
+ORG $3a094
+jumpToHack(LungeAI)
+
+// //seal skills
+ORG $2c088
+jumpToHack(SealSkills)
+
+ORG $2B7F8
+  jumpToHack(Armsthrift)
+
+//remove critup ability (for critup skill)
+ORG $2AC4A
+SHORT 0x46C0
+
+//Triangle Adept
+ORG $2C830
+jumpToHack(TriangleAdept)
+
+//Inspiring Tune
+ORG $32364
+jumpToHack(VigorDanceSkill) //set a bit in the debuff entries to danced units
+ORG $15428
+jumpToHack(VigorDanceReset) //unset it when the turn starts again
+
+//Armor March
+ORG $1538C
+jumpToHack(ArmorMarchSkill) //set or unest a bit in the debuff entries to give mov to units
+
+//Shadowgift and friends (only Lumina for now)
+ORG $16738
+jumpToHack(Shadowgift)
+
+POP
+
+NonGBALethalitySkill: //makes lethality skill/x% (/2 by default, and halved on bosses) instead of crit/2%, include this in the battle calculations after LethalitySkill (do NOT remove LethalitySkill)
+#incbin "OtherSkills/NonGBALethalitySkill.dmp" //if you decide to go with this please remember to change the skill definition to match the new effect
+ALIGN 4
+
+Bane: //skill/2% of leaving the enemy with 1hp if the normal damage would not have killed (bane is ignored if the unit has lethality)
+#incbin "OtherSkills/Bane.dmp"
+POIN SkillTester
+WORD LethalityID
+WORD BaneID
+ALIGN 4
+
+DazzleCheck:
+#incbin "OtherSkills/dazzle.dmp"
+POIN SkillTester
+WORD DazzleID
+ALIGN 4
+
+FaireCheck: //added to fe8_calc_loop.event
+#incbin "RossSkills/FaireCheck.dmp"
+POIN SkillTester
+POIN FaireIDList
+ALIGN 4
+
+FaireIDList:
+BYTE SwordfaireID LancefaireID AxefaireID BowfaireID TomefaireID TomefaireID TomefaireID TomefaireID
+ALIGN 4
+
+BreakerCheck: //added to fe8_calc_loop.event
+#incbin "RossSkills/BreakerCheck.dmp"
+POIN SkillTester
+POIN BreakerIDList
+WORD 50 // Hit/Avoid Bonus
+ALIGN 4
+
+BreakerIDList:
+BYTE SwordbreakerID LancebreakerID AxebreakerID BowbreakerID TomebreakerID TomebreakerID TomebreakerID TomebreakerID
+ALIGN 4
+
+BlowCheck:
+#incbin "RossSkills/BlowCheck.dmp"
+POIN SkillTester
+POIN BlowIDList
+
+BlowIDList:
+BYTE DuelistsBlowID DeathBlowID DartingBlowID WardingBlowID CertainBlowID ArmoredBlowID QuickDrawID ChivalryID PragmaticID HeroesDeathBlowID
+ALIGN 4
+
+DefendingCheck:
+#incbin "BladeSkills/Defending.dmp"
+POIN SkillTester
+POIN DefendingIDList
+
+DefendingIDList:
+BYTE StrongRiposteID PatienceID PursuitID ChivalryID PragmaticID
+ALIGN 4
+
+AcrobatCheck:
+#incbin "TeqSkills/Acrobat.dmp"
+POIN SkillTester
+WORD AcrobatID
+
+PassCheck:
+#incbin "TeqSkills/Pass.dmp"
+POIN SkillTester
+WORD PassID
+
+// PostCombatSkills: //plus lifetaker
+// #incbin "PostCombatSkills/CantoPlus_Galeforce.dmp"
+// POIN SkillTester
+// WORD CantoPlusID
+// WORD CantoID
+// WORD GaleforceID
+// WORD LifetakerID
+// WORD SavageBlowID
+// POIN AuraSkillCheck
+
+Provoke:
+#incbin "TeqSkills/Provoke.dmp"
+POIN SkillTester
+WORD ProvokeID
+
+Frenzy:
+#incbin "TeqSkills/Frenzy.dmp"
+POIN SkillTester
+WORD FrenzyID
+
+Renewal: //combined healing skills
+#incbin "OtherSkills/RenewalAmaterasu.dmp"
+POIN SkillTester
+WORD RenewalID
+POIN AuraSkillCheck
+WORD AmaterasuID
+WORD CamaraderieID
+WORD ReliefID
+WORD BondID
+WORD ForagerID
+POIN ForagerList
+
+ForagerList: //A list of terrain IDs that activate Forager
+BYTE 0x01 0x0C 0x11 //Plains, Forests and Mountains
+BYTE 0 //Terminator
+
+Discipline:
+#incbin "OtherSkills/Discipline.dmp"
+POIN SkillTester
+WORD DisciplineID
+
+Vantage:
+#incbin "OtherSkills/vantage.dmp"
+POIN SkillTester
+WORD VantageID
+WORD VantagePlusID
+
+Desperation:
+#incbin "OtherSkills/desperation.dmp"
+POIN SkillTester
+WORD DesperationID
+
+Wrath:
+#incbin "OtherSkills/wrath.dmp"
+POIN SkillTester
+WORD WrathID
+
+LiveToServe:
+#incbin "OtherSkills/LiveToServe.dmp"
+POIN SkillTester
+WORD LiveToServeID
+
+Paragon:
+#incbin "OtherSkills/Paragon.dmp"
+POIN SkillTester
+WORD ParagonID
+
+Lunge:
+#incbin "TeqSkills/Lunge.dmp"
+LungeUsability:
+#incbin "TeqSkills/Lunge Usability.dmp"
+POIN SkillTester
+WORD LungeID
+LungeEffect:
+#incbin "TeqSkills/Lunge Effect.dmp"
+AttackEffect:
+#incbin "TeqSkills/Attack Effect.dmp"
+LungeAI:
+#incbin "TeqSkills/LungeAI.dmp"
+POIN SkillTester
+WORD LungeID
+LungeUpdate:
+#incbin "TeqSkills/lunge_updaterescuee.dmp"
+
+MercyUsability:
+#incbin "TeqSkills/Mercy Usability.dmp"
+POIN SkillTester
+WORD MercyID
+MercyEffect:
+#incbin "TeqSkills/Mercy Effect.dmp"
+
+SealSkills:
+#incbin "SealSkills/SealSkills.dmp"
+POIN SkillTester
+POIN SealSkillList
+WORD DebuffTable
+WORD FullMetalBodyID
+SealSkillList:
+BYTE SealStrID SealSklID SealSpdID SealDefID SealResID SealLukID
+ALIGN 4
+
+ElbowRoom:
+#incbin "OtherSkills/ElbowRoom.dmp"
+POIN SkillTester
+WORD ElbowRoomID
+
+NaturalCover:
+#incbin "OtherSkills/NaturalCover.dmp"
+POIN SkillTester
+WORD NaturalCoverID
+
+GambleUsability:
+#incbin "OtherSkills/Gamble Usability.dmp"
+POIN SkillTester
+WORD GambleID
+GambleEffect:
+#incbin "OtherSkills/Gamble Effect.dmp"
+Gamble:
+#incbin "OtherSkills/Gamble.dmp"
+
+FieryBlood:
+#incbin "OtherSkills/FieryBlood.dmp"
+POIN SkillTester
+WORD FieryBloodID
+
+LifeAndDeath:
+#incbin "OtherSkills/LifeAndDeath.dmp"
+POIN SkillTester
+WORD LifeAndDeathID
+
+WindDisciple:
+#incbin "BladeSkills/Winddisciple.dmp"
+POIN SkillTester
+WORD WindDiscipleID
+
+Hawkeye:
+#incbin "BladeSkills/Hawkeye.dmp"
+POIN SkillTester
+WORD HawkeyeID
+
+LightWeight:
+#incbin "BladeSkills/LightWeight.dmp"
+POIN SkillTester
+WORD LightWeightID
+
+Trample:
+#incbin "TeqSkills/Trample.dmp"
+POIN SkillTester
+WORD TrampleID
+
+Opportunist:
+#incbin "TeqSkills/Opportunist.dmp"
+POIN SkillTester
+WORD OpportunistID
+
+CriticalCheck:
+#incbin "BladeSkills/Critical.dmp"
+POIN SkillTester
+POIN CriticalIDList
+CriticalIDList:
+BYTE CriticalForceID KillingMachineID
+ALIGN 4
+
+AxefaithHit:
+#incbin "BladeSkills/AxeFaith.dmp"
+POIN SkillTester
+WORD AxeFaithID
+
+LethalitySkill:
+#incbin "OtherSkills/LethalitySkill.dmp"
+POIN SkillTester
+WORD LethalityID
+
+Armsthrift:
+AxeFaithArmsthrift:
+ArmsthriftAxeFaith:
+#incbin "OtherSkills/armsthriftaxefaith.dmp"
+POIN SkillTester|1
+WORD ArmsthriftID AxeFaithID
+
+CritUpSkill:
+#incbin "OtherSkills/CritUpSkill.dmp"
+POIN SkillTester
+WORD CritUpID
+
+RightfulCheck:
+#incbin "OtherSkills/RightfulCheck.dmp"
+POIN SkillTester
+WORD RightfulArchID
+WORD RightfulKingID
+WORD RightfulGodID
+
+LuckySeven:
+#incbin "OtherSkills/LuckySeven.dmp"
+POIN SkillTester
+WORD LuckySevenID
+
+OddRhythm:
+#incbin "OtherSkills/OddRhythm.dmp"
+POIN SkillTester
+WORD OddRhythmID
+
+EvenRhythm:
+#incbin "OtherSkills/EvenRhythm.dmp"
+POIN SkillTester
+WORD EvenRhythmID
+
+QuickBurn:
+#incbin "OtherSkills/QuickBurn.dmp"
+POIN SkillTester
+WORD QuickBurnID
+
+SlowBurn:
+#incbin "OtherSkills/SlowBurn.dmp"
+POIN SkillTester
+WORD SlowBurnID
+
+Roll1d12:
+#incbin "OtherSkills/roll12.dmp"
+POIN SkillTester
+WORD Roll12ID
+POIN _12SkillList
+ALIGN 4
+_12SkillList:
+BYTE SureShotID IgnisID ColossusID ImpaleID PaviseID AegisID AstraID SolID LunaID AetherID AdeptID LethalityID
+ALIGN 4
+
+LockTouch:
+#incbin "KaoSkills/LockTouch.dmp"
+POIN SkillTester
+WORD LockTouchID
+
+TraceSkill:
+#incbin "OtherSkills/trace.dmp"
+POIN SkillTester
+WORD TraceID
+POIN Skill_Getter
+
+#inctext lyn "Stances/Stances.elf"
+StanceSkillList:
+BYTE BracingStanceID DartingStanceID FierceStanceID KestrelStanceID MirrorStanceID ReadyStanceID SteadyStanceID SturdyStanceID SwiftStanceID WardingStanceID SpectrumStanceID
+ALIGN 4
+
+TriangleAdept:
+#incbin "TeqSkills/TriangleAdept.dmp"
+POIN SkillTester
+WORD TriAdeptID
+
+#define VigorDanceBit "(8*7)+0" //8*byte + bit of the debuff table to use
+VigorDanceSkill: //set a bit in the debuff table's entry for the refreshed unit
+#incbin "OtherSkills/vigordanceskill.dmp"
+POIN SkillTester
+WORD VigorDanceID
+WORD DebuffTable
+WORD VigorDanceBit
+WORD 8 //size of a debuff table entry
+
+VigorDanceCheck: //check if the bit is set and if so give the unit some stats
+#incbin "OtherSkills/vigordancecheck.dmp"
+WORD DebuffTable
+WORD VigorDanceBit
+WORD 8 //size of a debuff table entry
+
+VigorDanceReset:
+#incbin "OtherSkills/vigordancereset.dmp"
+WORD DebuffTable
+WORD VigorDanceBit
+WORD 8 //size of a debuff table entry
+
+#define ArmorMarchBit "(8*7)+1" //8*byte + bit of the debuff table to use
+ArmorMarchSkill: //set a bit in the debuff table's entry for the refreshed unit
+#incbin "OtherSkills/armormarchskill.dmp"
+POIN AuraSkillCheck
+WORD ArmorMarchID
+WORD DebuffTable
+WORD ArmorMarchBit
+WORD 8 //size of a debuff table entry
+POIN SkillTester
+POIN ArmorMarchList //list of classes that should be affected by armor march
+
+#ifndef ArmorClasses
+#define ArmorClasses "Knight Knight_F General General_F GreatKnight GreatKnight_F"
+#endif
+ArmorMarchList:
+BYTE ArmorClasses 0
+ALIGN 4
+
+ArmorMarchCheck: //check if the bit is set and if so give the unit some stats
+#incbin "OtherSkills/armormarchcheck.dmp"
+WORD DebuffTable
+WORD ArmorMarchBit
+WORD 8 //size of a debuff table entry
+WORD 2 //ammount of movement to grant
+
+Shadowgift:
+#incbin "OtherSkills/shadowgift.dmp"
+POIN SkillTester
+WORD ShadowgiftID
+WORD LuminaID
+WORD ShadowgiftStaffOption
+WORD LuminaStaffOption
+
+#include "OtherSkills/RandomMugs.event"
+#include "TeqSkills/FE8-StealPlus/FE8-StealPlus EA.txt"
+#include "TeqSkills/FE8-Capture/FE8-Capture Master EA File.txt"
+#include "TeqSkills/FE8-Nullify/Nullify EA.txt"
+
+#include "AuraSkills/Aura Skills Installer.event"
+#include "ProcSkills/Proc Skills Installer.event"
+#include "RallySkills/Rally Installer.event"
+
+#include "StanSkills/HeroesMovement/HeroesMovement.event"
+#include "PostCombatSkills/Post Combat Skills Installer.event"
+
+#include "SkillRemovalMenu/RemoveSkillMenu.event"

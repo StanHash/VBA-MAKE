@@ -1,0 +1,6 @@
+[submodule "Tools/py/NMM2CSV"]
+	path = Tools/py/NMM2CSV
+	url = https://github.com/FireEmblemUniverse/NMM2CSV/
+[submodule "Tools/py/TMX2EA"]
+	path = Tools/py/TMX2EA
+	url = https://github.com/FireEmblemUniverse/tmx2ea/

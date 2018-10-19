@@ -1,0 +1,30 @@
+
+#include "Table Definitions.txt"
+
+#include "Tables/SkillSystem/ClassSkills.event"
+#include "Tables/SkillSystem/LearnedSkills.event"
+#include "Tables/SkillSystem/CharacterSkills.event"
+#include "Tables/SkillSystem/SkillAnimations.event"
+#include "Tables/SkillSystem/SkillDescriptions.event"
+
+#include "Tables/ChapterData/ChapterData.event"
+#include "Tables/ChapterData/ForceDeploy.event"
+
+#include "Tables/UnitData/Character.event"
+#include "Tables/UnitData/Class.event"
+#include "Tables/UnitData/Promotion.event"
+#include "Tables/UnitData/SummonCharacter.event"
+
+#include "Tables/Ending/EndingTitle.event"
+#include "Tables/Ending/EndingText.event"
+
+#include "Tables/ItemData/Item.event"
+#include "Tables/ItemData/ItemSpellAssoc.event"
+#include "Tables/ItemData/PromotionItem.event"
+
+#include "Tables/BattleQuote/BossMusic.event"
+#include "Tables/BattleQuote/BossQuote.event"
+#include "Tables/BattleQuote/DeathQuote.event"
+
+#include "Tables/WorldMap/WMLocations.event"
+#include "Tables/WorldMap/WMPaths.event"

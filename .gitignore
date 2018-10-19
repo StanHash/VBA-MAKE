@@ -1,3 +1,22 @@
+# NO
+
+*.gba
+*.sav
+*.sgm
+
+*.sym.event
+.MkCache
+*.4bpp
+*.lz
+*.gbapal
+*.dmp
+*.bat
+*.exe
+
+.TextEntries
+
+*.cache
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -16,11 +35,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
-#Rom stuff
-*.gba
-*.sav
-*.sgm
 
 # =========================
 # Operating System Files

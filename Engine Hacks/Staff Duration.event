@@ -1,7 +1,0 @@
-PUSH
-ORG $178DA
-SHORT 0x46C0
-jumpToHack(StaffDuration)
-POP
-StaffDuration:
-#incbin "ASM/Staff Duration.dmp"
