@@ -34,7 +34,8 @@ In addition to this, the `Tools/py/NMM2CSV` and `Tools/py/TMX2EA` submodules are
 
 # Original VBA Credits
 
-## Chapters
+Chapters
+----
 
     Prologue    IT BEGINS                 Circles
     Ch1         Secret Chapter            Leonarth
@@ -68,24 +69,26 @@ In addition to this, the `Tools/py/NMM2CSV` and `Tools/py/TMX2EA` submodules are
     Ch29        Let It Be                 Grey
     Ch30        End of All                Circles
 
-## Mugs
+Mugs
+----
 
-Zmr56 for Bede, Tye, Jake
-L95 for Void, Celicia, Mark, Tatara
-Coby for Celica
-Ross for Samson
-Alusq for Tim, Tam, Saara, Banana, Mr Bones, Björn, Roshea
-Wan for Arve
-Tera for Evil Florina, Doowile
-Klok for Edge
-Monkeybard for Doot, Maeda, Kaga
-Darrman for Zigludo, Tiki
-blueeyedman24 for Gwendy
-Kirb for Edgeworth, Grit, Marf (edited from Didja Redo's version)
-Crazycolorz for Prine
-Astelaine for Not Arch
+- Zmr56 for Bede, Tye, Jake
+- L95 for Void, Celicia, Mark, Tatara
+- Coby for Celica
+- Ross for Samson
+- Alusq for Tim, Tam, Saara, Banana, Mr Bones, Björn, Roshea
+- Wan for Arve
+- Tera for Evil Florina, Doowile
+- Klok for Edge
+- Monkeybard for Doot, Maeda, Kaga
+- Darrman for Zigludo, Tiki
+- blueeyedman24 for Gwendy
+- Kirb for Edgeworth, Grit, Marf (edited from Didja Redo's version)
+- Crazycolorz for Prine
+- Astelaine for Not Arch
 
-## Maps
+Maps
+----
 
     Prologue    IT BEGINS                 Circles
     Ch1         Secret Chapter            Leonarth
@@ -119,39 +122,44 @@ Astelaine for Not Arch
     Ch29        Let It Be                 Grey
     Ch30        End of All                Circles
 
-## Writing
+Writing
+----
 
-MCProductions (text)
-Darrman (formatting)
+- MCProductions (text)
+- Darrman (formatting)
 
-## Music
+Music
+----
 
-Alusq
-Ash
+- Alusq
+- Ash
 
-## General Tools
+General Tools
+----
 
-Nintenlord
-Crazycolorz
-Circles
+- Nintenlord
+- Crazycolorz
+- Circles
 
-## Hax
+Hax
+----
 
-Leonarth
-Stan
-Teq
-Circles
-Colorz
-so many
+- Leonarth
+- Stan
+- Teq
+- Circles
+- Colorz
+- so many
 
-## Misc Graphics
+Misc Graphics
+----
 
-Circles
-Seva
-Wulfos
-Glacoe
-Paterick
-Teraspark
-Monkeybard
-Black Mage
-Alusq
+- Circles
+- Seva
+- Wulfos
+- Glacoe
+- Paterick
+- Teraspark
+- Monkeybard
+- Black Mage
+- Alusq
