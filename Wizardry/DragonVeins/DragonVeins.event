@@ -78,7 +78,7 @@
     #incbin "asm/Initialize.dmp"
 
   VeinGraphics:
-    #incext Png2Dmp "asm/sparkle_final_4_Sheet.png" --lz77
+    #incbin "asm/sparkle_final_4_Sheet.4bpp.lz"
     //#incbin "asm/Dragon Vein/SparkleGraphic.dmp"
 
   PUSH

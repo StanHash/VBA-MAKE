@@ -322,41 +322,41 @@ ALIGN 4
 //polish point; make units warp instead of walk...
 
 MoveAllUnits:
-_SETVAL 0xB 0x020001 //Tile 1, 2
+SVAL 0xB 0x020001 //Tile 1, 2
 CHECK_EXISTS 0xFFFE //Is there a unit?
 IFEQ  0x1 0xC 0x0 //There is not...
-	_SETVAL 0xB 0x60005 //The unit at 5, 6
-	_SETVAL 0x1 AIChangeToAfterMove //Set AI to pursue without heed
+	SVAL 0xB 0x60005 //The unit at 5, 6
+	SVAL 0x1 AIChangeToAfterMove //Set AI to pursue without heed
 	CHAI [5, 6] //actually change the AI
-	_MOVE 0x7F 0xFFFE [1,2] //Move it to 1, 2
+	MOVE 0x7F 0xFFFE [1,2] //Move it to 1, 2
 	//So move the reinforcement from the Travel Tile to its partner.
 LABEL 0x1
 
-_SETVAL 0xB 0x1A0004 //Tile 4, 26
+SVAL 0xB 0x1A0004 //Tile 4, 26
 CHECK_EXISTS 0xFFFE //Is there a unit?
 IFEQ  0x3 0xC 0x0 //There is not...
-	_SETVAL 0xB 0x90005 //The unit at 5, 9
-	_SETVAL 0x1 AIChangeToAfterMove //Set AI to pursue without heed
+	SVAL 0xB 0x90005 //The unit at 5, 9
+	SVAL 0x1 AIChangeToAfterMove //Set AI to pursue without heed
 	CHAI [5, 9] //actually change the AI
-	_MOVE 0x7F 0xFFFE [4,26] //Move it to 4, 26
+	MOVE 0x7F 0xFFFE [4,26] //Move it to 4, 26
 LABEL 0x3
 
-_SETVAL 0xB 0x0D0009 //Tile 9, 13
+SVAL 0xB 0x0D0009 //Tile 9, 13
 CHECK_EXISTS 0xFFFE //Is there a unit?
 IFEQ  0x5 0xC 0x0 //There is not...
-	_SETVAL 0xB 0x7000D //The unit at 13, 7
-	_SETVAL 0x1 AIChangeToAfterMove //Set AI to pursue without heed
+	SVAL 0xB 0x7000D //The unit at 13, 7
+	SVAL 0x1 AIChangeToAfterMove //Set AI to pursue without heed
 	CHAI [13, 7] //actually change the AI
-	_MOVE 0x7F 0xFFFE [9, 13] //Move it to 9, 13
+	MOVE 0x7F 0xFFFE [9, 13] //Move it to 9, 13
 LABEL 0x5
 
-_SETVAL 0xB 0x15000C //Tile 12, 21
+SVAL 0xB 0x15000C //Tile 12, 21
 CHECK_EXISTS 0xFFFE //Is there a unit?
 IFEQ  0x7 0xC 0x0 //If there is not...
-	_SETVAL 0xB 0x8000D //The unit at 13, 8
-	_SETVAL 0x1 AIChangeToAfterMove //Set AI to pursue without heed
+	SVAL 0xB 0x8000D //The unit at 13, 8
+	SVAL 0x1 AIChangeToAfterMove //Set AI to pursue without heed
 	CHAI [13, 8] //actually change the AI
-	_MOVE 0x7F 0xFFFE [12,21] //Move it to 12, 21
+	MOVE 0x7F 0xFFFE [12,21] //Move it to 12, 21
 LABEL 0x7
 
 ENUN

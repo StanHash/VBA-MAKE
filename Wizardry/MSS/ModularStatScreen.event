@@ -138,7 +138,7 @@
 
   ALIGN 4
   NewPageNameGraphic:
-    #incext Png2Dmp "asm/pagenamegraphic.png" --lz77
+    #incbin "asm/pagenamegraphic.4bpp.lz"
 
   ALIGN 4
   NewPageNameLayout:

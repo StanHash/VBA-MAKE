@@ -23,9 +23,12 @@ The setup required to build this is very much similar to what you need for [FE-C
 - devkitARM and the `DEVKITARM` env var (unused yet)
 - some unix/msys
 - python 3 in your path
-- A non-standard EA as `Tools/EventAssembler` (see CHAX for details and link)
+- A non-standard EA as `Tools/EventAssembler` (see CHAX for details and link), used for generation make dependencies
+  - Right now this also requires a custom build of [ColorzCore](https://github.com/FireEmblemUniverse/ColorzCore) (specifically from the [`core-relative-include` branch in my fork of it](https://github.com/StanHash/ColorzCore/tree/core-relative-include)), as ColorzCore is now used for the "final" pass.
+    - This also means updated raws from the official 11.1.3 Event Assembler!
+      - So much stuff oof
 - Png2Dmp, PortraitFormatter and ParseFile in `Tools`
-- lyn in `Tools` (unused yet)
+- lyn in `Tools`
 - gbagfx in `Tools`
 
 I plan on eventually distributing an all in one "Tools" package to make this a bit easier but right now I'm still messing with everything all the time and updating the packing to go with it would be impractical.

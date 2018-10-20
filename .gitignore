@@ -4,14 +4,17 @@
 *.sav
 *.sgm
 
+*.bat
+*.exe
+
 *.sym.event
 .MkCache
+
 *.4bpp
 *.lz
 *.gbapal
 *.dmp
-*.bat
-*.exe
+*.lyn.event
 
 Writans/Text/.TextEntries
 Writans/*.event

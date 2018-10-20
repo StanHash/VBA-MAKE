@@ -82,7 +82,7 @@ Text(Ch28Ending)
 CAM1(Void)
 FlashCursor(Void,60)
 SETVAL 0x3 0x85
-_GIVEITEMTO 0x1
+GIVETO 0x1
 MNC2 0x22
 ENDA
 

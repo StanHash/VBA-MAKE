@@ -163,11 +163,12 @@
 	ALIGN 4
 	Trade_Portrait_Fix2:
 	#incbin "Trade Portrait Fix2.dmp"
-	
-	ALIGN 4
-	Blank_Portrait:
-	#incext PortraitFormatter "blank_portrait.png"
-	setMugEntry(0x1, Blank_Portrait, 3, 5, 3, 3)
+
+//	TODO: BLANK PORTRAIT
+//	ALIGN 4
+//	Blank_Portrait:
+//	#incext PortraitFormatter "blank_portrait.png"
+//	setMugEntry(0x1, Blank_Portrait, 3, 5, 3, 3)
 	
 #else
 	ERROR "You're not assembling FE8 events!"

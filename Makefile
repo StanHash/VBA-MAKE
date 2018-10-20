@@ -58,7 +58,7 @@ clean:
 $(ROM_TARGET): $(EVENT_MAIN) $(EVENT_DEPENDS) $(ROM_SOURCE)
 	@echo Building $(ROM_TARGET).
 	@cp -f $(ROM_SOURCE) $(ROM_TARGET)
-	@$(EA) A FE8 -output $(ROM_TARGET) -input $(EVENT_MAIN) -symOutput $(EVENT_SYMBOLS) || (rm $(ROM_TARGET) && false)
+	@$(CCEA) A FE8 -output:$(ROM_TARGET) -input:$(EVENT_MAIN) || (rm $(ROM_TARGET) && false)
 
 $(EVENT_DEPENDS):
 	@echo Refreshing dependencies.
@@ -114,6 +114,16 @@ Writans/Text.event Writans/TextDefinitions.event: $(WRITANS_ALL_TEXT)
 %.event %_data.dmp: %.tmx
 	$(PREPROCESS_MESSAGE)
 	@echo | $(TMX2EA) $<
+
+# OBJ to event
+%.lyn.event: %.o
+	$(PREPROCESS_MESSAGE)
+	@$(LYN) $< > $@
+
+# OBJ to event
+%.lyn.event: %.elf
+	$(PREPROCESS_MESSAGE)
+	@$(LYN) $< > $@
 
 # --------------------
 # INCLUDE DEPENDENCIES

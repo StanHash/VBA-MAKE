@@ -65,7 +65,7 @@
 	
 	ALIGN 4
 	TxtData0x2:
-	#incext ParseFile "0x2.txt"
+	#incbin "0x2.fetxt.bin"
 	setText(0x2,TxtData0x2)
 	
 	ALIGN 4
