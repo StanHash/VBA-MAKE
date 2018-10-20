@@ -13,7 +13,8 @@
 *.bat
 *.exe
 
-.TextEntries
+Writans/Text/.TextEntries
+Writans/*.event
 
 *.cache
 

@@ -117,7 +117,7 @@ a convinent gate[X]
 Navigate the mess,[N]
 go seize the gate[X]
 
-#0x1B8 Ch29Goal
+## Ch29Goal
 Defeat the Beatles in[N]
 combat, then kill Lyon[X]
 
