@@ -1,10 +1,8 @@
-//ifndef guards
 #ifndef TABLE_DEFINITIONS
-
 #define TABLE_DEFINITIONS
 
 #ifndef CharacterTable
-    #define CharacterTable 0x803D30
+  #define CharacterTable 0x803D30
 #endif
 #ifndef ClassTable
   #define ClassTable 0x807110
@@ -137,24 +135,23 @@
 #define negateByte(byte) "0x100-byte"
 #define IsPointer 0x8000000
 
-  #define defWTAAdvantage(attackingType, defendingType) "BYTE attackingType defendingType"//"BYTE attackingType defendingType 0x0F 0x01"
-  #define defWTADisadvantage(attackingType, defendingType) "BYTE defendingType attackingType" //"BYTE attackingType defendingType 0xF1 0xFF"
-  #define endWTATable "BYTE 0xFF 0xFF"
+#define defWTAAdvantage(attackingType, defendingType) "BYTE attackingType defendingType"//"BYTE attackingType defendingType 0x0F 0x01"
+#define defWTADisadvantage(attackingType, defendingType) "BYTE defendingType attackingType" //"BYTE attackingType defendingType 0xF1 0xFF"
+#define endWTATable "BYTE 0xFF 0xFF"
 
-  #define defStatBoosts(hp, str, mag, skl, spd, luk, def, res) "BYTE hp str skl spd def res luk mag"
-  #define defWeaponDebuffs(str, mag, skl, spd, luk, def, res) "BYTE (str|(skl<<4)) (spd|(def<<4)) (res|(luk<<4)) mag"
-
-#endif
+#define defStatBoosts(hp, str, mag, skl, spd, luk, def, res) "BYTE hp str skl spd def res luk mag"
+#define defWeaponDebuffs(str, mag, skl, spd, luk, def, res) "BYTE (str|(skl<<4)) (spd|(def<<4)) (res|(luk<<4)) mag"
 
 // ######################################################################
-//Relating to Tequila's slayer/effectiveness rework
-//Used in the class editor and item editor tables
-//To understand how this works, check out Engine Hacks/Skill System/Teq Skills/FE8-Nullify/_README.txt
-#define ArmorType	0x01
-#define HorseType	0x02
-#define FlierType	0x04
-#define DragonType	0x08
-#define MonsterType	0x10
-#define SwordType	0x20
+// Relating to Tequila's slayer/effectiveness rework
+// Used in the class editor and item editor tables
+// To understand how this works, check out Engine Hacks/Skill System/Teq Skills/FE8-Nullify/_README.txt
 
-#include "External Tables.event"
+#define ArmorType   0x01
+#define HorseType   0x02
+#define FlierType   0x04
+#define DragonType  0x08
+#define MonsterType 0x10
+#define SwordType   0x20
+
+#endif // TABLE_DEFINITIONS

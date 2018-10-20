@@ -1,5 +1,7 @@
+#ifndef GAMEDATA
+#define GAMEDATA
 
-#include "Table Definitions.txt"
+#include "TableDefinitions.event"
 
 #include "Tables/SkillSystem/ClassSkills.event"
 #include "Tables/SkillSystem/LearnedSkills.event"
@@ -28,3 +30,26 @@
 
 #include "Tables/WorldMap/WMLocations.event"
 #include "Tables/WorldMap/WMPaths.event"
+
+WeaponDebuffTable:
+	defWeaponDebuffs(0,0,0,0,0,0,0) //0x0: let 0-index entry be no debuffs.
+	defWeaponDebuffs(0,0,1,1,0,2,2) //0x1: Bronze Shuriken debuff.
+	defWeaponDebuffs(0,2,0,0,0,3,3) //0x2: Iron Shuriken debuff.
+	defWeaponDebuffs(3,0,0,0,0,4,4) //0x3: Steel Shuriken debuff.
+	defWeaponDebuffs(0,0,0,4,0,4,4) //0x4: Silver Shuriken debuff.
+	defWeaponDebuffs(4,0,0,4,0,4,4) //0x5: Pebble debuff.
+
+MasterSealClasses:
+	BYTE $0F $10 $13 $14 $3F $42 $41 $05 $06 $09 $0A $19 $1A $48 $1F $20 $45 $4A $25 $26 $2D $2E $4B $0D $3D $3E $47 $7E $7F $37 $44 Soldier 0
+
+KnightCrestClasses:
+	BYTE $05 $06 $09 $0A $37 Soldier 00
+
+SuperBlitzEffectiveness:
+	BYTE $52 $53 $54 $55 $56 $57 $58 $59 $5A $5B $5C $5D $5E $5F $60 $61 $62 $63 $64 $65 $66 $3B $7C $7D $51 Necromancer 00
+
+SuperBlitzStatBoosts:
+	//   hp st sk sp df rs lk mv cn
+	BYTE 00 10 10 00 10 20 00 00 00 00
+
+#endif // GAMEDATA
