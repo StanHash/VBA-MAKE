@@ -16,6 +16,8 @@
 Writans/Text/.TextEntries
 Writans/*.event
 
+Spritans/Portraits.event
+
 *.cache
 
 # Windows image file caches
