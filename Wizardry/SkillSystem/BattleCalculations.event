@@ -16,7 +16,7 @@ POP
 //under free space
 ALIGN 4
 BtlLoopParent:
-#incbin "Internals/FE8_calc_loop.dmp"
+#incbin "Internals/FE8CalcLoop.dmp"
 BtlLoopTable:
 POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit CritUpSkill BC_Dodge BC_Support BC_WRank BC_Status //these are the existing battle calculation routines
 POIN FaireCheck
@@ -42,7 +42,7 @@ POIN CriticalCheck
 POIN 0
 
 rewriteRangeMap:
-#incbin "Internals/rewriteRangeMap.dmp"
+#incbin "Internals/RewriteRangeMap.dmp"
 ALIGN 4
 
 

@@ -21,11 +21,11 @@
 
   ALIGN 4
   TalkFix:
-    #incbin "asm/TalkFix.dmp"
+    #incbin "Asm/TalkFix.dmp"
   
   ALIGN 4
   SupportFix:
-    #incbin "asm/SupportFix.dmp"
+    #incbin "Asm/SupportFix.dmp"
 
   }
 

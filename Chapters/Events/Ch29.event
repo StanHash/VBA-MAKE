@@ -89,7 +89,7 @@ ENDA
 // Events
 
 DebuffASMC:
-#incbin "Stacking Debuff All Enemies.dmp"
+#incbin "StackingDebuffAllEnemies.dmp"
 WORD DebuffTable
 
 UnitDied:

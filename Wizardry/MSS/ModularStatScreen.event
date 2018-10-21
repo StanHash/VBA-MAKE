@@ -15,7 +15,7 @@
   #define Trv_Icon_X 0xB8
   #define Trv_Icon_Y 0x2E
   
-  #include "Display Growths Options/Display Growths Options.txt"
+  #include "DisplayGrowthsOptions/DisplayGrowthsOptions.txt"
  
   PUSH
     ORG 0x205b24 //24 for stat screen
@@ -105,14 +105,14 @@
 
     RText_Page4_ladder:
       // page 4 helptext hook
-      #incbin "asm/rtext_page4.dmp"
+      #incbin "Asm/RtextPage4.dmp"
       POIN RText_Page4
 
   POP
   
   ALIGN 4
   MSS_page1:
-    #incbin "asm/mss_page1_skills.dmp"
+    #incbin "Asm/MssPage1Skills.dmp"
     POIN SkillIcons
     POIN Skill_Getter
     POIN SkillTester
@@ -126,19 +126,19 @@
   
   ALIGN 4
   MSS_page2:
-    #incbin "asm/mss_page2_original.dmp"
+    #incbin "Asm/MssPage2Original.dmp"
 
   ALIGN 4
   MSS_page3:
-    #incbin "asm/mss_page3_original.dmp"
+    #incbin "Asm/MssPage3Original.dmp"
 
   ALIGN 4
   MSS_page4:
-    #incbin "asm/mss_page4.dmp"
+    #incbin "Asm/MssPage4.dmp"
 
   ALIGN 4
   NewPageNameGraphic:
-    #incbin "asm/pagenamegraphic.4bpp.lz"
+    #incbin "Asm/Pagenamegraphic.4bpp.lz"
 
   ALIGN 4
   NewPageNameLayout:
@@ -150,11 +150,11 @@
 
   ALIGN 4
   NewPageNamePalette:
-    #incbin "asm/palettecycler.dmp"
+    #incbin "Asm/Palettecycler.dmp"
 
   ALIGN 4
   Button_Branch:
-    #incbin "asm/Button Branch.dmp"
+    #incbin "Asm/ButtonBranch.dmp"
 
   ALIGN 4
   Growth_Getter_Table:
@@ -162,69 +162,69 @@
 
   ALIGN 4
   Get_Hp_Growth:
-    #incbin "asm/Growth Getters/Get_Hp_Growth.dmp"
+    #incbin "Asm/GrowthGetters/GetHpGrowth.dmp"
     POIN Extra_Growth_Boosts|1
 
   ALIGN 4
   Get_Str_Growth:
-    #incbin "asm/Growth Getters/Get_Str_Growth.dmp"
+    #incbin "Asm/GrowthGetters/GetStrGrowth.dmp"
     POIN Extra_Growth_Boosts|1
 
   ALIGN 4
   Get_Skl_Growth:
-    #incbin "asm/Growth Getters/Get_Skl_Growth.dmp"
+    #incbin "Asm/GrowthGetters/GetSklGrowth.dmp"
     POIN Extra_Growth_Boosts|1
 
   ALIGN 4
   Get_Spd_Growth:
-    #incbin "asm/Growth Getters/Get_Spd_Growth.dmp"
+    #incbin "Asm/GrowthGetters/GetSpdGrowth.dmp"
     POIN Extra_Growth_Boosts|1
 
   ALIGN 4
   Get_Def_Growth:
-    #incbin "asm/Growth Getters/Get_Def_Growth.dmp"
+    #incbin "Asm/GrowthGetters/GetDefGrowth.dmp"
     POIN Extra_Growth_Boosts|1
 
   ALIGN 4
   Get_Res_Growth:
-    #incbin "asm/Growth Getters/Get_Res_Growth.dmp"
+    #incbin "Asm/GrowthGetters/GetResGrowth.dmp"
     POIN Extra_Growth_Boosts|1
 
   ALIGN 4
   Get_Luk_Growth:
-    #incbin "asm/Growth Getters/Get_Luk_Growth.dmp"
+    #incbin "Asm/GrowthGetters/GetLukGrowth.dmp"
     POIN Extra_Growth_Boosts|1
 
   ALIGN 4
   Extra_Growth_Boosts:
-    #incbin "asm/Growth Getters/Extra_Growth_Boosts.dmp"
+    #incbin "Asm/GrowthGetters/ExtraGrowthBoosts.dmp"
     WORD Growth_Options
     POIN ItemTable
 
   ALIGN 4
   Load_Page:
-    #incbin "asm/Load Page.dmp"
+    #incbin "Asm/LoadPage.dmp"
     WORD Stat_Page_Ram_Loc
 
   ALIGN 4
   Store_Page:
-    #incbin "asm/Store Page.dmp"
+    #incbin "Asm/StorePage.dmp"
     WORD Stat_Page_Ram_Loc
 
   ALIGN 4
   Rescue_Arrows:
-    #incbin "asm/Check Rescue Arrows.dmp"
+    #incbin "Asm/CheckRescueArrows.dmp"
     POIN SkillTester
     WORD SaviorID
 
   ALIGN 4
   Get_Palette_Index:
-    #incbin "asm/Get_Palette_Index.dmp"
+    #incbin "Asm/GetPaletteIndex.dmp"
     POIN Growth_Color_Table
 
   ALIGN 4
   HP_Name_Color:
-    #incbin "asm/HP Name Color.dmp"
+    #incbin "Asm/HPNameColor.dmp"
     POIN New_Palettes
     WORD Growth_Options
     POIN Get_Hp_Growth
@@ -232,31 +232,31 @@
 
   ALIGN 4
   Write_Growths_To_Battle_Struct:
-    #incbin "asm/Write_Growths_To_Battle_Struct.dmp"
+    #incbin "Asm/WriteGrowthsToBattleStruct.dmp"
     POIN Class_Level_Cap_Table Get_Hp_Growth Get_Str_Growth Get_Skl_Growth Get_Spd_Growth Get_Def_Growth Get_Res_Growth Get_Luk_Growth
     WORD Growth_Options
 
   ALIGN 4
   Class_Level_Cap_Table:
-    #incbin "Display Growths Options/Class_Level_Cap_Table.dmp"
+    #incbin "DisplayGrowthsOptions/ClassLevelCapTable.dmp"
 
   ALIGN 4
   Enemy_Autolevel:
-    #incbin "asm/Enemy_Autolevel.dmp"
+    #incbin "Asm/EnemyAutolevel.dmp"
     WORD Growth_Options
 
   ALIGN 4
   New_Unit_Exp:
-    #incbin "asm/New_Unit_Exp.dmp"
+    #incbin "Asm/NewUnitExp.dmp"
     POIN Class_Level_Cap_Table
 
   ALIGN 4
   Growth_Color_Table:
-    #include "Display Growths Options/Growth Colors Table.txt"
+    #include "DisplayGrowthsOptions/GrowthColorsTable.txt"
 
   ALIGN 4
   New_Palettes:
-    #include "Display Growths Options/New Palette.txt"
+    #include "DisplayGrowthsOptions/NewPalette.txt"
 
   ALIGN 4
   TxtData0x0D4B:

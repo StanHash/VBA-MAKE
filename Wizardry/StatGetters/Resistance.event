@@ -1,7 +1,7 @@
 #ifndef MODULAR_GETTER_RESISTANCE_EVENT
 #define MODULAR_GETTER_RESISTANCE_EVENT
 
-#include "_Common.event"
+#include "Common.event"
 
 pResistanceModifiers: // Resistance
 	POIN prAddUnitResistance prHalveIfCapturing prDebuffRes prAddEquipResistance prRallyRes prAddPureWaterBarrierMod prLifeAndDeathMinus prSkillFury prFortressResistanceRes
@@ -20,11 +20,11 @@ prAddPureWaterBarrierMod: // Upper part of byte 0x31 in unit struct is current p
 	rAdd(rUpperHalfByteOf(rUByteAt(0x31)))
 
 prDebuffRes:
-	#incbin "_asm/DebuffRes.bin"
+	#incbin "Asm/DebuffRes.bin"
 	WORD DebuffTable
 
 prRallyRes:
-	#incbin "_asm/RallyRes.bin"
+	#incbin "Asm/RallyRes.bin"
 	WORD DebuffTable
 
 prLifeAndDeathMinus:

@@ -1,6 +1,6 @@
 //Skill System replacing favouritism stat
-#include repointbuffer.event
-#include "FE8-WeaponRankOnLevelup/FE8-WeaponRankOnLevelupEA.txt"
+#include "Repointbuffer.event"
+#include "FE8WeaponRankOnLevelup/FE8WeaponRankOnLevelupEA.txt"
 
 PUSH //let 203e884 + charnum*10 = skill area (bytes 1,2,3,4 NOT 0 tho)
 
@@ -57,17 +57,17 @@ jumpToHack(Unset_Attack_Flag_2)
 POP
 
 Skill_Getter: //gets a list of skills
-#incbin skillGetter.dmp
+#incbin "SkillGetter.dmp"
 POIN PersonalSkillTable
 POIN ClassSkillTable
 POIN LevelUpSkillTable
 
 SkillTesterOriginal: //does unit have X skill?
-#incbin skillTester.dmp
+#incbin "SkillTester.dmp"
 POIN Skill_Getter
 
 SkillTester: //does enemy have Nihil? if so, does Nihil negate X skill?
-#incbin nihilTester.dmp
+#incbin "NihilTester.dmp"
 POIN SkillTesterOriginal
 WORD NihilID
 POIN Skill_Getter
@@ -120,17 +120,17 @@ BYTE 0x00//terminator
 ALIGN 4
 
 SkillDescGetter: //given skill number, get description text ID
-#incbin skillDescGetter.dmp
+#incbin "SkillDescGetter.dmp"
 POIN SkillDescTable
 POIN Skill_Getter
 WORD SS_SkillsDefaultRText
 
 SkillAdder: //given chardata in r0, skill in r1, add skill if possible
-#incbin addSkill.dmp
+#incbin "AddSkill.dmp"
 
 ALIGN 4
 SkillLearner:
-#incbin learnskill.dmp
+#incbin "Learnskill.dmp"
 POIN LevelUpSkillTable
 POIN SkillAdder
 
@@ -140,27 +140,27 @@ POIN SkillAdder
 // POIN SkillIcons
 
 AnimsOnPopupHack:
-#incbin "animsonhack_75ca8.dmp"
+#incbin "Animsonhack75ca8.dmp"
 WORD LearnedSkillText
 
 AddSkillsOnLoad:
-#incbin "unitloading.dmp"
+#incbin "Unitloading.dmp"
 POIN LevelUpSkillTable
 POIN SkillAdder
 POIN ChargeupTable
 POIN Skill_Getter
 
 RTextLoop:
-#incbin "rtextloop.dmp"
+#incbin "Rtextloop.dmp"
 POIN Skill_Getter
 
 Rerun_Battle_Calcs:
-#incbin "Rerun_Battle_Calcs.dmp"
+#incbin "RerunBattleCalcs.dmp"
 
 Unset_Attack_Flag_2:
-#incbin "clearAttackFlag.dmp"
+#incbin "ClearAttackFlag.dmp"
 
-#include "level_popups.event"
-#include "map_anims_routines.event"
-#include "popupdisplayroutines.event"
+#include "LevelPopups.event"
+#include "MapAnimsRoutines.event"
+#include "Popupdisplayroutines.event"
 #include "HPHealing.event"

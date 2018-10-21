@@ -19,7 +19,7 @@
 #define LunarBrace MoonBracelet
 #define SolarBrace SunBracelet
 
-#include "Wizardry/SkillSystem/skill_definitions.event"
+#include "Wizardry/SkillSystem/SkillDefinitions.event"
 
 #define Void 1
 #define Tim 2

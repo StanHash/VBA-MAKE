@@ -15,7 +15,7 @@ PUSH
   POIN NewTitleScroll
 
   ORG $aac5ac
-  #incbin "FE_Title.4bpp.lz"
+  #incbin "FETitle.4bpp.lz"
 
   ORG $a16dec
   #incbin "EditedStatusNames.4bpp"
@@ -25,30 +25,30 @@ PUSH
 POP
 
 NewDifficultyButtons:
-#incbin "difficulty.4bpp.lz"
+#incbin "Difficulty.4bpp.lz"
 
 NewTitleScroll:
 #incbin "TitleScroll.4bpp.lz"
 
 PUSH
 ORG 0x5926F4+(0x80*8)
-#incbin "blitzicon.4bpp"
+#incbin "Blitzicon.4bpp"
 ORG 0x5926F4+(0x80*0xb0)
-#incbin "superblitzicon.4bpp"
+#incbin "Superblitzicon.4bpp"
 ORG 0x5926F4+(0x80*0x42)
-#incbin "auraicon.4bpp"
+#incbin "Auraicon.4bpp"
 POP
 
 ch24palette:
-#incbin "bch24palette.bin"
+#incbin "Bch24palette.bin"
 
 SnowPalette:
 // #incbin "SnowPalette_FE8.bin"
-#incbin "b21palette.bin"
+#incbin "B21palette.bin"
 // #incbin "b21palette.gbapal"
 
 SnowTileConfig:
-#incbin "SnowTileConfig_LZ.bin"
+#incbin "SnowTileConfigLZ.bin"
 
 EventPointerTable(0x8b, ch24palette)
 EventPointerTable(0x8c, SnowPalette)
@@ -57,10 +57,10 @@ EventPointerTable(0x8d, SnowTileConfig)
 #include "BattleAnimPointers.event"
 
 TikiTransformPal:
-#incbin "tiki_transformed_pal.dmp.lz"
+#incbin "TikiTransformedPal.dmp.lz"
 
 TikiNormalPal:
-#incbin "tiki_untransformed_pal.dmp.lz"
+#incbin "TikiUntransformedPal.dmp.lz"
 
 PUSH
 ORG (0xc00008-0x20)+(0xc5*0x20)+(7*4)
@@ -87,9 +87,9 @@ POIN NewStatScreenPal
 POP
 
 NewStatScreen:
-#incbin "StatScreen_B.4bpp.lz"
+#incbin "StatScreenB.4bpp.lz"
 NewStatScreenPal:
-#incbin "StatScreen_B.gbapal"
+#incbin "StatScreenB.gbapal"
 
 RemoveGlowy:
 #incbin "RemoveGlowy.4bpp.lz"

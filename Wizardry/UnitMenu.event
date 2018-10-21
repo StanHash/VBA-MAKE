@@ -2,7 +2,7 @@
 #define UNIT_MENU
 
 #include "Extensions/Hack Installation.txt"
-#include "_UnitMenuDefs.event"
+#include "UnitMenuDefs.event"
 
 PUSH
   // Repoint Unit Menu

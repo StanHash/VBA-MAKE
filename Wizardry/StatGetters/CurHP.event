@@ -1,7 +1,7 @@
 #ifndef MODULAR_GETTER_CURHP_EVENT
 #define MODULAR_GETTER_CURHP_EVENT
 
-#include "_Common.event"
+#include "Common.event"
 
 // Note: prCapHPIfOverMax comes with MSG (InstallHelpers.event) since it's direct asm (+ you'll probably want it anyway)
 

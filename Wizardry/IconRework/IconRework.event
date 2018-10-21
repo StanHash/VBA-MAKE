@@ -3,7 +3,7 @@
 
 #define ICON_SHEET_COUNT 2 // #0 for item icons & #1 for skill icons
 
-#include "IconRework_Internal.event"
+#include "IconReworkInternal.event"
 
 // SKILL ICONS SHEET
 {
@@ -11,7 +11,7 @@ InjectIconGfxGetter(1, (prGetSlillIconGfx+1))
 
 ALIGN 4
 prGetSlillIconGfx:
-	#incbin "asm/GetSheetIconGfx.bin"
+	#incbin "Asm/GetSheetIconGfx.bin"
 	POIN SkillIcons
 }
 

@@ -21,7 +21,7 @@
 
   ALIGN 4
   SoundMixer:
-    #incbin "asm/SoundMain.dmp"
+    #incbin "Asm/SoundMain.dmp"
 
   }
 

@@ -41,16 +41,16 @@
       POIN VeinInitialization
 
     ORG 0x27318
-      #incbin "asm/DrawingDragonVein_1.dmp"
+      #incbin "Asm/DrawingDragonVein1.dmp"
 
     ORG 0x2731C
       POIN (DrawingOffset_External+0x1)
 
     ORG 0x27332
-      #incbin "asm/DrawingDragonVein_2.dmp"
+      #incbin "Asm/DrawingDragonVein2.dmp"
 
     ORG 0x27338
-      #incbin "asm/DrawingDragonVein_3.dmp"
+      #incbin "Asm/DrawingDragonVein3.dmp"
 
     ORG (0x8AF880+0x8*Vein_Map_Sprite_Number)
       SHORT 0x0002
@@ -64,7 +64,7 @@
   MESSAGE DVs installed to CURRENTOFFSET
 
   DrawingOffset_External:
-    #incbin "asm/DrawingDragonVein_Ext.dmp"
+    #incbin "Asm/DrawingDragonVeinExt.dmp"
 
   PUSH // This is ugly, change this if you change asm/DrawingDragonVein_Ext.dmp
     ORG DrawingOffset_External + $4
@@ -75,10 +75,10 @@
   POP
 
   VeinInitialization:
-    #incbin "asm/Initialize.dmp"
+    #incbin "Asm/Initialize.dmp"
 
   VeinGraphics:
-    #incbin "asm/sparkle_final_4_Sheet.4bpp.lz"
+    #incbin "Asm/SparkleFinal4Sheet.4bpp.lz"
     //#incbin "asm/Dragon Vein/SparkleGraphic.dmp"
 
   PUSH
@@ -93,17 +93,17 @@
   POP
 
   VeinHPFix:
-    #incbin "asm/hpfix.dmp"
+    #incbin "Asm/Hpfix.dmp"
 
   VeinHPFix2:
-    #incbin "asm/hpfix2.dmp"
+    #incbin "Asm/Hpfix2.dmp"
 
   VeinTextBox:
-    #incbin "asm/dv_display.dmp"
+    #incbin "Asm/DvDisplay.dmp"
 
   ALIGN 4
   DragonVeinSFXData:
-    #incbin "bin/DragonVeinSFX.dmp"
+    #incbin "Bin/DragonVeinSFX.dmp"
 
   DragonVeinSFX:
     WORD $1 //Dunno what this is, but leave it
@@ -116,7 +116,7 @@
     WORD $FF00FF
 
   DragonVeinWav:
-    #incbin "bin/DragonVein_wav.dmp"
+    #incbin "Bin/DragonVeinWav.dmp"
 
   SongTable(DragonVeinSFXID,DragonVeinSFX,7) // Song Group 7 is for map sfx
 
@@ -125,13 +125,13 @@
   // public functions
   
   VeinUsability:
-    #incbin "asm/Dragon Vein Usability.dmp"
+    #incbin "Asm/DragonVeinUsability.dmp"
     WORD DragonVeinTrapID
     POIN SkillTester
     WORD DragonsBloodID
 
   VeinEffect:
-    #incbin "asm/Dragon Vein Execution.dmp"
+    #incbin "Asm/DragonVeinExecution.dmp"
     POIN DragonVeinEffectTableOffset
 
 #else // _FE8_

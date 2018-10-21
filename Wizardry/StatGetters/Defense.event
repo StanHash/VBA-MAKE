@@ -1,7 +1,7 @@
 #ifndef MODULAR_GETTER_DEFENSE_EVENT
 #define MODULAR_GETTER_DEFENSE_EVENT
 
-#include "_Common.event"
+#include "Common.event"
 
 pDefenseModifiers: // Defense
 	POIN prAddUnitDefense prHalveIfCapturing prDebuffDef prAddEquipDefense prRallyDef prLifeAndDeathMinus VigorDanceCheck prSkillFury prFortressDefenseDef
@@ -17,11 +17,11 @@ prAddEquipDefense:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemDefBonus)))
 
 prDebuffDef:
-	#incbin "_asm/DebuffDef.bin"
+	#incbin "Asm/DebuffDef.bin"
 	WORD DebuffTable
 
 prRallyDef:
-	#incbin "_asm/RallyDef.bin"
+	#incbin "Asm/RallyDef.bin"
 	WORD DebuffTable
 	
 prFortressDefenseDef:

@@ -10,7 +10,7 @@
 
   ALIGN 4
   LoadTrapsASMC:
-    #incbin "asm/NewTrapInitializer.dmp"
+    #incbin "Asm/NewTrapInitializer.dmp"
 
 #else // _FE8_
   ERROR Event AddTraps hack is for FE8

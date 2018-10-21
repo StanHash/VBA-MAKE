@@ -66,7 +66,7 @@ ORG FreeSpace
 
     // Engine Hacks
 
-    #include "Wizardry/_MasterHackInstaller.event"
+    #include "Wizardry/MasterHackInstaller.event"
 
     // Graphics
 

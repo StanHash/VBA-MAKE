@@ -1,6 +1,6 @@
 //Generated with Skill Animation Creator.
 
-#incbin skillanimtemplate_defender.dmp
+#incbin "SkillanimtemplateDefender.dmp"
 POIN Frames
 POIN TSAList
 POIN GraphicsList

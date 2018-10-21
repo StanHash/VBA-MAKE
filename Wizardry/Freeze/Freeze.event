@@ -41,11 +41,11 @@
 
   ALIGN 4
   FreezeDecrease:
-    #incbin "asm/freeze_decrease.dmp"
+    #incbin "Asm/FreezeDecrease.dmp"
 
   ALIGN 4
   FreezeDecrease2:
-    #incbin "asm/freeze_decrease_2.dmp"
+    #incbin "Asm/FreezeDecrease2.dmp"
 
   }
 

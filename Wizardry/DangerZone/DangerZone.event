@@ -10,7 +10,7 @@
 
   PUSH
     ORG $1cad8
-      #incbin "asm/DZ_hook.dmp"
+      #incbin "Asm/DZHook.dmp"
 
     ORG $1caec
       POIN DangerZone+1
@@ -24,7 +24,7 @@
 
   ALIGN 4
   DangerZone:
-    #incbin "asm/DangerZone.dmp"
+    #incbin "Asm/DangerZone.dmp"
     // #incbin "ASM/dangerzone_sekrit.dmp" //for konami code
     // POIN SecretEvent
 

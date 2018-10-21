@@ -1,7 +1,7 @@
 //Made by Camtech075 of SerenesForest
 //Modified by Nintenlord
 
-#include EAstdlib.event
+#include "EAstdlib.event"
 
 EventPointerTable(0x37,ThisChapter)
 // EventPointerTable(0xd1, ThisChapter)

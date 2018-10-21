@@ -8,7 +8,7 @@
 
   ALIGN 4
   SendToConvoy:
-    #incbin "asm/sendToConvoyASMC.dmp"
+    #incbin "Asm/SendToConvoyASMC.dmp"
 
 #else // _FE8_
   ERROR Send Item To Convoy ASMC hack is for FE8

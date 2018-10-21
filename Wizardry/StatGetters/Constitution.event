@@ -1,7 +1,7 @@
 #ifndef MODULAR_GETTER_CONSITUTION_EVENT
 #define MODULAR_GETTER_CONSITUTION_EVENT
 
-#include "_Common.event"
+#include "Common.event"
 
 pConModifiers: // Consitition
 	POIN prAddUnitBaseCon prAddUnitConBonus

@@ -65,6 +65,6 @@ prSmite_TargetLegality:
         rIfUnitHasNotGuardAI
             rConstant(True)
 
-#include "HeroesMovement_Internal.event"
+#include "HeroesMovementInternal.event"
 
 #endif // HAX_HEROES_MOVEMENTS_EVENT

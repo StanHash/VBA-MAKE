@@ -17,15 +17,15 @@
   POP
 
   Chname:
-    #incbin "asm/fe8_chapter_names.dmp"
+    #incbin "Asm/Fe8ChapterNames.dmp"
     POIN ChFont
     POIN ChTable
 
   ChFont:
-    #incbin "bin/font.4bpp.lz"
+    #incbin "Bin/Font.4bpp.lz"
 
   ChTable:
-    #incbin "bin/chartable.dmp"
+    #incbin "Bin/Chartable.dmp"
 
   }
 

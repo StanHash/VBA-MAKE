@@ -18,7 +18,7 @@
 
   ALIGN 4
   ToggleAnim:
-    #incbin "asm/LToggle.dmp"
+    #incbin "Asm/LToggle.dmp"
 
   }
 

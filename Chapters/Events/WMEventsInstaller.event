@@ -4,11 +4,11 @@
 {
   #define PrologueWMEventsID 0x1
   ALIGN 4
-  #include "WM_Prologue.event"
+  #include "WMPrologue.event"
 }
 {
   ALIGN 4
-  #include "WM2_Prologue.event"
+  #include "WM2Prologue.event"
 }
 ALIGN 4
 // #include "EpilogueEvents.event"

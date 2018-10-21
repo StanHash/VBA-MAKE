@@ -18,11 +18,11 @@
 
   ALIGN 4
   ArrowFix:
-    #incbin "asm/MovementArrowFix.dmp"
+    #incbin "Asm/MovementArrowFix.dmp"
 
   ALIGN 4
   ArrowChecker:
-    #incbin "asm/MovementArrowFix2.dmp"
+    #incbin "Asm/MovementArrowFix2.dmp"
 
   }
 

@@ -22,11 +22,11 @@
 
   ALIGN 4
   NegStatBoosts:
-    #incbin "asm/negativestatboosts.dmp"
+    #incbin "Asm/Negativestatboosts.dmp"
 
   ALIGN 4
   NegativeStatBars:
-    #incbin "asm/negativestatbar.dmp"
+    #incbin "Asm/Negativestatbar.dmp"
 
   }
 

@@ -1,4 +1,4 @@
-#include EAstdlib.event
+#include "EAstdlib.event"
 
 EventPointerTable(0x64,ThisChapter) //Final Eirika Pt1
 

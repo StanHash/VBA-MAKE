@@ -15,7 +15,7 @@
 
   ALIGN 4
   CasualMode:
-    #incbin "asm/CasualModeFE8.dmp"
+    #incbin "Asm/CasualModeFE8.dmp"
 
   }
 

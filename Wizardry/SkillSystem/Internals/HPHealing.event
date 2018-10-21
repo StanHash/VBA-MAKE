@@ -66,23 +66,23 @@ POIN $525a5
 WORD 0 0
 
 efxHpBarRoutine:
-#incbin "efxHpBar.dmp"
+#incbin "EfxHpBar.dmp"
 
 efxHpBarParent:
-#incbin "efxHpBar_parent.dmp"
+#incbin "EfxHpBarParent.dmp"
 
 efxHpBarLiveParent:
-#incbin "efxHpBarLive_parent.dmp"
+#incbin "EfxHpBarLiveParent.dmp"
 
 efxHpBarLiveRoutine:
-#incbin "efxHpBarLive.dmp"
+#incbin "EfxHpBarLive.dmp"
 
 hpstealing_showanim:
-#incbin "hpstealing_showanim.dmp"
+#incbin "HpstealingShowanim.dmp"
 
 ALIGN 4
 NosferaFix:
-#incbin "nosferafix.dmp"
+#incbin "Nosferafix.dmp"
 
 animsoff_hpdrain:
-#incbin "animsoff_hpdrain.dmp"
+#incbin "AnimsoffHpdrain.dmp"

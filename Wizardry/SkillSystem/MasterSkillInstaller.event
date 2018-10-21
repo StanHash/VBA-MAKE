@@ -1,9 +1,9 @@
 
 #include "SkillSystemOptions.event"
 #include "Internals/SkillSystem.event"
-#include "skill_lists.event" //who learns what skills when
+#include "SkillLists.event" //who learns what skills when
 #include "BattleCalculations.event" //battle calcs
-#include "charge_table.event"
+#include "ChargeTable.event"
 SkillIcons:
 ORG 16*16/2*0xFF+SkillIcons //give space to the icons installer
 PUSH
@@ -12,10 +12,10 @@ ORG SkillIcons
 POP
 //new macros and lists for easy skill swapping, can be used as the same time as the csvs (but will write over them)
 #ifdef __USE_DESCRIPTION_MACROS__
-#include "skill_descriptions.event"
+#include "SkillDescriptions.event"
 #endif
 #ifdef __USE_ICON_MACROS__
-#include "skill_icons.event"
+#include "SkillIcons.event"
 #endif
 PUSH
 
@@ -48,7 +48,7 @@ POIN PassCheck|1
 
 //waryfighter
 ORG $2AF90
-#incbin "TeqSkills/Wary Fighter.dmp"
+#incbin "TeqSkills/WaryFighter.dmp"
 POIN SkillTester
 WORD WaryFighterID
 
@@ -140,7 +140,7 @@ WORD BaneID
 ALIGN 4
 
 DazzleCheck:
-#incbin "OtherSkills/dazzle.dmp"
+#incbin "OtherSkills/Dazzle.dmp"
 POIN SkillTester
 WORD DazzleID
 ALIGN 4
@@ -236,18 +236,18 @@ POIN SkillTester
 WORD DisciplineID
 
 Vantage:
-#incbin "OtherSkills/vantage.dmp"
+#incbin "OtherSkills/Vantage.dmp"
 POIN SkillTester
 WORD VantageID
 WORD VantagePlusID
 
 Desperation:
-#incbin "OtherSkills/desperation.dmp"
+#incbin "OtherSkills/Desperation.dmp"
 POIN SkillTester
 WORD DesperationID
 
 Wrath:
-#incbin "OtherSkills/wrath.dmp"
+#incbin "OtherSkills/Wrath.dmp"
 POIN SkillTester
 WORD WrathID
 
@@ -264,26 +264,26 @@ WORD ParagonID
 Lunge:
 #incbin "TeqSkills/Lunge.dmp"
 LungeUsability:
-#incbin "TeqSkills/Lunge Usability.dmp"
+#incbin "TeqSkills/LungeUsability.dmp"
 POIN SkillTester
 WORD LungeID
 LungeEffect:
-#incbin "TeqSkills/Lunge Effect.dmp"
+#incbin "TeqSkills/LungeEffect.dmp"
 AttackEffect:
-#incbin "TeqSkills/Attack Effect.dmp"
+#incbin "TeqSkills/AttackEffect.dmp"
 LungeAI:
 #incbin "TeqSkills/LungeAI.dmp"
 POIN SkillTester
 WORD LungeID
 LungeUpdate:
-#incbin "TeqSkills/lunge_updaterescuee.dmp"
+#incbin "TeqSkills/LungeUpdaterescuee.dmp"
 
 MercyUsability:
-#incbin "TeqSkills/Mercy Usability.dmp"
+#incbin "TeqSkills/MercyUsability.dmp"
 POIN SkillTester
 WORD MercyID
 MercyEffect:
-#incbin "TeqSkills/Mercy Effect.dmp"
+#incbin "TeqSkills/MercyEffect.dmp"
 
 SealSkills:
 #incbin "SealSkills/SealSkills.dmp"
@@ -306,11 +306,11 @@ POIN SkillTester
 WORD NaturalCoverID
 
 GambleUsability:
-#incbin "OtherSkills/Gamble Usability.dmp"
+#incbin "OtherSkills/GambleUsability.dmp"
 POIN SkillTester
 WORD GambleID
 GambleEffect:
-#incbin "OtherSkills/Gamble Effect.dmp"
+#incbin "OtherSkills/GambleEffect.dmp"
 Gamble:
 #incbin "OtherSkills/Gamble.dmp"
 
@@ -370,7 +370,7 @@ WORD LethalityID
 Armsthrift:
 AxeFaithArmsthrift:
 ArmsthriftAxeFaith:
-#incbin "OtherSkills/armsthriftaxefaith.dmp"
+#incbin "OtherSkills/Armsthriftaxefaith.dmp"
 POIN SkillTester|1
 WORD ArmsthriftID AxeFaithID
 
@@ -412,7 +412,7 @@ POIN SkillTester
 WORD SlowBurnID
 
 Roll1d12:
-#incbin "OtherSkills/roll12.dmp"
+#incbin "OtherSkills/Roll12.dmp"
 POIN SkillTester
 WORD Roll12ID
 POIN _12SkillList
@@ -427,7 +427,7 @@ POIN SkillTester
 WORD LockTouchID
 
 TraceSkill:
-#incbin "OtherSkills/trace.dmp"
+#incbin "OtherSkills/Trace.dmp"
 POIN SkillTester
 WORD TraceID
 POIN Skill_Getter
@@ -444,7 +444,7 @@ WORD TriAdeptID
 
 #define VigorDanceBit "(8*7)+0" //8*byte + bit of the debuff table to use
 VigorDanceSkill: //set a bit in the debuff table's entry for the refreshed unit
-#incbin "OtherSkills/vigordanceskill.dmp"
+#incbin "OtherSkills/Vigordanceskill.dmp"
 POIN SkillTester
 WORD VigorDanceID
 WORD DebuffTable
@@ -452,20 +452,20 @@ WORD VigorDanceBit
 WORD 8 //size of a debuff table entry
 
 VigorDanceCheck: //check if the bit is set and if so give the unit some stats
-#incbin "OtherSkills/vigordancecheck.dmp"
+#incbin "OtherSkills/Vigordancecheck.dmp"
 WORD DebuffTable
 WORD VigorDanceBit
 WORD 8 //size of a debuff table entry
 
 VigorDanceReset:
-#incbin "OtherSkills/vigordancereset.dmp"
+#incbin "OtherSkills/Vigordancereset.dmp"
 WORD DebuffTable
 WORD VigorDanceBit
 WORD 8 //size of a debuff table entry
 
 #define ArmorMarchBit "(8*7)+1" //8*byte + bit of the debuff table to use
 ArmorMarchSkill: //set a bit in the debuff table's entry for the refreshed unit
-#incbin "OtherSkills/armormarchskill.dmp"
+#incbin "OtherSkills/Armormarchskill.dmp"
 POIN AuraSkillCheck
 WORD ArmorMarchID
 WORD DebuffTable
@@ -482,14 +482,14 @@ BYTE ArmorClasses 0
 ALIGN 4
 
 ArmorMarchCheck: //check if the bit is set and if so give the unit some stats
-#incbin "OtherSkills/armormarchcheck.dmp"
+#incbin "OtherSkills/Armormarchcheck.dmp"
 WORD DebuffTable
 WORD ArmorMarchBit
 WORD 8 //size of a debuff table entry
 WORD 2 //ammount of movement to grant
 
 Shadowgift:
-#incbin "OtherSkills/shadowgift.dmp"
+#incbin "OtherSkills/Shadowgift.dmp"
 POIN SkillTester
 WORD ShadowgiftID
 WORD LuminaID
@@ -497,15 +497,15 @@ WORD ShadowgiftStaffOption
 WORD LuminaStaffOption
 
 #include "OtherSkills/RandomMugs.event"
-#include "TeqSkills/FE8-StealPlus/FE8-StealPlus EA.txt"
-#include "TeqSkills/FE8-Capture/FE8-Capture Master EA File.txt"
-#include "TeqSkills/FE8-Nullify/Nullify EA.txt"
+#include "TeqSkills/FE8StealPlus/FE8StealPlusEA.txt"
+#include "TeqSkills/FE8Capture/FE8CaptureMasterEAFile.txt"
+#include "TeqSkills/FE8Nullify/NullifyEA.txt"
 
-#include "AuraSkills/Aura Skills Installer.event"
-#include "ProcSkills/Proc Skills Installer.event"
-#include "RallySkills/Rally Installer.event"
+#include "AuraSkills/AuraSkillsInstaller.event"
+#include "ProcSkills/ProcSkillsInstaller.event"
+#include "RallySkills/RallyInstaller.event"
 
 #include "StanSkills/HeroesMovement/HeroesMovement.event"
-#include "PostCombatSkills/Post Combat Skills Installer.event"
+#include "PostCombatSkills/PostCombatSkillsInstaller.event"
 
 #include "SkillRemovalMenu/RemoveSkillMenu.event"

@@ -50,6 +50,8 @@ clean:
 	@rm -f  $(ALL_TO_CLEAN)
 	@rm -rf $(CACHE_DIR)
 	@rm -rf Writans/Text/.TextEntries Writans/Text.event Writans/TextDefinitions.event
+
+	@rm -f Spritans/Portraits.event Spritans/Portraits/*.dmp
 	@echo all clean!
 
 # -------------------

@@ -1,7 +1,7 @@
 #ifndef MODULAR_GETTER_POWER_EVENT
 #define MODULAR_GETTER_POWER_EVENT
 
-#include "_Common.event"
+#include "Common.event"
 
 pPowerModifiers: // Power
 	POIN prAddUnitPower prHalveIfCapturing prDebuffStr prAddEquipPower prRallyStr prLifeAndDeathBonus prSkillFury prFortressDefensePow VigorDanceCheck prFortressResistancePow
@@ -17,11 +17,11 @@ prAddEquipPower:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemPowBonus)))
 
 prDebuffStr:
-	#incbin "_asm/DebuffStr.bin"
+	#incbin "Asm/DebuffStr.bin"
 	WORD DebuffTable
 
 prRallyStr:
-	#incbin "_asm/RallyStr.bin"
+	#incbin "Asm/RallyStr.bin"
 	WORD DebuffTable
 
 prLifeAndDeathBonus:

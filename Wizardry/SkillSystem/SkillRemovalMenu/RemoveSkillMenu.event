@@ -98,19 +98,19 @@ _pProcFromMiscActionProc:
 
 ALIGN 4
 _prCheckForBattleSkillForgetting:
-	#incbin "asm/CheckForBattleSkillForgetting.bin"
+	#incbin "Asm/CheckForBattleSkillForgetting.bin"
 	POIN (prCheckForSkillForgetting+1)
 
 }
 
 ALIGN 4
 ASMC_LearnNewSkill:
-	#incbin "asm/ASMC/ASMC_LearnSkill.bin"
+	#incbin "Asm/ASMC/ASMCLearnSkill.bin"
 	POIN (prLearnNewSkill+1)
 
 ALIGN 4
 ASMC_HasSkill:
-	#incbin "asm/ASMC/ASMC_HasSkill.bin"
+	#incbin "Asm/ASMC/ASMCHasSkill.bin"
 	POIN (SkillTester+1)
 
 ALIGN 4
@@ -118,7 +118,7 @@ prLearnNewSkill:
 // Arguments: r0 = Unit, r1 = Skill Index, r2 = Parent 6C
 // Returns:   r0 = 6C (if you really need it)
 {
-	#incbin "asm/LearnNewSkill.bin"
+	#incbin "Asm/LearnNewSkill.bin"
 	POIN p6C_NewSkillLearn
 	POIN (SkillAdder+1)
 
@@ -133,7 +133,7 @@ _psName:
 	BYTE 0; ALIGN 4
 
 _prCheckForget:
-	#incbin "asm/LearnNewSkill_CheckForget.bin"
+	#incbin "Asm/LearnNewSkillCheckForget.bin"
 	POIN (prCheckForSkillForgetting+1)
 }
 
@@ -142,7 +142,7 @@ prCallSkillLearnedPopup:
 // Arguments: r0 = Parent 6C
 // Returns:   r0 = 0 on success (skill is displayed and all)
 {
-	#incbin "asm/CallSkillLearnedPopup.bin"
+	#incbin "Asm/CallSkillLearnedPopup.bin"
 	POIN _pPopupDef
 	WORD 90 // time (in frames) the popup stays up (I think if you put -1 it will wait for user input)
 
@@ -159,7 +159,7 @@ ALIGN 4
 prCheckForSkillForgetting:
 // Arguments: r0 = Unit, r1 = Parent 6C
 // Returns:   r0 = 0 on success (menu is open and all)
-	#incbin "asm/CheckForSkillForgetting.bin"
+	#incbin "Asm/CheckForSkillForgetting.bin"
 	POIN (prCallRemoveSkillMenu+1)
 
 ALIGN 4
@@ -167,7 +167,7 @@ prCallRemoveSkillMenu:
 // Arguments: r0 = Unit, r1 = Parent 6C (can be 0)
 // Returns:   nothing
 {
-	#incbin "asm/CallMenuRemoveSkill.bin"
+	#incbin "Asm/CallMenuRemoveSkill.bin"
 	POIN pMenuDef_RemoveSkill
 	POIN p6CMenuWrapper
 
@@ -204,39 +204,39 @@ UM_Separator
 
 ALIGN 4
 prMenuRemoveSkill_OnCancel:
-	#incbin "asm/Menu/MenuRemoveSkill_OnCancel.bin"
+	#incbin "Asm/Menu/MenuRemoveSkillOnCancel.bin"
 
 ALIGN 4
 prMenuRemoveSkillCommand_Usability:
-	#incbin "asm/Menu/MenuRemoveSkillCommand_Usability.bin"
+	#incbin "Asm/Menu/MenuRemoveSkillCommandUsability.bin"
 	POIN (prGetSkillIdByIndex+1)
 
 ALIGN 4
 prMenuRemoveSkillCommand_ForgetEffect:
-	#incbin "asm/Menu/MenuRemoveSkillCommand_ForgetEffect.bin"
+	#incbin "Asm/Menu/MenuRemoveSkillCommandForgetEffect.bin"
 
 ALIGN 4
 prMenuRemoveSkillCommand_NoLearnEffect:
-	#incbin "asm/Menu/MenuRemoveSkillCommand_NoLearnEffect.bin"
+	#incbin "Asm/Menu/MenuRemoveSkillCommandNoLearnEffect.bin"
 
 ALIGN 4
 prMenuRemoveSkillCommand_NoEffect:
-	#incbin "asm/Menu/MenuRemoveSkillCommand_NoEffect.bin"
+	#incbin "Asm/Menu/MenuRemoveSkillCommandNoEffect.bin"
 
 ALIGN 4
 prMenuRemoveSkillCommand_Draw:
-	#incbin "asm/Menu/MenuRemoveSkillCommand_Draw.bin"
+	#incbin "Asm/Menu/MenuRemoveSkillCommandDraw.bin"
 	POIN (prDrawSkillMenuCommand+1)
 	POIN (prGetSkillIdByIndex+1)
 
 ALIGN 4
 prDrawSkillMenuCommand:
-	#incbin "asm/DrawSkillMenuCommand.bin"
+	#incbin "Asm/DrawSkillMenuCommand.bin"
 	POIN SkillDescTable
 
 ALIGN 4
 prGetSkillIdByIndex:
-	#incbin "asm/GetSkillIdByIndex.bin"
+	#incbin "Asm/GetSkillIdByIndex.bin"
 	POIN PersonalSkillTable
 	POIN ClassSkillTable
 

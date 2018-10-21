@@ -14,12 +14,12 @@ POP
 
 ALIGN 4
 prNewActionApplication:
-	#incbin "asm/ApplyAction.bin"
+	#incbin "Asm/ApplyAction.bin"
 	POIN pActionRoutineTable
 
 ALIGN 4
 prWaitAction:
-	#incbin "asm/WaitAction.bin"
+	#incbin "Asm/WaitAction.bin"
 
 #ifndef ACTION_TABLE_SIZE
 	#define ACTION_TABLE_SIZE 0x30

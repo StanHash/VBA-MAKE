@@ -1,7 +1,7 @@
 #ifndef MODULAR_GETTER_AID_EVENT
 #define MODULAR_GETTER_AID_EVENT
 
-#include "_Common.event"
+#include "Common.event"
 
 pAidModifiers: // Aid
 	POIN prAddUnitFinalConstitution prSubstractOne prAdjustAidIfMounted

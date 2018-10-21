@@ -10,7 +10,7 @@
 
   ALIGN 4
   RescueASMC:
-    #incbin "asm/RescueEvent.dmp"
+    #incbin "Asm/RescueEvent.dmp"
 
 #else // _FE8_
   ERROR Rescue ASMC hack is for FE8

@@ -25,7 +25,7 @@
 
   ALIGN 4
   HPFrames:
-    #incbin "bin/HPFrames.bin"
+    #incbin "Bin/HPFrames.bin"
 
   ALIGN 4
   HPFramePointers:
@@ -44,12 +44,12 @@
 
   ALIGN 4
   HPBars:
-    #incbin "asm/WarningAndHpBars.dmp"
+    #incbin "Asm/WarningAndHpBars.dmp"
     POIN HPFramePointers
 
   ALIGN 4
   HPBarGraphic:
-    #incbin "bin/WarningHpSheet.4bpp.lz"
+    #incbin "Bin/WarningHpSheet.4bpp.lz"
 
   }
 

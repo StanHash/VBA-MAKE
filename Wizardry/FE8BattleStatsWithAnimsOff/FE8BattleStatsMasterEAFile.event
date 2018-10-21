@@ -1,0 +1,74 @@
+//FE8 Show battle stats when animations are off
+//By Tequila
+
+// #ifdef _FE8_
+	
+	#include "Extensions/Hack Installation.txt"
+	
+	// #ifndef Free_Space
+	// 	#define Free_Space 0xB2B000
+	// 	ORG Free_Space
+	// #endif
+	
+	PUSH
+	
+	//Update the graphics
+	ORG $7BC44
+	POIN New_Battle_Anims_Off_Graphics
+	
+	//Modify the numbers to use - rather than ?
+	ORG $7BA20
+	POIN New_Numbers
+	
+	//TSA for the right and left boxes, respectively
+	ORG $9A3680
+	POIN New_Battle_Anims_Off_Right_TSA
+	POIN New_Battle_Anims_Off_Left_TSA
+	
+	//Make the box not overlap active units or go off-screen (will probably have to fiddle with this later)
+	ORG $7AB8A
+	SHORT 0x285F //cmp r0,#0x5F rather than 0x6F
+	ORG $7AB98
+	SHORT 0x3840 //sub r0,#0x40 rather than 0x28
+	ORG $7ABA2
+	SHORT 0x2008 //mov r0,0x8; should cover all the funny cases
+	
+	//Actually display the necessary things
+	ORG $7BED6
+	SHORT 0x46C0
+	jumpToHack(Show_Battle_Stats)
+	
+	POP
+	
+	ALIGN 4
+	New_Battle_Anims_Off_Graphics:
+	#incbin "AnimsOffBattleGraphicNew.4bpp.lz"
+	
+	ALIGN 4
+	New_Battle_Anims_Off_Right_TSA:
+	#incbin "NewBattleAnimsOffRightTSA.dmp"
+	
+	ALIGN 4
+	New_Battle_Anims_Off_Left_TSA:
+	#incbin "NewBattleAnimsOffLeftTSA.dmp"
+	
+	ALIGN 4
+	Show_Battle_Stats:
+	#incbin "ShowBattleStats.dmp"
+	POIN Battle_Name_Graphics Battle_Name_Palette
+	
+	ALIGN 4
+	Battle_Name_Graphics:
+	#incbin "NewStatNames.4bpp.lz"
+	
+	ALIGN 4
+	Battle_Name_Palette:
+	#incbin "NewStatNames.gbapal"
+	
+	ALIGN 4
+	New_Numbers:
+	#incbin "NewNumbers.4bpp.lz"
+	
+// #else
+// 	ERROR "You're not assembling FE8 events!"
+// #endif
