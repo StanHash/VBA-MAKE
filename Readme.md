@@ -33,8 +33,6 @@ The setup required to build this is very much similar to what you need for [FE-C
 
 I plan on eventually distributing an all in one "Tools" package to make this a bit easier but right now I'm still messing with everything all the time and updating the packing to go with it would be impractical.
 
-In addition to this, the `Tools/py/NMM2CSV` and `Tools/py/TMX2EA` submodules are broken right now: this is because I'm relying on features that are not available on the master branches of the FEU repositories yet. To fix this, go into those folders and `git checkout c2ea-rewrite-process` (for NMM2CSV) or `git checkout misc_improvements` (for TMX2EA).
-
 # Original VBA Credits
 
 Chapters
