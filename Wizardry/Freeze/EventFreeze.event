@@ -8,7 +8,7 @@
 
   ALIGN 4
   FreezeAllASMC:
-    #incbin "Asm/Freezeall.dmp"
+    #incbin "Asm/FreezeAll.dmp"
 
 #else // _FE8_
   ERROR Freeze All ASMC hack is for FE8

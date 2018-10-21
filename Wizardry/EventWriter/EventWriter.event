@@ -12,11 +12,11 @@
 
   ALIGN 4
   EventReader:
-    #incbin "Asm/Eventreader.dmp"
+    #incbin "Asm/EventReader.dmp"
 
   ALIGN 4
   EventWriter:
-    #incbin "Asm/Eventwriter.dmp"
+    #incbin "Asm/EventWriter.dmp"
 
 #else // _FE8_
   ERROR Event Writer hack is for FE8

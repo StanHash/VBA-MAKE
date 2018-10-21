@@ -79,7 +79,6 @@
 
   VeinGraphics:
     #incbin "Asm/SparkleFinal4Sheet.4bpp.lz"
-    //#incbin "asm/Dragon Vein/SparkleGraphic.dmp"
 
   PUSH
     ORG $8cce4
@@ -93,13 +92,13 @@
   POP
 
   VeinHPFix:
-    #incbin "Asm/Hpfix.dmp"
+    #incbin "Asm/HpFix.dmp"
 
   VeinHPFix2:
-    #incbin "Asm/Hpfix2.dmp"
+    #incbin "Asm/HpFix2.dmp"
 
   VeinTextBox:
-    #incbin "Asm/DvDisplay.dmp"
+    #incbin "Asm/DVDisplay.dmp"
 
   ALIGN 4
   DragonVeinSFXData:
