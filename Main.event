@@ -72,6 +72,7 @@ ORG FreeSpace
 
     #include "Spritans/Portraits.event"
     #include "Spritans/Misc/MasterGraphicsInstaller.event"
+    #include "Spritans/BattlePalettes/PaletteSetup.event"   
 
     // Music
 
@@ -82,9 +83,6 @@ ORG FreeSpace
     #include "Chapters/Events/EventsInstaller.event"
     #include "Chapters/Events/WMEventsInstaller.event"
     #include "Chapters/MasterMapInstaller.event"
-
-    // Palettes
-    #include "Spritans/BattlePalettes/PaletteSetup.event"   
 
     // Ensure we did not get part free space
     ASSERT (FreeSpaceEnd - CURRENTOFFSET)

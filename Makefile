@@ -49,7 +49,7 @@ hack_recursive: $(ROM_TARGET);
 clean:
 	@rm -f  $(ALL_TO_CLEAN)
 	@rm -rf $(CACHE_DIR)
-	@rm -rf Writans/.TextEntries Writans/Text.event Writans/TextDefinitions.event
+	@rm -rf Writans/Text/.TextEntries Writans/Text.event Writans/TextDefinitions.event
 	@echo all clean!
 
 # -------------------
@@ -108,7 +108,7 @@ Writans/Text.event Writans/TextDefinitions.event: $(WRITANS_ALL_TEXT)
 # CSV+NMM to event
 %.event: %.csv %.nmm
 	$(PREPROCESS_MESSAGE)
-	@$(C2EA) --quiet -csv $*.csv -nmm $*.nmm -out $*.event $(ROM_SOURCE)
+	@echo | $(C2EA) -csv $*.csv -nmm $*.nmm -out $*.event $(ROM_SOURCE)
 
 # TMX to event + dmp
 %.event %_data.dmp: %.tmx

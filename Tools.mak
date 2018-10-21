@@ -32,10 +32,10 @@ endif
 export PARSEFILE         := $(realpath .)/Tools/ParseFile
 export PORTRAITFORMATTER := $(realpath .)/Tools/PortraitFormatter
 export GBAGFX            := $(realpath .)/Tools/gbagfx
-export PORTRAIT_PROCESS  := $(PYTHON3) $(realpath .)/Tools/py/portrait-process.py
-export TEXT_PROCESS      := $(PYTHON3) $(realpath .)/Tools/py/text-process.py
-export C2EA              := $(PYTHON3) $(realpath .)/Tools/py/NMM2CSV/c2ea.py
-export TMX2EA            := $(PYTHON3) $(realpath .)/Tools/py/TMX2EA/tmx2ea.py
+export PORTRAIT_PROCESS  := $(PYTHON3) $(realpath .)/Tools/Py/portrait-process.py
+export TEXT_PROCESS      := $(PYTHON3) $(realpath .)/Tools/Py/text-process.py
+export C2EA              := $(PYTHON3) $(realpath .)/Tools/Py/NMM2CSV/c2ea.py
+export TMX2EA            := $(PYTHON3) $(realpath .)/Tools/Py/TMX2EA/tmx2ea.py
 export LYN               := $(realpath .)/Tools/lyn
 
 PREPROCESS_MESSAGE = @echo "$(notdir $<) => $(notdir $@)"
