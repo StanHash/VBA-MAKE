@@ -56,11 +56,12 @@ PORTRAIT_INSTALLER := Spritans/Portraits.event
 
 # Make the portrait installer
 $(PORTRAIT_INSTALLER): $(PORTRAIT_LIST)
-	$(PORTRAIT_PROCESS) $< $@
+	$(NOTIFY_PROCESS)
+	@$(PORTRAIT_PROCESS) $< $@
 
 # Convert a png to portrait components
 %_mug.dmp %_palette.dmp %_frames.dmp %_minimug.dmp: %.png
-	$(PREPROCESS_MESSAGE)
+	$(NOTIFY_PROCESS)
 	@$(PORTRAITFORMATTER) $<
 
 # ----
@@ -80,12 +81,13 @@ WRITANS_DEFINITIONS := Writans/TextDefinitions.event
 
 # Make text installer and definitions from text
 $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS): $(WRITANS_TEXT_MAIN) $(WRITANS_ALL_TEXT)
-	$(TEXT_PROCESS) $(WRITANS_TEXT_MAIN) $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS)
+	$(NOTIFY_PROCESS)
+	@$(TEXT_PROCESS) $(WRITANS_TEXT_MAIN) $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS)
 
 # Convert formatted text to insertable binary
 # Nulling output because it's annoying
 %.fetxt.bin: %.fetxt
-	$(PREPROCESS_MESSAGE)
+	$(NOTIFY_PROCESS)
 	@$(PARSEFILE) $< -o $@ > /dev/null
 
 # ------
@@ -93,7 +95,7 @@ $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS): $(WRITANS_TEXT_MAIN) $(WRITANS_ALL_
 
 # Convert CSV+NMM to event
 %.event: %.csv %.nmm
-	$(PREPROCESS_MESSAGE)
+	$(NOTIFY_PROCESS)
 	@echo | $(C2EA) -csv $*.csv -nmm $*.nmm -out $*.event $(ROM_SOURCE)
 
 # ----
@@ -101,7 +103,7 @@ $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS): $(WRITANS_TEXT_MAIN) $(WRITANS_ALL_
 
 # TMX to event + dmp
 %.event %_data.dmp: %.tmx
-	$(PREPROCESS_MESSAGE)
+	$(NOTIFY_PROCESS)
 	@echo | $(TMX2EA) $<
 
 # ----------------------
@@ -109,20 +111,20 @@ $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS): $(WRITANS_TEXT_MAIN) $(WRITANS_ALL_
 
 # PNG to 4bpp rule
 %.4bpp: %.png
-	$(PREPROCESS_MESSAGE)
+	$(NOTIFY_PROCESS)
 	@Tools/Png2Dmp $< -o $@
 #	@$(GBAGFX) $< $@
 
 # PNG to gbapal rule
 %.gbapal: %.png
-	$(PREPROCESS_MESSAGE)
+	$(NOTIFY_PROCESS)
 #	png2dmp doesn't seem to support palette output with --to-stdout
 #	@Tools/Png2Dmp $< -o $@ --palette-only
 	@$(GBAGFX) $< $@
 
 # Anything to lz rule
 %.lz: %
-	$(PREPROCESS_MESSAGE)
+	$(NOTIFY_PROCESS)
 	@$(GBAGFX) $< $@
 
 # -------------
@@ -130,13 +132,28 @@ $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS): $(WRITANS_TEXT_MAIN) $(WRITANS_ALL_
 
 # OBJ to event
 %.lyn.event: %.o
-	$(PREPROCESS_MESSAGE)
+	$(NOTIFY_PROCESS)
 	@$(LYN) $< > $@
 
-# OBJ to event
+# OBJ to event (alt)
 %.lyn.event: %.elf
-	$(PREPROCESS_MESSAGE)
+	$(NOTIFY_PROCESS)
 	@$(LYN) $< > $@
+
+# OBJ to DMP rule
+%.dmp: %.o
+	$(NOTIFY_PROCESS)
+	@$(OBJCOPY) -S $< -O binary $@
+
+# ASM to OBJ rule
+%.o: %.s
+	$(NOTIFY_PROCESS)
+	@$(AS) $(ARCH) $(SDEPFLAGS) -I $(dir $<) $< -o $@ $(ERROR_FILTER)
+
+# C to ASM rule
+%.s: %.c
+	$(NOTIFY_PROCESS)
+	@$(CC) $(CFLAGS) $(CDEPFLAGS) -S $< -o $@ -fverbose-asm $(ERROR_FILTER)
 
 # ----------
 # MAKE CLEAN

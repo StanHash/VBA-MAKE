@@ -38,4 +38,4 @@ export C2EA              := $(PYTHON3) $(realpath .)/Tools/Py/NMM2CSV/c2ea.py
 export TMX2EA            := $(PYTHON3) $(realpath .)/Tools/Py/TMX2EA/tmx2ea.py
 export LYN               := $(realpath .)/Tools/lyn
 
-PREPROCESS_MESSAGE = @echo "$(notdir $<) => $(notdir $@)"
+NOTIFY_PROCESS = @echo "$(notdir $<) => $(notdir $@)"
