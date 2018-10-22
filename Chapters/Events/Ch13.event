@@ -1,18 +1,18 @@
 EventPointerTable(0x3B,ThisChapter)
 
 ThisChapter:
-POIN TurnBasedEvents
-POIN CharacterBasedEvents
-POIN LocationBasedEvents
-POIN MiscBasedEvents
-POIN Dunno Dunno Dunno
-POIN Tutorial
-POIN TrapData TrapData
-POIN Units Units
+POIN TurnEventList
+POIN CharacterEventList
+POIN LocationEventList
+POIN ActionEventList
+POIN DunnoList DunnoList DunnoList
+POIN TutorialList
+POIN TrapList TrapList
+POIN unPlayerList unPlayerList
 POIN $0 $0 $0 $0 $0 $0
-POIN BeginningScene EndingScene
+POIN scBeginning scEnding
 
-Units:
+unPlayerList:
 UNIT Eirika EphraimLord 0x00 Level(1, Ally, 0) [10,17] 0x00 0x00 0x0 0x00 [0x00] NoAI 
 UNIT Seth EphraimLord 0x00 Level(1, Ally, 0) [12,17] 0x00 0x00 0x0 0x00 [0x00] NoAI 
 UNIT Seth EphraimLord 0x00 Level(1, Ally, 0) [8,17] 0x00 0x00 0x0 0x00 [0x00] NoAI 
@@ -25,42 +25,42 @@ UNIT Seth EphraimLord 0x00 Level(1, Ally, 0) [10,16] 0x00 0x00 0x0 0x00 [0x00] N
 UNIT
 
 
-TurnBasedEvents:
+TurnEventList:
 END_MAIN
 
-CharacterBasedEvents:
-CharacterEventBothWays(8, RecruitCelicia, Void, Celicia)
+CharacterEventList:
+CharacterEventBothWays(8, RecruitCelicia, CharVoid, CharCelicia)
 END_MAIN
 
-LocationBasedEvents:
+LocationEventList:
 Village(10, OasisVillage, 5,9)
 #ifdef __DEBUG__
 Seize(10,17)
 #endif
 END_MAIN
 
-MiscBasedEvents:
+ActionEventList:
 CauseGameOverIfLordDies
-DefeatAll(EndingScene)
+DefeatAll(scEnding)
 END_MAIN
 
-Dunno:
+DunnoList:
 //DO NOT TOUCH
 WORD $00
 
-Tutorial:
+TutorialList:
 //DO NOT TOUCH
 WORD $00
 
-TrapData:
+TrapList:
 END_MAIN
 
 ALIGN 4
 
-BeginningScene:
+scBeginning:
 VCWF 8
 WEA1 6
-LOAD2 0x1 Units
+LOAD2 0x1 unPlayerList
 ENUN
 LOAD1 0x1 CeliciaGroup
 ENUN
@@ -72,7 +72,7 @@ Text(Ch13Opening)
 GotoPrepScreen
 ENDA
 
-EndingScene:
+scEnding:
 Text(Ch13Ending)
 MNCH 14
 ENDA
@@ -80,7 +80,7 @@ ENDA
 // Events
 RecruitCelicia:
 Text(RecruitingCelicia) //No recruitment convo yet. Gaiden jokes about desert maps is what I'll probably do. Don't ya love mages being slow?
-CUSA Celicia
+CUSA CharCelicia
 NoFade
 ENDA
 
@@ -91,7 +91,7 @@ VillageEventItem(Ch13VillageText, HouseBG, Boots)
 
 // Scripted Fights
 
-// Units
+// unPlayerList
 Enemies:
 UNIT Aias Warrior 0x00 Level(6, Enemy, 1) [23,5] 0x2 0x00 0x0 0x00 [KillerBow, Halberd, HoplonShield] AttackInRangeAI 
 UNIT Pablo_2 Warrior 0x00 Level(6, Enemy, 1) [0,8] 0x2 0x00 0x0 0x00 [SilverBow, BraveAxe, MasterProof] AttackInRangeAI 
@@ -108,7 +108,7 @@ UNIT 0x80 Mercenary Aias Level(16, Enemy, 1) [12,8] 0x0 0x00 0x0 0x00 [IronBlade
 UNIT
 
 CeliciaGroup:
-UNIT Celicia MageKnight_F 0x00 Level(6, NPC, 1) [10,4] 0x0 0x00 0x0 0x00 [Elfire, Physic, TorchStaff, Elixir] HealUnits 
+UNIT CharCelicia MageKnight_F 0x00 Level(6, NPC, 1) [10,4] 0x0 0x00 0x0 0x00 [Elfire, Physic, TorchStaff, Elixir] HealUnits 
 UNIT
 
 Enemies2:

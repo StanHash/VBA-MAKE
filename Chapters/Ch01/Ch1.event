@@ -1,0 +1,265 @@
+#ifndef CHAPTER1
+#define CHAPTER1
+
+// TODO: use definitions
+EventPointerTable(0xA, ThisChapter)
+
+ALIGN 4
+ThisChapter:
+	POIN TurnEventList
+	POIN CharacterEventList
+	POIN LocationEventList
+	POIN ActionEventList
+	POIN DunnoList DunnoList DunnoList
+	POIN TutorialList
+	POIN TrapList TrapList2
+	POIN unPlayerList unPlayerList
+	WORD 0 0 0 0 0 0
+	POIN scBeginning scEnding
+
+ALIGN 4
+TurnEventList:
+	END_MAIN
+
+ALIGN 4
+CharacterEventList:
+	CharacterEvent(8, scRecruitTalk1, CharVoid, CharAnnaMyrm)
+	CharacterEvent(8, scRecruitTalk1, CharTim, CharAnnaMyrm)
+	CharacterEvent(8, scRecruitTalk1, CharTam, CharAnnaMyrm)
+	CharacterEvent(8, scRecruitTalk1, CharJerome, CharAnnaMyrm)
+	CharacterEvent(8, scRecruitTalk1, CharLeeroy, CharAnnaMyrm)
+	CharacterEvent(9, scRecruitTalk2, CharVoid, CharAnnaMyrm)
+	CharacterEvent(9, scRecruitTalk2, CharTim, CharAnnaMyrm)
+	CharacterEvent(9, scRecruitTalk2, CharTam, CharAnnaMyrm)
+	CharacterEvent(9, scRecruitTalk2, CharJerome, CharAnnaMyrm)
+	CharacterEvent(9, scRecruitTalk2, CharLeeroy, CharAnnaMyrm)
+
+	END_MAIN
+
+ALIGN 4
+LocationEventList:
+	Seize(13, 0)
+	Seize(14, 0)
+	Seize(15, 0)
+	Seize(16, 0)
+
+	Chest(MemberCard, 18, 23)
+	Armory(ArmoryItems, 20, 26)
+	Vendor(ShopItems, 24, 17)
+	House(10,scVillageCheck, 14, 3)
+
+#ifdef __DEBUG__
+	Seize(19, 12)
+#endif
+
+	END_MAIN
+
+ALIGN 4
+ActionEventList:
+	AFEV 0 GameOverEvent 2
+	CauseGameOverIfLordDies
+
+	END_MAIN
+
+ALIGN 4
+DunnoList:
+	END_MAIN
+
+ALIGN 4
+TutorialList:
+	END_MAIN
+
+ALIGN 4
+unPlayerList:
+	UNIT CharVoid EirikaLord 0x00 Level(1, Ally, 1) [19,12] 0 0 0 0 [Rapier, Vulnerary] NoAI 
+	UNIT CharTim Fighter 0x00 Level(1, Ally, 1) [21,12] 0 0 0 0 [IronAxe, HandAxe] NoAI 
+	UNIT CharTam Fighter 0x00 Level(1, Ally, 1) [20,10] 0 0 0 0 [SteelAxe, Hatchet] NoAI 
+	UNIT CharJerome Soldier 0x00 Level(1, Ally, 1) [22,11] 0 0 0 0 [IronLance, Vulnerary] NoAI 
+	UNIT CharLeeroy Paladin 0x00 Level(1, Ally, 1) [18,13] 0 0 0 0 [SilverLance, SteelSword, Elixir] NoAI 
+
+	UNIT // End
+
+ALIGN 4
+NewUnit:
+	UNIT CharAnnaMyrm Myrmidon_F 0x00 Level(2, NPC, 1) [24,18] 2 0 0 0 [Shamshir, Vulnerary, WhiteGem] GuardTileAI 
+	UNIT Breguet Civilian 0x00 Level(1, NPC, 1) [23,9] 0 0 0 0 [0x00] NeverMoveAI 
+
+	UNIT // End
+
+ALIGN 4
+EnemyUnits1:
+	UNIT 0xBD DracoZombie 0x00 Level(20, Enemy, 1) [19,23] 0x00 0x00 0x0 0x00 [WretchedAir] NeverMoveAI 
+
+	UNIT // End
+
+ALIGN 4
+EnemyUnits2:
+	UNIT 0x80 Fighter 0x00 Level(1, Enemy, 1) [24,29] 0x00 0x00 0x0 0x00 [HandAxe] NoAI 
+	UNIT 0x80 Fighter 0x00 Level(2, Enemy, 1) [23,27] 0x00 0x00 0x0 0x00 [IronAxe] NoAI 
+	UNIT 0x80 Fighter 0x00 Level(1, Enemy, 1) [1,21] 0x00 0x00 0x0 0x00 [HandAxe] NoAI 
+	UNIT 0x80 Fighter 0x00 Level(2, Enemy, 1) [5,20] 0x00 0x00 0x0 0x00 [IronAxe] NoAI 
+	UNIT 0x80 Fighter 0x00 Level(2, Enemy, 1) [1,24] 0x02  0x00 0x0 0x00 [HandAxe,Vulnerary] NeverMoveAI 
+	UNIT 0x80 Archer 0x00 Level(2, Enemy, 1) [13,21] 0x00 0x00 0x0 0x00 [IronBow] NoAI 
+	UNIT 0x80 Archer 0x00 Level(2, Enemy, 1) [12,20] 0x00 0x00 0x0 0x00 [IronBow] NoAI 
+	UNIT 0x80 Archer 0x00 Level(1, Enemy, 1) [12,5] 0x00 0x00 0x0 0x00 [IronBow] NoAI 
+	UNIT 0x80 Archer 0x00 Level(1, Enemy, 1) [11,6] 0x00 0x00 0x0 0x00 [IronBow] NoAI 
+	UNIT 0x80 Archer 0x00 Level(2, Enemy, 1) [9,6] 0x00 0x00 0x0 0x00 [IronBow] NoAI 
+
+	UNIT // End
+
+ALIGN 4
+EnemyUnits3:
+	UNIT 0x80 Cavalier 0x00 Level(2, Enemy, 1) [7,12] 0x00 0x00 0x0 0x00 [IronLance,IronSword] NoAI 
+	UNIT 0x80 Cavalier 0x00 Level(3, Enemy, 1) [3,10] 0x02 0x00 0x0 0x00 [Javelin,Elixir] NoAI 
+
+	UNIT // End
+
+ALIGN 4
+TrapList:
+TrapList2:
+	ENDTRAP
+
+ALIGN 4
+scBeginning: {
+	ENUT 9
+
+	LOAD2 1 unPlayerList //0x0 instead of 0x1 seems to be for allies on maps with prep screens
+	ENUN
+
+	LOAD1 1 EnemyUnits1
+	LOAD1 1 EnemyUnits2
+	LOAD1 1 EnemyUnits3
+	ENUN
+
+	LOAD1 1 NewUnit
+	ENUN
+
+	CAM1 [14, 0]
+	STAL 22
+
+	CAM1 Breguet
+	STAL 22
+
+	CAM1 CharVoid
+	STAL 22
+
+	CenterTutorialTextBox
+	TUTORIALTEXTBOXSTART
+
+	TEXTSHOW CH1Opening
+	TEXTEND
+
+	REMA
+
+	NoFade
+	ENDA
+}
+
+ALIGN 4
+GameOverEvent: {
+	ENUT 101
+
+	NoFade
+	ENDA
+}
+
+ALIGN 4
+scRecruitTalk1: {
+	ENUT 8
+	ENUF 9
+
+	Text(Ch1WithoutMember)
+
+	SVAL 0x3 ChestKey
+	GIVEITEMTO 0xFFFF
+
+	NoFade
+	ENDA
+}
+
+ALIGN 4
+scRecruitTalk2: {
+	ENUF 9
+
+	ASMC (CheckForCard|1)
+
+	BEQ  0 0xB 0x0
+
+	Text(RecruitingMyrmAnna)
+
+	ENUT 9
+
+	NOTIFY CH1Anna3 0x5C 0x00
+	CUSA CharAnnaMyrm
+
+	GOTO 1
+
+LABEL 0
+	Text(CH1Anna1)
+
+	ENUF 9
+
+LABEL 1
+	NoFade
+	ENDA
+}
+
+ALIGN 4
+scVillageCheck: {
+	ENUF 10
+
+	ASMC CheckForKid|1
+
+	BEQ  0 rB r0
+
+	SVAL 0xB 0x1000D
+	TILECHANGE 0xFFFF
+
+	ENUT 10
+
+	NOTIFY CH1Kid 0x5A 0x00
+
+	GOTO 1
+
+LABEL 0
+	CenterTutorialTextBox
+	TUTORIALTEXTBOXSTART
+
+	TEXTSHOW CH1Village
+	TEXTEND
+
+	REMA
+
+LABEL 1
+	NoFade
+	ENDA
+}
+
+ALIGN 4
+scEnding: {
+	Text(Ch1Ending)
+
+	ENUT 0x89 // location shenanigans
+	MNCH Ch2Id
+
+	NoFade
+	ENDA
+}
+
+ALIGN 4
+ArmoryItems:
+	SHLI IronSword SteelSword Javelin HandAxe WindSword
+
+ALIGN 4
+ShopItems:
+	SHLI Vulnerary Mine Heal Torch
+
+ALIGN 4
+CheckForCard: //asm
+	#incbin "Asm/CheckForCard.dmp"
+
+ALIGN 4
+CheckForKid: //asm
+	#incbin "Asm/CheckForKid.dmp"
+
+#endif // CHAPTER1

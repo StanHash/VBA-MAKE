@@ -6,7 +6,7 @@ FE8 Chapter Data Editor by SpyroDi, updated by Nintenlord
 0x8B0890
 79
 148
-Chapter List.txt
+NULL
 NULL
 
 Chapter Number Pointer
@@ -19,43 +19,43 @@ Object Type
 4
 2
 NDHU
-Object type.txt
+NULL
 
 Palette
 6
 1
 NDHU
-Palettes.txt
+NULL
 
 Tile Configuration
 7
 1
 NDHU
-Tileconfiguration.txt
+NULL
 
 Map
 8
 1
 NDHU
-Chapter maps.txt
+NULL
 
 Tile Animation 1
 9
 1
 NDHU
-Pointers list.txt
+NULL
 
 Tile Animation 2
 10
 1
 NDHU
-Pointers list.txt
+NULL
 
 Triggerable Map Changes
 11
 1
 NDHU
-Map changes.txt
+NULL
 
 Fog of War sight level (0 = No fog)
 12
@@ -67,13 +67,13 @@ Battle Preparations
 13
 1
 NDDU
-Battle Preparations.txt
+NULL
 
 Save Menu Chapter Name
 14
 1
 NDHU
-Save Menu Chapter List.txt
+NULL
 
 Always Zero
 15
@@ -97,13 +97,13 @@ Weather Condition
 18
 1
 NDDU
-Weather Conditions.txt
+NULL
 
 Battle tileset
 19
 1
 NDHU
-Battle tileset.txt
+NULL
 
 Hard Mode Bonus levels (top nibble only)
 20
@@ -121,37 +121,37 @@ Player Phase music
 22
 2
 NDHU
-Music List.txt
+NULL
 
 Enemy Phase music
 24
 2
 NDHU
-Music List.txt
+NULL
 
 NPC Phase music
 26
 2
 NDHU
-Music List.txt
+NULL
 
 Player Phase music 2
 34
 2
 NDHU
-Music List.txt
+NULL
 
 Enemy Phase music 2
 36
 2
 NDHU
-Music List.txt
+NULL
 
 NPC Phase music 2
 38
 2
 NDHU
-Music List.txt
+NULL
 
 Destructible Walls HP
 44
@@ -199,13 +199,13 @@ Event Data Reference
 116
 1
 NDHU
-Chapter events.txt
+NULL
 
 Worldmap Chapter Prologue Scene
 117
 1
 NDHU
-World map prologue.txt
+NULL
 
 Prep Screen Chapter Number (multiply by 2, e.g. Ch 2x = 2.5*2 = 5)
 128
@@ -241,7 +241,7 @@ Goal Window Information
 140
 1
 NDHU
-GoalWindow.txt
+NULL
 
 Turns to count down to +1
 141
@@ -253,7 +253,7 @@ Protect Character Marker
 142
 1
 NDHU
-Character List.txt
+NULL
 
 Tile Marker - X-Coordinate
 143

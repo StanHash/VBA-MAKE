@@ -7,7 +7,7 @@
   <properties>
    <property name="Anims1" value="0"/>
    <property name="Anims2" value="0x54"/>
-   <property name="ChapterID" value="17"/>
+   <property name="ChapterID" value="Ch17Id"/>
    <property name="Main" value=""/>
    <property name="MapChangesID" value="0x4e"/>
    <property name="MapID" value="0x4d"/>

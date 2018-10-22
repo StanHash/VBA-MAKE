@@ -1,18 +1,18 @@
-EventPointerTable(0x33, PointerList)
+EventPointerTable(0x33, ThisChapter)
 
-PointerList:
-POIN TurnBasedEvents
-POIN CharacterBasedEvents
-POIN LocationBasedEvents
-POIN MiscBasedEvents
-POIN Dunno Dunno Dunno
-POIN Tutorial
-POIN TrapData TrapData
-POIN Units Units
+ThisChapter:
+POIN TurnEventList
+POIN CharacterEventList
+POIN LocationEventList
+POIN ActionEventList
+POIN DunnoList DunnoList DunnoList
+POIN TutorialList
+POIN TrapList TrapList
+POIN unPlayerList unPlayerList
 POIN $0 $0 $0 $0 $0 $0
-POIN BeginningScene EndingScene
+POIN scBeginning scEnding
 
-Units:
+unPlayerList:
 UNIT 0x01 0x01 0x00 Level(1, Ally, 0) [19,14] 0x00 0x00 0x0 0x00 [0x00] NoAI
 UNIT 0x02 0x01 0x00 Level(1, Ally, 0) [19,13] 0x00 0x00 0x0 0x00 [0x00] NoAI
 UNIT 0x02 0x01 0x00 Level(1, Ally, 0) [19,12] 0x00 0x00 0x0 0x00 [0x00] NoAI
@@ -62,19 +62,19 @@ UNIT 0x91 Mage 0x00 Level(10, Enemy, 1) [4,0] 0x00 0x00 0x0 0x00 [Fire] AttackIn
 UNIT
 
 SamsonUnit:
-UNIT Samson Sniper 0x00 Level(1, Enemy, 1) [23,1] 0x00 0x00 0x0 0x00 [SteelBow, Vulnerary] AttackInRangeAI
+UNIT CharSamson Sniper 0x00 Level(1, Enemy, 1) [23,1] 0x00 0x00 0x0 0x00 [SteelBow, Vulnerary] AttackInRangeAI
 UNIT
 
-TurnBasedEvents:
+TurnEventList:
 TURN 0x0 ReinforceTurn3 [3,0] 0x0
 TURN 0x0 ReinforceTurn5 [5,0] 0x0
 END_MAIN
 
-CharacterBasedEvents:
-CharacterEventBothWays(0x14,SamsonRecruit,Void,Samson)
+CharacterEventList:
+CharacterEventBothWays(0x14,SamsonRecruit,CharVoid,CharSamson)
 END_MAIN
 
-LocationBasedEvents:
+LocationEventList:
 SHOP 0x0 Armory [11,0] 0x16 //armory = 0x16
 SHOP 0x0 Shop [10,0] 0x17 //armory = 0x17
 House(0x12,house1,14,4)
@@ -92,30 +92,30 @@ ReinforceTurn5:
 ReinforcementEvent(ReinforceTurn5Units)
 ENDA
 
-MiscBasedEvents:
+ActionEventList:
 CauseGameOverIfLordDies
-DefeatAll(EndingScene)
+DefeatAll(scEnding)
 END_MAIN
 
-Dunno:
+DunnoList:
 //DO NOT TOUCH
 WORD $00
 
-Tutorial:
+TutorialList:
 //DO NOT TOUCH
 WORD $00
 
-TrapData:
+TrapList:
 END_MAIN
 
 ALIGN 4
 
-BeginningScene:
+scBeginning:
 LOAD1 0x1 EnemyUnits
 ENUN
 LOAD1 0x1 SamsonUnit
 ENUN
-LOAD2 0x1 Units
+LOAD2 0x1 unPlayerList
 ENUN
 TEXTSTART
 TEXTSHOW (Ch10PreBattleText1)
@@ -124,15 +124,15 @@ GotoPrepScreen
 NoFade
 ENDA
 
-EndingScene:
-CHECK_ALIVE Samson
+scEnding:
+CHECK_ALIVE CharSamson
 BEQ 0x0 0xC 0x0
-CAM1 Samson
-FlashCursor(Samson, 60)
+CAM1 CharSamson
+FlashCursor(CharSamson, 60)
 Text(Ch10PostBattleText1)
-CHECK_ALLEGIANCE Samson
+CHECK_ALLEGIANCE CharSamson
 BEQ 0x0 0xC 0x0 //skip if already recruited
-CUSA Samson
+CUSA CharSamson
 LABEL 0x0
 
 MNCH 11
@@ -154,7 +154,7 @@ TEXTSHOW (SamsonRecText)
 TEXTEND
 REMA
 MURE 0x0009
-CUSA Samson
+CUSA CharSamson
 EVBIT_T 0x7
 ENDA
 
@@ -162,7 +162,7 @@ ENDA
 
 // Scripted Fights
 
-// Units
+// unPlayerList
 
 // Shop Data
 Armory:

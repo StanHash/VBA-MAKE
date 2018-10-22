@@ -3,16 +3,16 @@
 EventPointerTable(0x71,ThisChapter)
 
 ThisChapter:
-POIN TurnBasedEvents
-POIN CharacterBasedEvents
-POIN LocationBasedEvents
-POIN MiscBasedEvents
-POIN Dunno Dunno Dunno
-POIN Tutorial
-POIN TrapData TrapDataHard
+POIN TurnEventList
+POIN CharacterEventList
+POIN LocationEventList
+POIN ActionEventList
+POIN DunnoList DunnoList DunnoList
+POIN TutorialList
+POIN TrapList TrapDataHard
 POIN NormUnits HardUnits
 POIN $0 $0 $0 $0 $0 $0
-POIN BeginningScene EndingScene
+POIN scBeginning scEnding
 
 NormUnits:
 UNIT 0x01 0x02 0x00 Level(1, Ally, 0) [13,16] 0x00 0x00 0x0 0x00 [0x14] NoAI
@@ -46,7 +46,7 @@ UNIT 0x02 0x07 0x44 Level(7, Ally, 0) [14,11] 0x00 0x00 0x0 0x00 [0x00] NoAI
 UNIT
 
 
-TurnBasedEvents:
+TurnEventList:
 TurnEventPlayer(0x0,EventAfterExitingPrepScreen,1)
 //TurnEventPlayer(0x0,LoadKnights,1)
 //TurnEventPlayer(0x0,LoadAxeKidz,3)
@@ -70,11 +70,11 @@ TurnEventPlayer(0x0,SpawnSwords,16)
 TurnEventPlayer(0x0,LoadPegsH,18)
 END_MAIN
 
-CharacterBasedEvents:
-CharacterEventBothWays(0x9,GetUnit,Void,EvilFlorina)
+CharacterEventList:
+CharacterEventBothWays(0x9,GetUnit,CharVoid,CharEvilFlorina)
 END_MAIN
 
-LocationBasedEvents:
+LocationEventList:
 Armory(weaponlist, 2,13)
 Village(0x7, TopVill, 13,2)
 Village(0x8, LeftVill, 1,8)
@@ -95,20 +95,20 @@ Ch24SecretShop:
 SHLI 0x9b 0x9c IronSword Armorslayer IronLance HeavySpear IronAxe Hammer IronBow Lightning Fire Flux Heal 0x9 HoplonShield Talisman BodyRing
 ALIGN 4
 
-MiscBasedEvents:
+ActionEventList:
 CauseGameOverIfLordDies
-DefeatBoss(EndingScene)
+DefeatBoss(scEnding)
 END_MAIN
 
-Dunno:
+DunnoList:
 //DO NOT TOUCH
 WORD $00
 
-Tutorial:
+TutorialList:
 //DO NOT TOUCH
 WORD $00
 
-TrapData:
+TrapList:
 BLST [3,9] Ballista 
 BLST [8,11] Ballista 
 BLST [9,13] IronBallista
@@ -123,7 +123,7 @@ TrapDataHard:
 ENDTRAP
 ALIGN 4
 
-BeginningScene:
+scBeginning:
 	LOAD1 0x1 Gwendy_Squad
 	ENUN
 	LOAD1 0x1 Enemies
@@ -148,12 +148,12 @@ Label 1
 	GotoPrepScreen
 ENDA
 
-EndingScene:
+scEnding:
 	Text(Ch24Ending)
-	CAM1 Void
-	FlashCursor(Void,60)
+	CAM1 CharVoid
+	FlashCursor(CharVoid,60)
 	SVAL 3 Ivaldi
-	GIVEITEMTO Void
+	GIVEITEMTO CharVoid
 	MNCH 0x3e
 ENDA
 
@@ -247,8 +247,8 @@ ENDA
 
 // Scripted Fights
 
-// Units
-// Units
+// unPlayerList
+// unPlayerList
 Gwendy_Squad:
 UNIT 0x44 GreatKnight_F 0x00 Level(16, Enemy, 0) [2,3] 0x2 0x00 0x0 0x00 [Tomahawk, SilverLance, KillerAxe, 0x9A] NeverMoveAI
 UNIT 0x9A General 0x44 Level(13, Enemy, 1) [5,5] 0x00 0x00 0x0 0x00 [BraveLance, Spear, BodyRing] NeverMoveAI

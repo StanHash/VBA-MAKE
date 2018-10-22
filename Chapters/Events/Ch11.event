@@ -53,18 +53,18 @@ EventPointerTable(0xD1, Chapter11This) //Ch 11 Eirika events
 //Darr's note: Sheesh, four fires? I'd hack out some drops, but I get the idea I'd get a REEEEEEE to the face. So I won't.
 ALIGN 4
 Chapter11This:
-POIN TurnBasedEvents
-POIN CharacterBasedEvents
-POIN LocationBasedEvents
-POIN MiscBasedEvents
-POIN Dunno Dunno Dunno
-POIN Tutorial
-POIN TrapData TrapData_H
+POIN TurnEventList
+POIN CharacterEventList
+POIN LocationEventList
+POIN ActionEventList
+POIN DunnoList DunnoList DunnoList
+POIN TutorialList
+POIN TrapList TrapData_H
 POIN C11_CCB_Ally C11_CCB_Ally
 POIN $0 $0 $0 $0 $0 $0
-POIN BeginningScene EndingScene
+POIN scBeginning scEnding
 
-BeginningScene:
+scBeginning:
 VCWF 0
 LOAD1 0x1 C11_CCB_Init_Foe_A
 ENUN
@@ -90,7 +90,7 @@ UNIT 02 01 0 1 [14, 28] 0 0 0 0 [1, 1, 1, 1] DefaultAI
 UNIT
 
 C11_CCB_Arve:
-UNIT Arve Shaman_F 0x00 Level(10, 0, 0) [5, 28] 0x00 0x00 0x00 0x00 [Lightning, Flux, Luna, Elixir] DefaultAI
+UNIT CharArve Shaman_F 0x00 Level(10, 0, 0) [5, 28] 0x00 0x00 0x00 0x00 [Lightning, Flux, Luna, Elixir] DefaultAI
 UNIT
 
 //Divided up in advance just in case I need more than 15 initial units
@@ -229,7 +229,7 @@ TEXTSHOW Arve_Event
 TEXTEND
 ENDA
 
-TurnBasedEvents:
+TurnEventList:
 //TURN
 //TurnEventPlayer(Event_ID, Jump Label, Turn to Trigger, Turns to persist)
 TurnEventPlayer(0x0, MoveAllUnits, 1, 0xFF)
@@ -282,28 +282,28 @@ TurnEventPlayer(0x0, Text_Event, 1, 0)
 
 END_MAIN
 
-CharacterBasedEvents:
+CharacterEventList:
 END_MAIN
 
-LocationBasedEvents:
+LocationEventList:
 Seize(9, 8)
 //Seize(0x0,Ch1EndingScene,2,5)
 END_MAIN
 
-MiscBasedEvents:
+ActionEventList:
 CauseGameOverIfLordDies
 //Add Win Condition
 AFEV
 
-Dunno:
+DunnoList:
 //DO NOT TOUCH
 WORD $00
 
-Tutorial:
+TutorialList:
 //DO NOT TOUCH
 WORD $00
 
-TrapData:
+TrapList:
 BLST [12,3] 0x35
 BLST [14,4] 0x35
 END_MAIN
@@ -311,7 +311,7 @@ END_MAIN
 TrapData_H:
 END_MAIN
 
-EndingScene:
+scEnding:
 Text(Ch11Ending)
 MNC2 12 //go to ch12
 NoFade
@@ -324,7 +324,7 @@ ALIGN 4
 MoveAllUnits:
 SVAL 0xB 0x020001 //Tile 1, 2
 CHECK_EXISTS 0xFFFE //Is there a unit?
-IFEQ  0x1 0xC 0x0 //There is not...
+BNE  0x1 0xC 0x0 //There is not...
 	SVAL 0xB 0x60005 //The unit at 5, 6
 	SVAL 0x1 AIChangeToAfterMove //Set AI to pursue without heed
 	CHAI [5, 6] //actually change the AI
@@ -334,7 +334,7 @@ LABEL 0x1
 
 SVAL 0xB 0x1A0004 //Tile 4, 26
 CHECK_EXISTS 0xFFFE //Is there a unit?
-IFEQ  0x3 0xC 0x0 //There is not...
+BNE  0x3 0xC 0x0 //There is not...
 	SVAL 0xB 0x90005 //The unit at 5, 9
 	SVAL 0x1 AIChangeToAfterMove //Set AI to pursue without heed
 	CHAI [5, 9] //actually change the AI
@@ -343,7 +343,7 @@ LABEL 0x3
 
 SVAL 0xB 0x0D0009 //Tile 9, 13
 CHECK_EXISTS 0xFFFE //Is there a unit?
-IFEQ  0x5 0xC 0x0 //There is not...
+BNE  0x5 0xC 0x0 //There is not...
 	SVAL 0xB 0x7000D //The unit at 13, 7
 	SVAL 0x1 AIChangeToAfterMove //Set AI to pursue without heed
 	CHAI [13, 7] //actually change the AI
@@ -352,7 +352,7 @@ LABEL 0x5
 
 SVAL 0xB 0x15000C //Tile 12, 21
 CHECK_EXISTS 0xFFFE //Is there a unit?
-IFEQ  0x7 0xC 0x0 //If there is not...
+BNE  0x7 0xC 0x0 //If there is not...
 	SVAL 0xB 0x8000D //The unit at 13, 8
 	SVAL 0x1 AIChangeToAfterMove //Set AI to pursue without heed
 	CHAI [13, 8] //actually change the AI

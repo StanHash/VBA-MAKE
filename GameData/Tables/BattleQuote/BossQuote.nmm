@@ -11,35 +11,35 @@ NULL
 
 Initiator
 0
-1
+2
 NDHU
-Characters.txt
+NULL
 
 Receiver
 2
-1
+2
 NDHU
-Characters.txt
+NULL
 
-Chapter/Map
+Chapter
 4
-1
+2
 NDHU
-Chapters.txt
+NULL
 
-Trigger ID 
+Event Id
 6
-1
+2
 NEHU
 NULL
 
-Text ID
+Text Id
 8
 2
 NEHU
 NULL
 
-Event Pointer
+Event pointer
 12
 4
 NEHU

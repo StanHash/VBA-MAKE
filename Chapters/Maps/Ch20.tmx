@@ -6,7 +6,7 @@
  <layer name="Tile Layer 1" width="15" height="25">
   <properties>
    <property name="Anims1" value="0x1c"/>
-   <property name="ChapterID" value="20"/>
+   <property name="ChapterID" value="Ch20Id"/>
    <property name="Main" value=""/>
    <property name="MapChangesID" value="0x5d"/>
    <property name="MapID" value="0x5c"/>

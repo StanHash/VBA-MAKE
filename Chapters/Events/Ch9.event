@@ -1,26 +1,26 @@
 EventPointerTable(0x2d,ThisChapter)
 
 ThisChapter:
-POIN TurnBasedEvents
-POIN CharacterBasedEvents
-POIN LocationBasedEvents
-POIN MiscBasedEvents
-POIN Dunno Dunno Dunno
-POIN Tutorial
-POIN TrapData TrapData
-POIN Units Units
+POIN TurnEventList
+POIN CharacterEventList
+POIN LocationEventList
+POIN ActionEventList
+POIN DunnoList DunnoList DunnoList
+POIN TutorialList
+POIN TrapList TrapList
+POIN unPlayerList unPlayerList
 POIN $0 $0 $0 $0 $0 $0
-POIN BeginningScene EndingScene
+POIN scBeginning scEnding
 
 
-TurnBasedEvents:
+TurnEventList:
 END_MAIN
 
-CharacterBasedEvents:
-CharacterEventBothWays(0x7,RecruitEdge, Void, Edge)
+CharacterEventList:
+CharacterEventBothWays(0x7,RecruitEdge, CharVoid, CharEdge)
 END_MAIN
 
-LocationBasedEvents:
+LocationEventList:
 Seize(2,3)
 Village(0x8, TopRightVill, 26,3)
 #ifdef __DEBUG__
@@ -28,25 +28,25 @@ Seize(27,18)
 #endif
 END_MAIN
 
-MiscBasedEvents:
+ActionEventList:
 CauseGameOverIfLordDies
 END_MAIN
 
-Dunno:
+DunnoList:
 //DO NOT TOUCH
 WORD $00
 
-Tutorial:
+TutorialList:
 //DO NOT TOUCH
 WORD $00
 
-TrapData:
+TrapList:
 END_MAIN
 
 ALIGN 4
 
-BeginningScene:
-LOAD2 0x1 Units
+scBeginning:
+LOAD2 0x1 unPlayerList
 ENUN
 LOAD1 0x1 NPCs
 ENUN
@@ -56,13 +56,13 @@ LOAD1 0x1 Enemies2
 ENUN
 LOAD1 0x1 Enemies3
 ENUN
-CAM1 Edge
+CAM1 CharEdge
 Text(Ch9Opening)
 GotoPrepScreen
 NoFade
 ENDA
 
-EndingScene:
+scEnding:
 Text(Ch9Ending)
 MNCH 12
 ENDA
@@ -70,7 +70,7 @@ ENDA
 // Events
 RecruitEdge:
 Text(EdgeJoins)
-CUSA Edge
+CUSA CharEdge
 NoFade
 ENDA
 
@@ -80,8 +80,8 @@ VillageEventItem(Ch9VillageText, Village, MasterProof)
 
 // Scripted Fights
 
-// Units
-Units:
+// unPlayerList
+unPlayerList:
 UNIT Eirika EirikaLord 0x00 Level(1, Ally, 0) [27,18] 0x00 0x00 0x0 0x00 [0x00] NoAI 
 UNIT Seth Paladin 0x00 Level(1, Ally, 0) [26,19] 0x00 0x00 0x0 0x00 [0x00] NoAI 
 UNIT Gilliam Knight 0x00 Level(1, Ally, 0) [28,17] 0x00 0x00 0x0 0x00 [0x00] NoAI 
@@ -92,7 +92,7 @@ UNIT Ross Journeyman_1 0x00 Level(1, Ally, 0) [27,16] 0x00 0x00 0x0 0x00 [0x00] 
 UNIT
 
 NPCs:
-UNIT Edge Mercenary Eirika Level(7, NPC, 0) [27,4] 0x00 0x00 0x0 0x00 [KillingEdge, Vulnerary] GuardTileAI 
+UNIT CharEdge Mercenary Eirika Level(7, NPC, 0) [27,4] 0x00 0x00 0x0 0x00 [KillingEdge, Vulnerary] GuardTileAI 
 UNIT 0xc9 Soldier 0x00 Level(3, NPC, 0) [28,5] 0x00 0x00 0x0 0x00 [Javelin, Vulnerary] GuardTileAI  //edge's ally
 UNIT RenaisCivilianChild_F Civilian_F 0x00 Level(1, NPC, 0) [29,1] 0x00 0x00 0x0 0x00 [0x00] GuardTileAI 
 UNIT RenaisCivilian Civilian 0x00 Level(1, NPC, 0) [29,3] 0x00 0x00 0x0 0x00 [0x00] GuardTileAI 

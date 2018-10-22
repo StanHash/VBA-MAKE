@@ -23,6 +23,8 @@ Writans/*.event
 
 Spritans/Portraits.event
 
+*Map.event
+
 *.cache
 
 # Windows image file caches

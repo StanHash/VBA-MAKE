@@ -1,30 +1,30 @@
 EventPointerTable(0xd,ThisChapter)
 
 ThisChapter:
-POIN TurnBasedEvents
-POIN CharacterBasedEvents
-POIN LocationBasedEvents
-POIN MiscBasedEvents
-POIN Dunno Dunno Dunno
-POIN Tutorial
-POIN TrapData TrapData
-POIN Units Units
+POIN TurnEventList
+POIN CharacterEventList
+POIN LocationEventList
+POIN ActionEventList
+POIN DunnoList DunnoList DunnoList
+POIN TutorialList
+POIN TrapList TrapList
+POIN unPlayerList unPlayerList
 POIN $0 $0 $0 $0 $0 $0
-POIN BeginningScene EndingScene
+POIN scBeginning scEnding
 
 ALIGN 4
 
-TurnBasedEvents:
+TurnEventList:
 TURN 0x0 BrigandReinforcement [5,0] 0x0
 TURN 0x0 MageReinforcement [9,0] 0x0
 TURN 0x0 SoldierReinforcement [13,0] 0x0
 END_MAIN
 
-ALIGN 32 //For some reason, CharacterBasedEvents have to be 32-Aligned?
-CharacterBasedEvents:
+ALIGN 32 //For some reason, CharacterEventList have to be 32-Aligned?
+CharacterEventList:
 END_MAIN
 
-LocationBasedEvents:
+LocationEventList:
 Village(0x8,VillageBerserk,14,2)
 Village(0x9,VillageEnergyRing,14,11)
 Vendor(ShopList,6,12)
@@ -71,30 +71,30 @@ SoldierReinforcementUnit:
 UNIT 0x80 Soldier 0x00 Level(2, Enemy, 1) [4,6] 0x00 0x00 0x0 0x00 [SilverLance] PursueWithoutHeedAI
 UNIT
 
-MiscBasedEvents:
+ActionEventList:
 CauseGameOverIfLordDies
 END_MAIN
 
-Dunno:
+DunnoList:
 WORD $00
 
-Tutorial:
+TutorialList:
 WORD $00
 
-TrapData:
+TrapList:
 END_MAIN
 
-Units:
-UNIT Void EirikaLord 0x00 Level(1, Ally, 0) [1,1] 0x00 0x00 0x0 0x00 [0x00] NoAI 
-UNIT Leeroy Paladin Void Level(1, Ally, 0) [0,0] 0x00 0x00 0x0 0x00 [0x00] NoAI 
-UNIT Anna Myrmidon_F Void Level(1, Ally, 0) [1,2] 0x00 0x00 0x0 0x00 [0x00] NoAI 
-UNIT Jerome Soldier Void Level(1, Ally, 0) [1,0] 0x00 0x00 0x0 0x00 [0x00] NoAI 
-UNIT Tim Fighter Void Level(1, Ally, 0) [2,0] 0x00 0x00 0x0 0x00 [0x00] NoAI 
-UNIT Tam Fighter Void Level(1, Ally, 0) [2,2] 0x00 0x00 0x0 0x00 [0x00] NoAI
+unPlayerList:
+UNIT CharVoid EirikaLord 0x00 Level(1, Ally, 0) [1,1] 0x00 0x00 0x0 0x00 [0x00] NoAI 
+UNIT CharLeeroy Paladin CharVoid Level(1, Ally, 0) [0,0] 0x00 0x00 0x0 0x00 [0x00] NoAI 
+UNIT CharAnnaMyrm Myrmidon_F CharVoid Level(1, Ally, 0) [1,2] 0x00 0x00 0x0 0x00 [0x00] NoAI 
+UNIT CharJerome Soldier CharVoid Level(1, Ally, 0) [1,0] 0x00 0x00 0x0 0x00 [0x00] NoAI 
+UNIT CharTim Fighter CharVoid Level(1, Ally, 0) [2,0] 0x00 0x00 0x0 0x00 [0x00] NoAI 
+UNIT CharTam Fighter CharVoid Level(1, Ally, 0) [2,2] 0x00 0x00 0x0 0x00 [0x00] NoAI
 UNIT
 
 SexyPriest:
-UNIT Bede Priest Void Level(1, Ally, 0) [0,2] 0x00 0x00 0x0 0x00 [Heal, RedGem] NoAI 
+UNIT CharBede Priest CharVoid Level(1, Ally, 0) [0,2] 0x00 0x00 0x0 0x00 [Heal, RedGem] NoAI 
 UNIT
 
 Bad: 
@@ -115,8 +115,8 @@ UNIT
 
 ALIGN 4
 
-BeginningScene:
-LOAD2 0x1 Units
+scBeginning:
+LOAD2 0x1 unPlayerList
 ENUN
 LOAD1 0x1 SexyPriest
 ENUN
@@ -126,7 +126,7 @@ Text(Ch2Opening)
 NoFade
 ENDA
 
-EndingScene:
+scEnding:
 Text(Ch2Ending)
 MNCH 3
 ENDA

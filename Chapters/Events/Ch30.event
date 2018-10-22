@@ -11,18 +11,18 @@ DebuffASMC:
 WORD DebuffTable
 
 ThisChapter:
-POIN TurnBasedEvents
-POIN CharacterBasedEvents
-POIN LocationBasedEvents
-POIN MiscBasedEvents
-POIN Dunno Dunno Dunno
-POIN Tutorial
+POIN TurnEventList
+POIN CharacterEventList
+POIN LocationEventList
+POIN ActionEventList
+POIN DunnoList DunnoList DunnoList
+POIN TutorialList
 POIN TrapData1 TrapData2
-POIN Units Units
+POIN unPlayerList unPlayerList
 POIN $0 $0 $0 $0 $0 $0
-POIN BeginningScene EndingScene
+POIN scBeginning scEnding
 
-Units:
+unPlayerList:
 UNIT Eirika EphraimLord 0x00 Level(1, Ally, 0) [11,38] 0x00 0x00 0x0 0x00 [0x00] NoAI 
 UNIT Seth EphraimLord 0x00 Level(1, Ally, 0) [10,37] 0x00 0x00 0x0 0x00 [0x00] NoAI 
 UNIT Seth EphraimLord 0x00 Level(1, Ally, 0) [12,37] 0x00 0x00 0x0 0x00 [0x00] NoAI 
@@ -38,7 +38,7 @@ UNIT Seth EphraimLord 0x00 Level(1, Ally, 0) [11,36] 0x00 0x00 0x0 0x00 [0x00] N
 UNIT
 
 
-TurnBasedEvents:
+TurnEventList:
 TurnEventPlayer(0xa, SpawnGargoyles1, 4, 10)
 TurnEventPlayer(0x7, SpawnGargoyles2, 0, 200)
 TurnEventPlayer(0x9, SpawnPhantoms, 0, 200)
@@ -46,10 +46,10 @@ TurnEventPlayer(0x11, SpawnMogalls, 0, 200)
 TurnEventPlayer(0x0, DKChai, 2)
 END_MAIN
 
-CharacterBasedEvents:
+CharacterEventList:
 END_MAIN
 
-LocationBasedEvents:
+LocationEventList:
 Chest(Garm, 2, 38)
 Chest(Latona, 21,38)
 Door(4,39)
@@ -59,18 +59,18 @@ Seize(11,38)
 #endif
 END_MAIN
 
-MiscBasedEvents:
+ActionEventList:
 CauseGameOverIfLordDies
-DefeatBoss(EndingScene)
+DefeatBoss(scEnding)
 AREA 0x8 StartSpawningGargoyles [6,11] [16,19]
 AREA 0xF StartSpawningMogalls [0,0] [22,10]
 END_MAIN
 
-Dunno:
+DunnoList:
 //DO NOT TOUCH
 WORD $00
 
-Tutorial:
+TutorialList:
 //DO NOT TOUCH
 WORD $00
 
@@ -85,12 +85,12 @@ TrapData2:
 ENDTRAP
 ALIGN 4
 
-BeginningScene:
+scBeginning:
 CAM1 [11,38]
 ENUT 0x7 //stop gargoyles spawning from top until area event is triggered
 ENUT 0x9 //same for phantoms
 ENUT 0x11 //and mogalls
-LOAD2 0x1 Units
+LOAD2 0x1 unPlayerList
 ENUN
 LOAD1 0x1 NewUnit
 ENUN
@@ -104,7 +104,7 @@ Text(0x34, FinalChapterIntro)
 GotoPrepScreen
 ENDA
 
-EndingScene:
+scEnding:
 CALL DemonKingDefeated
 MNC4 0x0
 // NoFade
@@ -193,9 +193,9 @@ FreezeAndDebuff:
 
 // Scripted Fights
 
-// Units
+// unPlayerList
 NewUnit:
-UNIT Mark Manakete_2 0x00 Level(20, Ally, 0) [10,37] 0 0 0 0 [HolyDragonStone] NoAI
+UNIT CharMark Manakete_2 0x00 Level(20, Ally, 0) [10,37] 0 0 0 0 [HolyDragonStone] NoAI
 UNIT
 
 Enemies1:

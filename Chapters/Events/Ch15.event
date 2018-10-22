@@ -1,17 +1,17 @@
 EventPointerTable(0x47, ThisChapter)
 ThisChapter:
-POIN TurnBasedEvents
-POIN CharacterBasedEvents
-POIN LocationBasedEvents
-POIN MiscBasedEvents
-POIN Dunno Dunno Dunno
-POIN Tutorial
-POIN TrapData TrapData
-POIN Units Units
+POIN TurnEventList
+POIN CharacterEventList
+POIN LocationEventList
+POIN ActionEventList
+POIN DunnoList DunnoList DunnoList
+POIN TutorialList
+POIN TrapList TrapList
+POIN unPlayerList unPlayerList
 POIN $0 $0 $0 $0 $0 $0
-POIN BeginningScene EndingScene
+POIN scBeginning scEnding
 
-Units:
+unPlayerList:
 UNIT Eirika WyvernLord Eirika Level(1, Ally, 1) [5,16] 0x00 0x00 0x0 0x00 [SilverLance] PursueWithoutHeedAI 
 UNIT Seth WyvernLord Eirika Level(1, Ally, 1) [7,15] 0x00 0x00 0x0 0x00 [SilverLance] PursueWithoutHeedAI 
 UNIT Seth WyvernLord Eirika Level(1, Ally, 1) [4,18] 0x00 0x00 0x0 0x00 [SilverLance] PursueWithoutHeedAI 
@@ -24,7 +24,7 @@ UNIT Seth WyvernLord Eirika Level(1, Ally, 1) [7,17] 0x00 0x00 0x0 0x00 [SilverL
 UNIT
 
 
-TurnBasedEvents:
+TurnEventList:
 TurnEventPlayer(0x0,EventAfterExitingPrepScreen,1)
 TurnEventPlayer(0x0,TurnTwoReinforcements,2)
 TurnEventPlayer(0x0,TurnThreeReinforcements,3)
@@ -48,12 +48,12 @@ TurnEventPlayer(0x0,TurnTwentyReinforcements,20)
 TurnEventEnemy(0x0,LoadAmbush,20)
 END_MAIN
 
-CharacterBasedEvents:
-CharacterEventBothWays(0xD,GetAnnaTwo,Eirika,AnnaWyv)
+CharacterEventList:
+CharacterEventBothWays(0xD,GetAnnaTwo,Eirika,CharAnnaWyv)
 END_MAIN
 
-LocationBasedEvents:
-Seize(0x0,EndingScene,31,17)
+LocationEventList:
+Seize(0x0,scEnding,31,17)
 Armory(Ch15Armoury,3,11)
 Vendor(Ch15Vendor,29,15)
 SecretShop(Ch15Secret,2,27)
@@ -65,26 +65,26 @@ Seize(5,16)
 #endif
 END_MAIN
 
-MiscBasedEvents:
+ActionEventList:
 CauseGameOverIfLordDies
 END_MAIN
 
-Dunno:
+DunnoList:
 //DO NOT TOUCH
 WORD $00
 
-Tutorial:
+TutorialList:
 //DO NOT TOUCH
 WORD $00
 
-TrapData:
+TrapList:
 END_MAIN
 
 ALIGN 4
 
-BeginningScene:
+scBeginning:
 VCWF 4
-LOAD2 0x1 Units
+LOAD2 0x1 unPlayerList
 ENUN
 LOAD1 0x1 Enemies
 ENUN
@@ -101,7 +101,7 @@ GotoPrepScreen
 NoFade
 ENDA
 
-EndingScene:
+scEnding:
 MUSC 0x24
 Text(Ch15End)
 MNCH 0x10
@@ -117,10 +117,10 @@ Text(Ch15GetTorches)
 //You can thank Circles for these.
 CALL $591f40
 SVAL 3 Torch
-GIVEITEMTO Void
+GIVEITEMTO CharVoid
 ENUN
 SVAL 3 Torch
-GIVEITEMTO Void
+GIVEITEMTO CharVoid
 ENUN
 NoFade
 ENDA
@@ -191,7 +191,7 @@ GetAnnaTwo:
 MUSC 0x30
 Text(AnnaTwoGet)
 REMA
-TurnAlly(AnnaWyv)
+TurnAlly(CharAnnaWyv)
 NoFade
 ENDA
 
@@ -220,7 +220,7 @@ ENDA
 
 // Scripted Fights
 
-// Units
+// unPlayerList
 Enemies:
 UNIT PegasusMessenger Soldier Valter_Ch15_ Level(15, Enemy, 1) [17,2] 0x00 0x00 0x0 0x00 [SteelLance] AttackInRangeAI 
 UNIT PegasusMessenger Soldier Valter_Ch15_ Level(15, Enemy, 1) [20,3] 0x00 0x00 0x0 0x00 [SteelLance] AttackInRangeAI 
@@ -292,13 +292,13 @@ UNIT PegasusMessenger WyvernRider Valter_Ch15_ Level(15, Enemy, 1) [34,8] 0x00 0
 UNIT
 
 Greens:
-UNIT AnnaWyv WyvernRider_F AnnaWyv Level(15, NPC, 1) [7,14] 0x00 0x00 0x0 0x00 [SilverLance, MemberCard] AttackInRangeAI 
-UNIT RiverFolk Soldier AnnaWyv Level(15, NPC, 1) [4,9] 0x00 0x00 0x0 0x00 [SteelLance, Javelin] PursueWithoutHeedAI 
-UNIT RiverFolk Soldier AnnaWyv Level(15, NPC, 1) [7,19] 0x00 0x00 0x0 0x00 [SteelLance, Javelin] PursueWithoutHeedAI 
-UNIT RiverFolk Troubadour AnnaWyv Level(15, NPC, 1) [7,9] 0x00 0x00 0x0 0x00 [Mend, Physic] HealUnits 
-UNIT RiverFolk Troubadour AnnaWyv Level(15, NPC, 1) [2,12] 0x00 0x00 0x0 0x00 [Mend, Physic] HealUnits 
-UNIT RiverFolk General AnnaWyv Level(2, NPC, 1) [12,17] 0x00 0x00 0x0 0x00 [Hammer, Halberd, KillerAxe, Tomahawk] NeverMoveAI 
-UNIT RiverFolk Fleet AnnaWyv Level(10, NPC, 1) [1,18] 0x00 0x00 0x0 0x00 [KillerBallista] AttackInRangeAI 
+UNIT CharAnnaWyv WyvernRider_F CharAnnaWyv Level(15, NPC, 1) [7,14] 0x00 0x00 0x0 0x00 [SilverLance, MemberCard] AttackInRangeAI 
+UNIT RiverFolk Soldier CharAnnaWyv Level(15, NPC, 1) [4,9] 0x00 0x00 0x0 0x00 [SteelLance, Javelin] PursueWithoutHeedAI 
+UNIT RiverFolk Soldier CharAnnaWyv Level(15, NPC, 1) [7,19] 0x00 0x00 0x0 0x00 [SteelLance, Javelin] PursueWithoutHeedAI 
+UNIT RiverFolk Troubadour CharAnnaWyv Level(15, NPC, 1) [7,9] 0x00 0x00 0x0 0x00 [Mend, Physic] HealUnits 
+UNIT RiverFolk Troubadour CharAnnaWyv Level(15, NPC, 1) [2,12] 0x00 0x00 0x0 0x00 [Mend, Physic] HealUnits 
+UNIT RiverFolk General CharAnnaWyv Level(2, NPC, 1) [12,17] 0x00 0x00 0x0 0x00 [Hammer, Halberd, KillerAxe, Tomahawk] NeverMoveAI 
+UNIT RiverFolk Fleet CharAnnaWyv Level(10, NPC, 1) [1,18] 0x00 0x00 0x0 0x00 [KillerBallista] AttackInRangeAI 
 UNIT
 
 T2Reinforcements:

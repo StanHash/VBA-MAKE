@@ -1,27 +1,27 @@
-EventPointerTable(0x4f, PointerList)
+EventPointerTable(0x4f, ThisChapter)
 
-PointerList:
-POIN TurnBasedEvents
-POIN CharacterBasedEvents
-POIN LocationBasedEvents
-POIN MiscBasedEvents
-POIN Dunno1 Dunno2 Dunno3 Tutorial
-POIN Traps1 Traps2
-POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+ThisChapter:
+POIN TurnEventList
+POIN CharacterEventList
+POIN LocationEventList
+POIN ActionEventList
+POIN DunnoList Dunno2 Dunno3 TutorialList
+POIN TrapList TrapList2
+POIN unPlayerList unPlayerList  //This unit group determines the number and position of deployment slots when there is a prep screen
 POIN $0 $0 $0
 POIN $0 $0 $0
-POIN BeginningScene EndingScene
+POIN scBeginning scEnding
 
-TurnBasedEvents:
+TurnEventList:
 TURN 12 CallNewUnit [0,5] 0
 TURN 0 CallReinforcements1 [3,12] 0
 TURN 0 CallReinforcements2 [3,8] 0
 END_MAIN
 
-CharacterBasedEvents:
+CharacterEventList:
 END_MAIN
 
-LocationBasedEvents:
+LocationEventList:
 Seize(9,2)
 Chest(DoorKey,15,8)
 CHES 8 Nidhogg [3,8] 0x14
@@ -31,12 +31,12 @@ Seize(8,30)
 #endif
 END_MAIN
 
-MiscBasedEvents:
+ActionEventList:
 AFEV 9 KillThrone 8
 CauseGameOverIfLordDies
 END_MAIN
 
-Dunno1:
+DunnoList:
 END_MAIN
 
 Dunno2:
@@ -45,10 +45,10 @@ END_MAIN
 Dunno3:
 END_MAIN
 
-Tutorial:
+TutorialList:
 END_MAIN
 
-Units1:
+unPlayerList:
 UNIT Eirika  0x2 0x1 0xA1   [8,30] 0b 0x0 0x0 0x0 [0x1,0x98,0x88,0x0] [0x0,0x0,0x0,0x0]
 UNIT Seth  0x2 0x1 0xA1   [7,29] 0b 0x0 0x0 0x0 [0x1,0x98,0x88,0x0] [0x0,0x0,0x0,0x0]
 UNIT Seth  0x2 0x1 0xA1   [11,30] 0b 0x0 0x0 0x0 [0x1,0x98,0x88,0x0] [0x0,0x0,0x0,0x0]
@@ -97,16 +97,16 @@ REDA [15,9] 0 0 0 0
 REDA_Reinforcements22:
 REDA [2,12]  0 0 0 0
 
-Traps1:
+TrapList:
 ENDTRAP
 ALIGN 4
 
-Traps2:
+TrapList2:
 ENDTRAP
 ALIGN 4
 
-BeginningScene:
-LOAD2 0x1 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep screens
+scBeginning:
+LOAD2 0x1 unPlayerList //0x0 instead of 0x1 seems to be for allies on maps with prep screens
 ENUN
 LOAD1 0x0 EnemyUnits
 ENUN
@@ -152,7 +152,7 @@ CAM1 [0,8]
 NoFade
 ENDA
 
-EndingScene:
+scEnding:
 Text(Ch17Ending)
 MNCH 12
 NoFade

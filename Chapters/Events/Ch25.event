@@ -1,22 +1,22 @@
-EventPointerTable(0xd5, PointerList)
+EventPointerTable(0xd5, ThisChapter)
 EventPointerTable(0xcc, NewPalette)
 NewPalette:
 #incbin "B25palette.bin"
 ALIGN 4
 
-PointerList:
-POIN TurnBasedEvents
-POIN CharacterBasedEvents
-POIN LocationBasedEvents
-POIN MiscBasedEvents
-POIN Dunno Dunno Dunno
-POIN Tutorial
-POIN TrapData TrapData
-POIN Units Units
+ThisChapter:
+POIN TurnEventList
+POIN CharacterEventList
+POIN LocationEventList
+POIN ActionEventList
+POIN DunnoList DunnoList DunnoList
+POIN TutorialList
+POIN TrapList TrapList
+POIN unPlayerList unPlayerList
 POIN $0 $0 $0 $0 $0 $0
-POIN BeginningScene EndingScene
+POIN scBeginning scEnding
 
-Units:
+unPlayerList:
 UNIT 0x01 0x02 0x00 Level(1, Ally, 1) [11,15] 0x00 0x00 0x0 0x00 [0x01] NoAI
 UNIT 0x02 0x07 0x00 Level(1, Ally, 1) [10,15] 0x00 0x00 0x0 0x00 [0x01] NoAI
 UNIT 0x03 0x09 0x00 Level(1, Ally, 1) [12,15] 0x00 0x00 0x0 0x00 [0x14] NoAI
@@ -24,7 +24,7 @@ UNIT 0x04 0x0b 0x00 Level(1, Ally, 1) [11,16] 0x00 0x00 0x0 0x00 [0x01, 0x14] No
 UNIT
 //feel free to un-comment the fourth unit if only allowing three units seems unfair
 
-TurnBasedEvents:
+TurnEventList:
 TurnEventPlayer(0x0,Phago1,1)
 TurnEventPlayer(0x0,Phago2,3)
 TurnEventPlayer(0x0,RegoE,4)
@@ -48,12 +48,12 @@ TurnEventPlayer(0x0,RegoE2,21)
 TurnEventPlayer(0x0,RegoS,21)
 END_MAIN
 
-CharacterBasedEvents:
-CharacterEventBothWays(0x7,DruidWalksIntoaBar,Void,Bjoern)
+CharacterEventList:
+CharacterEventBothWays(0x7,DruidWalksIntoaBar,CharVoid,CharBjoern)
 END_MAIN
 
-LocationBasedEvents:
-Seize(0x0,EndingScene,3,15)
+LocationEventList:
+Seize(0x0,scEnding,3,15)
 Chest(0x8D,7,1)
 Chest(0x88,0,5)
 #ifdef __DEBUG__
@@ -61,25 +61,25 @@ Seize(11,15)
 #endif
 END_MAIN
 
-MiscBasedEvents:
+ActionEventList:
 CauseGameOverIfLordDies
 END_MAIN
 
-Dunno:
+DunnoList:
 //DO NOT TOUCH
 WORD $00
 
-Tutorial:
+TutorialList:
 //DO NOT TOUCH
 WORD $00
 
-TrapData:
+TrapList:
 END_MAIN
 
 ALIGN 4
 
-BeginningScene:
-LOAD2 0x1 Units
+scBeginning:
+LOAD2 0x1 unPlayerList
 ENUN
 LOAD1 0x1 Bad
 ENUN
@@ -91,13 +91,13 @@ TEXTEND
 GotoPrepScreen
 ENDB
 
-EndingScene:
+scEnding:
 Text(Ch25Ending)
-CHECK_ALIVE Bjoern
+CHECK_ALIVE CharBjoern
 IFNOTEQUAL 0x01 0xC 0x0
 Text(Ch25EndingBjornAlive)
-TurnAlly(Bjoern)
-ENIF 0x01
+TurnAlly(CharBjoern)
+LABEL 0x01
 
 FADI 5
 MNC2 25 //change to whatever
@@ -135,9 +135,9 @@ STAL 10
 LOAD1 0x1 ReinPe
 ENUN
 STAL 10
-FlashCursor(Bjoern,50)
+FlashCursor(CharBjoern,50)
 Text(BjornSpawns)
-//Bjoern mutters to himself that he's killed the rest of the sages and needs to kill Banana before more come
+//CharBjoern mutters to himself that he's killed the rest of the sages and needs to kill Banana before more come
 NoFade
 ENDA
 
@@ -192,7 +192,7 @@ ENDA
 DruidWalksIntoaBar:
 MUSC 0x2b
 Text(RecruitingBjorn)
-//Void talks to Bjoern; Bjoern says that he will join you after Banana is defeated and the shrine is secured
+//CharVoid talks to CharBjoern; CharBjoern says that he will join you after Banana is defeated and the shrine is secured
 //in the meantime, he gives you an elixir
 SVAL 0x3 0x6d //give elixir
 GIVEITEMTO 0xFFFF //give it to the current unit
@@ -205,7 +205,7 @@ ENDA
 
 // Scripted Fights
 
-// Units
+// unPlayerList
 Bad:
 UNIT 0xCA 0x0C 0x00 Level(20, Enemy, 0) [3,15] 0x02 0x00 0x0 0x00 [0x1D, 0x29, Gleipnir] NeverMoveAI
 UNIT 0xab 0x03 0xCA Level(15, Enemy, 1) [4,15] 0x00 0x00 0x0 0x00 [0x1D, 0x1A] AttackInRangeAI
@@ -250,5 +250,5 @@ UNIT 0xab 0x28 0xCA Level(20, Enemy, 1) [0,16] 0x00 0x00 0x0 0x00 [0x43, 0x51] P
 UNIT
 
 ReinPe:
-UNIT Bjoern 0x2F 0x00 Level(10, NPC, 0) [14,6] 0x00 0x00 0x0 0x00 [0x47, 0x4E] [HealAllies, RossMovementAI, 0, 0]
+UNIT CharBjoern 0x2F 0x00 Level(10, NPC, 0) [14,6] 0x00 0x00 0x0 0x00 [0x47, 0x4E] [HealAllies, RossMovementAI, 0, 0]
 UNIT

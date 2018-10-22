@@ -80,9 +80,7 @@ ORG FreeSpace
 
     // Chapters
 
-    #include "Chapters/Events/EventsInstaller.event"
-    #include "Chapters/Events/WMEventsInstaller.event"
-    #include "Chapters/MasterMapInstaller.event"
+    #include "Chapters/Chapters.event"
 
     // Ensure we did not get part free space
     ASSERT (FreeSpaceEnd - CURRENTOFFSET)

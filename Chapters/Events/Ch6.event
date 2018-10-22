@@ -1,7 +1,7 @@
 #ifndef CHAPTER6_EVENTS_EVENT
 #define CHAPTER6_EVENTS_EVENT
 
-EventPointerTable(0x24, PointerList)
+EventPointerTable(0x24, ThisChapter)
 
 #define Ch6_charBoss 0x6A
 
@@ -19,17 +19,17 @@ EventPointerTable(0x24, PointerList)
 #define Ch6_posSouth1Re [14, 19]
 #define Ch6_posSouth2Re [16, 19]
 
-PointerList:
+ThisChapter:
   POIN TurnEvents
   POIN CharacterEvents
   POIN LocationEvents
   POIN ActionEvents
-  POIN Dunno Dunno Dunno Tutorial
-  POIN Traps1 Traps2
+  POIN DunnoList DunnoList DunnoList TutorialList
+  POIN TrapList TrapList2
   POIN EffectiveUnits EffectiveUnits // This unit group determines the number and position of deployment slots when there is a prep screen
   POIN $0 $0 $0
   POIN $0 $0 $0
-  POIN BeginningScene EndingScene
+  POIN scBeginning scEnding
 
 TurnEvents:
   TurnEventPlayer(0x00, ReinforceThroneWithCavs,      2)
@@ -63,7 +63,7 @@ TurnEvents:
 END_MAIN
 
 CharacterEvents:
-  CharacterEventBothWays(0x20, RecruitNewGuy, Void, Bob) // Void -> Bob
+  CharacterEventBothWays(0x20, RecruitNewGuy, CharVoid, CharBob) // CharVoid -> CharBob
 END_MAIN
 
 LocationEvents:
@@ -81,8 +81,8 @@ ActionEvents:
   CauseGameOverIfLordDies
 END_MAIN
 
-Dunno:
-Tutorial:
+DunnoList:
+TutorialList:
 END_MAIN
 
 EffectiveUnits: // How do you like my testing team ??????
@@ -236,11 +236,11 @@ REDA_FromSouth3:
 REDA_FromSouth4:
   REDA [17, 18] 0 0 0 0
 
-Traps1:
+TrapList:
 ENDTRAP
 ALIGN 4
 
-Traps2:
+TrapList2:
 ENDTRAP
 ALIGN 4
 
@@ -248,7 +248,7 @@ prCapBossMag: // Call with ASMC (prCapBossMag|1)
   SHORT 0xB500 0x4807 0x4B05 0x469E 0xF800 0x6841 0x3114 0x7809 0x3014 0x7001 0x2000 0xBC02 0x4708 0x0000 0x829C 0x0801
   WORD Ch6_charBoss // Char ID here (only works for one unit!)
 
-BeginningScene:
+scBeginning:
   VCWF 0 //turn off fog lol
   LOAD1 0x1 StartingEnemies
   ENUN
@@ -313,12 +313,12 @@ SpawnTheNewGuy:
   ReinforcementEvent(BobUnit)
 
 RecruitNewGuy:
-  CUSA Bob
-  Text(RecruitingBob) //No recruitment convo yet. Have him grumble on about how brutal the Donateenaries are with their taxes, and he's taking things back. Also Bob the Builder joke. - Darr
+  CUSA CharBob
+  Text(RecruitingBob) //No recruitment convo yet. Have him grumble on about how brutal the Donateenaries are with their taxes, and he's taking things back. Also CharBob the Builder joke. - Darr
   NoFade
 ENDA
 
-EndingScene:
+scEnding:
   Text(Ch6Ending)
   MNCH 0x7
   NoFade

@@ -9,30 +9,30 @@
 //                                                //
 ////////////////////////////////////////////////////
 
-EventPointerTable(0x7, PointerList)
+EventPointerTable(0x7, ThisChapter)
 
 VeinEffect(0, FreezeAllEnemies)
 
-PointerList:
-POIN TurnBasedEvents
-POIN CharacterBasedEvents
-POIN LocationBasedEvents
-POIN MiscBasedEvents
-POIN Dunno1 Dunno2 Dunno3 Tutorial
-POIN Traps1 Traps2
+ThisChapter:
+POIN TurnEventList
+POIN CharacterEventList
+POIN LocationEventList
+POIN ActionEventList
+POIN DunnoList Dunno2 Dunno3 TutorialList
+POIN TrapList TrapList2
 POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
 POIN $0 $0 $0
 POIN $0 $0 $0
 POIN BeginningScene EndingScene
 
-TurnBasedEvents:
+TurnEventList:
 END_MAIN
 
-CharacterBasedEvents:
+CharacterEventList:
 CharacterEventBothWays(0x10,TalkEvent, Eirika, Ephraim)
 END_MAIN
 
-LocationBasedEvents:
+LocationEventList:
 Vendor(ShopItems,2,7)
 Armory(ArmoryItems,10,26)
 Village(0x8,VillageEvent,18,27)
@@ -40,11 +40,11 @@ House(0,HouseEvent,6,24)
 Seize(10,2)
 END_MAIN
 
-MiscBasedEvents:
+ActionEventList:
 CauseGameOverIfLordDies
 END_MAIN
 
-Dunno1:
+DunnoList:
 END_MAIN
 
 Dunno2:
@@ -53,7 +53,7 @@ END_MAIN
 Dunno3:
 END_MAIN
 
-Tutorial:
+TutorialList:
 END_MAIN
 
 Units1:
@@ -133,12 +133,12 @@ UNIT Gheb Warrior 0x40 0xA5       [2,4] 0 0 0 0 [KillerAxe, KillerBow] NeverMove
 UNIT Beran Ranger 0x40 0xA5       [17,14] 0 0 0 0 [Lancereaver, KillerBow, Longbow] AttackInRangeAI
 UNIT
 
-Traps1:
+TrapList:
 Vein(9,23,0x0,DV1Desc) //freeze enemies
 ENDTRAP
 ALIGN 4
 
-Traps2:
+TrapList2:
 ENDTRAP
 ALIGN 4
 

@@ -1,16 +1,16 @@
 EventPointerTable(0x78,ThisChapter)
 
 ThisChapter:
-POIN TurnBasedEvents
-POIN CharacterBasedEvents
-POIN LocationBasedEvents
-POIN MiscBasedEvents
-POIN Dunno Dunno Dunno
-POIN Tutorial
-POIN TrapData TrapData
+POIN TurnEventList
+POIN CharacterEventList
+POIN LocationEventList
+POIN ActionEventList
+POIN DunnoList DunnoList DunnoList
+POIN TutorialList
+POIN TrapList TrapList
 POIN UNITs UNITs
 POIN $0 $0 $0 $0 $0 $0
-POIN BeginningScene EndingScene
+POIN scBeginning scEnding
 
 UNITs:
 UNIT 0x01 0x01 0x00 Level(1, Ally, 0) [11,27] 0x00 0x00 0x0 0x00 [0x00] NoAI
@@ -28,14 +28,14 @@ UNIT 0x02 0x01 0x00 Level(1, Ally, 0) [10,26] 0x00 0x00 0x0 0x00 [0x00] NoAI
 UNIT
 
 
-TurnBasedEvents:
+TurnEventList:
 TurnEventPlayer(0x0,Wyvernspawn,9)
 END_MAIN
 
-CharacterBasedEvents:
+CharacterEventList:
 END_MAIN
 
-LocationBasedEvents:
+LocationEventList:
 Village(0x0,RecruitMarf,17,3)
 Vendor(VendList,13,18)
 Armory(ArmList, 17,27)
@@ -51,24 +51,24 @@ ArmList:
 SHLI HandAxe Javelin WindSword Longbow
 ALIGN 4
 
-MiscBasedEvents:
+ActionEventList:
 CauseGameOverIfLordDies
 END_MAIN
 
-Dunno:
+DunnoList:
 //DO NOT TOUCH
 WORD $00
 
-Tutorial:
+TutorialList:
 //DO NOT TOUCH
 WORD $00
 
-TrapData:
+TrapList:
 END_MAIN
 
 ALIGN 4
 
-BeginningScene:
+scBeginning:
 LOAD2 0x1 UNITs
 ENUN
 LOAD1 0x1 DootGroup
@@ -87,10 +87,10 @@ TEXTEND
 GotoPrepScreen
 ENDA
 
-EndingScene:
+scEnding:
 Text(Ch27Ending)
-CAM1 Void
-FlashCursor(Void, 60)
+CAM1 CharVoid
+FlashCursor(CharVoid, 60)
 SETVAL 0x3 Audomra
 GIVETO 0x1
 FADI 4
@@ -183,7 +183,7 @@ UNIT 0x66 0x2B 0x00 Level(8, Enemy, 1) [11,0] 0x00 0x00 0x0 0x00 [0x43, 0x4B] At
 UNIT
 
 MarfGroup:
-UNIT Marf 0x15 0x00 Level(20, Ally, 1) [18,4] 0x00 0x00 0x0 0x00 [0x07, 0x0F, 0x6D] NoAI
+UNIT CharMarf 0x15 0x00 Level(20, Ally, 1) [18,4] 0x00 0x00 0x0 0x00 [0x07, 0x0F, 0x6D] NoAI
 UNIT
 
 

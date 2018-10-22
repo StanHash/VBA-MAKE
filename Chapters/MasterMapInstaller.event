@@ -1,8 +1,6 @@
 #ifndef MAPS
 #define MAPS
 
-#include "Maps/Prologue.event"
-#include "Maps/Ch1.event"
 #include "Maps/Ch2.event"
 #include "Maps/Ch3.event"
 #include "Maps/Ch4.event"

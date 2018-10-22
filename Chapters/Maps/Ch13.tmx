@@ -15,7 +15,7 @@
  <layer name="Tile Layer 1" width="24" height="20">
   <properties>
    <property name="Anims1" value="5"/>
-   <property name="ChapterID" value="13"/>
+   <property name="ChapterID" value="Ch13Id"/>
    <property name="Main" value=""/>
    <property name="MapChangesID" value="0x3a"/>
    <property name="MapID" value="0x39"/>

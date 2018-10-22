@@ -6,7 +6,7 @@
  <layer name="Main" width="23" height="18">
   <properties>
    <property name="Anims1" value="5"/>
-   <property name="ChapterID" value="4"/>
+   <property name="ChapterID" value="Ch4Id"/>
    <property name="Main" value=""/>
    <property name="MapChangesID" value="0x16"/>
    <property name="MapID" value="0x15"/>

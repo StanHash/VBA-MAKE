@@ -5,7 +5,7 @@
  </tileset>
  <layer name="Map" width="29" height="36">
   <properties>
-   <property name="ChapterID" value="0x22"/>
+   <property name="ChapterID" value="Ch29Id"/>
    <property name="Main" value=""/>
    <property name="MapChangesID" value="0x8f"/>
    <property name="MapID" value="0x8e"/>

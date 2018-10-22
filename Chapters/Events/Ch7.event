@@ -1,29 +1,29 @@
-EventPointerTable(0x27, PointerList)
+EventPointerTable(0x27, ThisChapter)
 
-PointerList:
-POIN TurnBasedEvents
-POIN CharacterBasedEvents
-POIN LocationBasedEvents
-POIN MiscBasedEvents
-POIN Dunno Dunno Dunno
-POIN Tutorial
-POIN TrapData TrapData
-POIN Units Units
+ThisChapter:
+POIN TurnEventList
+POIN CharacterEventList
+POIN LocationEventList
+POIN ActionEventList
+POIN DunnoList DunnoList DunnoList
+POIN TutorialList
+POIN TrapList TrapList
+POIN unPlayerList unPlayerList
 POIN $0 $0 $0 $0 $0 $0
-POIN BeginningScene EndingScene
+POIN scBeginning scEnding
 
-TurnBasedEvents:
+TurnEventList:
 TURN 0x0 T2SouthReinforce [2,0] 0x0
 TURN 0x0 T4Pirate [4,0] 0x0
 TURN 0x0 T6GetMoving [6,0] 0x0
 
 END_MAIN
-ALIGN 32 //For some reason, CharacterBasedEvents have to be 32-Aligned?
+ALIGN 32 //For some reason, CharacterEventList have to be 32-Aligned?
 
-CharacterBasedEvents:
+CharacterEventList:
 END_MAIN
 
-LocationBasedEvents:
+LocationEventList:
 Village(0x9, RosheaJoins, 19,2)
 Village(0x7, LeftVillage, 23,8)
 Village(0x8, RightVillage, 25,8)
@@ -33,24 +33,24 @@ Village(0x8, RightVillage, 25,8)
 #endif
 END_MAIN
 
-MiscBasedEvents:
+ActionEventList:
 CauseGameOverIfLordDies
-DefeatBoss(EndingScene)
+DefeatBoss(scEnding)
 END_MAIN
 
-Dunno:
+DunnoList:
 END_MAIN
 
-Tutorial:
+TutorialList:
 END_MAIN
 
-TrapData:
+TrapList:
 ENDTRAP
 
 ALIGN 4
 
-Units:
-UNIT Void EirikaLord 0x0 Level(1,Ally,0) [2,7] 0x0 0x0 0x0 0x0 [Rapier] NoAI
+unPlayerList:
+UNIT CharVoid EirikaLord 0x0 Level(1,Ally,0) [2,7] 0x0 0x0 0x0 0x0 [Rapier] NoAI
 //cbf doing the rest properly, but this should be fine with the prep screen
 UNIT 0x80 Mage 0x0 Level(4,Ally,1) [3,6] 0x0 0x0 0x0 0x0 [Elfire] AttackInRangeAI
 UNIT 0x80 Mage 0x0 Level(4,Ally,1) [3,8] 0x0 0x0 0x0 0x0 [Elfire] AttackInRangeAI
@@ -127,11 +127,11 @@ ENDA
 
 
 RosheaDoesHisBest:
-UNIT Roshea Cavalier 0x0 Level(8,Ally,0) [19,3] 0x0 0x0 0x0 0x0 [SilverLance, Elixir] NoAI
+UNIT CharRoshea Cavalier 0x0 Level(8,Ally,0) [19,3] 0x0 0x0 0x0 0x0 [SilverLance, Elixir] NoAI
 UNIT
 
-BeginningScene:
-LOAD2 0x1 Units
+scBeginning:
+LOAD2 0x1 unPlayerList
 ENUN
 LOAD1 0x1 BadDudes
 ENUN
@@ -139,7 +139,7 @@ Text(Ch7Opening)
 GotoPrepScreen
 ENDA
 
-EndingScene:
+scEnding:
 Text(Ch7Ending)
 MNCH 8
 ENDA

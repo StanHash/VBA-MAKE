@@ -16,7 +16,7 @@
   <properties>
    <property name="Anims1" value="0x00"/>
    <property name="Anims2" value="0x00"/>
-   <property name="ChapterID" value="7"/>
+   <property name="ChapterID" value="Ch6Id"/>
    <property name="Main" value=""/>
    <property name="MapChangesID" value="0x23"/>
    <property name="MapID" value="0x22"/>

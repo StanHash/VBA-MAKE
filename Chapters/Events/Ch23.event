@@ -1,18 +1,18 @@
-EventPointerTable(0x6B, PointerList)
+EventPointerTable(0x6B, ThisChapter)
 
-PointerList:
-POIN TurnBasedEvents
-POIN CharacterBasedEvents
-POIN LocationBasedEvents
-POIN MiscBasedEvents
-POIN Dunno Dunno Dunno
-POIN Tutorial
-POIN TrapData TrapData
-POIN Units Units
+ThisChapter:
+POIN TurnEventList
+POIN CharacterEventList
+POIN LocationEventList
+POIN ActionEventList
+POIN DunnoList DunnoList DunnoList
+POIN TutorialList
+POIN TrapList TrapList
+POIN unPlayerList unPlayerList
 POIN $0 $0 $0 $0 $0 $0
-POIN BeginningScene EndingScene
+POIN scBeginning scEnding
 
-Units:
+unPlayerList:
 UNIT 0x01 0x02 0x00 Level(1, Ally, 1) [17,18] 0x00 0x00 0x0 0x00 [0x01] NoAI
 UNIT 0x02 0x07 0x00 Level(1, Ally, 1) [17,17] 0x00 0x00 0x0 0x00 [0x01] NoAI
 UNIT 0x03 0x3F 0x00 Level(1, Ally, 1) [18,17] 0x00 0x00 0x0 0x00 [0x01] NoAI
@@ -26,7 +26,7 @@ UNIT 0x0A 0x48 0x00 Level(1, Ally, 1) [17,22] 0x00 0x00 0x0 0x00 [0x14] NoAI
 UNIT
 
 
-TurnBasedEvents:
+TurnEventList:
 TurnEventPlayer(0x0,RegoM1,2)
 TurnEventPlayer(0x0,RegoM3,3)
 TurnEventPlayer(0x0,RegoM2,4)
@@ -75,12 +75,12 @@ TurnEventPlayer(0x0,WaxOn,2)
 TurnEventPlayer(0x0,WaxOff,12)
 END_MAIN
 
-CharacterBasedEvents:
-CharacterEventBothWays(0x8,DidYouEverHeartheOneAbouttheZonbie,Void,Doowile)
-CharacterEventBothWays(0x8,WillHeReallyLetYouFinish,Kaga,Doowile)
+CharacterEventList:
+CharacterEventBothWays(0x8,DidYouEverHeartheOneAbouttheZonbie,CharVoid,CharDoowile)
+CharacterEventBothWays(0x8,WillHeReallyLetYouFinish,CharKaga,CharDoowile)
 END_MAIN
 
-LocationBasedEvents:
+LocationEventList:
 Armory(SpoopShop,18,1)
 SecretShop(IHopeWeGaveaMemberCardatSomePoint,0,23)
 Seize(5,1)
@@ -90,26 +90,26 @@ Seize(17,18)
 #endif
 END_MAIN
 
-MiscBasedEvents:
+ActionEventList:
 CauseGameOverIfLordDies
 END_MAIN
 
-Dunno:
+DunnoList:
 //DO NOT TOUCH
 WORD $00
 
-Tutorial:
+TutorialList:
 //DO NOT TOUCH
 WORD $00
 
-TrapData:
+TrapList:
 END_MAIN
 
 ALIGN 4
 
-BeginningScene:
+scBeginning:
 MUSC 0x4b
-LOAD2 0x1 Units
+LOAD2 0x1 unPlayerList
 ENUN
 LOAD1 0x1 Bad
 ENUN
@@ -123,10 +123,10 @@ GotoPrepScreen
 NoFade
 ENDA
 
-EndingScene:
+scEnding:
 Text(Ch23Ending)
-CAM1 Void
-FlashCursor(Void, 60)
+CAM1 CharVoid
+FlashCursor(CharVoid, 60)
 SETVAL 0x3 Vidofnir
 GIVETO 0x1
 MNCH 24
@@ -237,7 +237,7 @@ LOAD1 0x1 Doop
 FAWU 10
 MUNO
 Text(Ch23DoowileAppears)
-//Doowile calls for zombie rebellion against the skeletons
+//CharDoowile calls for zombie rebellion against the skeletons
 NoFade
 ENDA
 
@@ -252,7 +252,7 @@ DidYouEverHeartheOneAbouttheZonbie:
 MUSC 0x30
 STAL 10
 Text(RecruitingDoowileVoid)
-//Void recruits Doowile
+//CharVoid recruits CharDoowile
 TurnAlly(0x1d)
 ENUN
 NoFade
@@ -262,7 +262,7 @@ WillHeReallyLetYouFinish:
 MUSC 0x30
 STAL 10
 Text(RecruitingDoowileKaga)
-//Kaga recruits Doowile
+//CharKaga recruits CharDoowile
 TurnAlly(0x1d)
 ENUN
 NoFade
@@ -307,7 +307,7 @@ ENDA
 
 // Scripted Fights
 
-// Units
+// unPlayerList
 Bad:
 UNIT Novala 0x56 0x00 Level(18, Enemy, 1) [5,1] 0x02 0x00 0x0 0x00 [0x1D, 0x11, 0x5b] NeverMoveAI
 UNIT 0xa9 0x56 0x00 Level(1, Enemy, 1) [19,3] 0x00 0x00 0x0 0x00 [0x13] AttackInRangeAI
@@ -383,7 +383,7 @@ UNIT 0xa9 0x56 0x00 Level(16, Enemy, 1) [16,21] 0x00 0x00 0x0 0x00 [0x11] Pursue
 UNIT
 
 Doop:
-UNIT Doowile 0x7c 0x00 Level(4, NPC, 1) [4,22] 0x00 0x00 0x0 0x00 [0x8B, 0xAF, 0x6F] NoAI //unique revenant class
+UNIT CharDoowile 0x7c 0x00 Level(4, NPC, 1) [4,22] 0x00 0x00 0x0 0x00 [0x8B, 0xAF, 0x6F] NoAI //unique revenant class
 UNIT 0xaa 0x52 0x00 Level(20, NPC, 1) [4,23] 0x00 0x00 0x0 0x00 [0xAE] PursueWithoutHeedAI
 UNIT 0xaa 0x52 0x00 Level(20, NPC, 1) [5,23] 0x00 0x00 0x0 0x00 [0xAE] PursueWithoutHeedAI
 UNIT 0xaa 0x52 0x00 Level(20, NPC, 1) [6,23] 0x00 0x00 0x0 0x00 [0xAE] PursueWithoutHeedAI

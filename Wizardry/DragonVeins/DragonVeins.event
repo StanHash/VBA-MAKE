@@ -105,7 +105,7 @@
     #incbin "Bin/DragonVeinSFX.dmp"
 
   DragonVeinSFX:
-    WORD $1 //Dunno what this is, but leave it
+    WORD $1 //DunnoList what this is, but leave it
     POIN DragonVeinVoicemap
     POIN DragonVeinSFXData
 

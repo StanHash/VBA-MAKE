@@ -1,0 +1,58 @@
+#ifndef CHARACTER_DEFINITIONS
+#define CHARACTER_DEFINITIONS
+
+// Player Characters
+
+#define CharVoid        1
+#define CharTim         2
+#define CharTam         3
+#define CharJerome      4
+#define CharLeeroy      5
+#define CharAnnaMyrm    6
+#define CharBede        7
+#define CharJay         8
+#define CharNotArch     9
+#define CharKirsten     10
+#define CharBob         11
+#define CharRoshea      12
+#define CharPrine       13
+#define CharEdge        14
+// no ephraim replacement
+#define CharSamson      16
+#define CharArve        17
+#define CharTye         18
+#define CharCelicia     19
+#define CharEevster     20
+#define CharAnnaWyv     21
+#define CharNikita      22
+#define CharAnnaRogue   23
+#define CharEdgeworth   24
+#define CharZigludo     25
+#define CharKaga        26
+#define CharDoot        27
+#define CharCelica      28
+#define CharDoowile     29
+#define CharEvilFlorina 30
+#define CharBjoern      31
+#define CharJake        32
+#define CharMarf        33
+#define CharTiki        34
+// no ch29 character
+#define CharMark        36
+
+// Enemy/Other Characters
+
+#define CharLyria       0x60
+#define CharMeriah      0x61
+#define CharPlum        0x62
+#define CharYuni        0x63
+
+#define CharCh0Boss     ONeill
+#define CharCh0Generic  0x80
+
+#define CharCh8Boss     0x4D
+#define CharCh8Generic  0x99
+#define CharCh21Boss    0xC5
+#define CharCh21Generic 0x9A
+
+#endif // CHARACTER_DEFINITIONS

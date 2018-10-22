@@ -1,7 +1,10 @@
 #ifndef GAMEDATA
 #define GAMEDATA
 
-#include "TableDefinitions.event"
+#include "ChapterDefinitions.event"
+#include "CharacterDefinitions.event"
+
+#include "TableHelpers.event"
 
 #include "Tables/SkillSystem/ClassSkills.event"
 #include "Tables/SkillSystem/LearnedSkills.event"
@@ -49,7 +52,7 @@ SuperBlitzEffectiveness:
 	BYTE $52 $53 $54 $55 $56 $57 $58 $59 $5A $5B $5C $5D $5E $5F $60 $61 $62 $63 $64 $65 $66 $3B $7C $7D $51 Necromancer 00
 
 SuperBlitzStatBoosts:
-	//   hp st sk sp df rs lk mv cn
-	BYTE 00 10 10 00 10 20 00 00 00 00
+	//   hp st sk sp df rs lk
+	BYTE  0 10 10  0 10 20  0
 
 #endif // GAMEDATA

@@ -1,18 +1,18 @@
-EventPointerTable(0x21, PointerList)
+EventPointerTable(0x21, ThisChapter)
 
-PointerList:
-POIN TurnBasedEvents
-POIN CharacterBasedEvents
-POIN LocationBasedEvents
-POIN MiscBasedEvents
-POIN Dunno Dunno Dunno
-POIN Tutorial
-POIN TrapData TrapData
-POIN Units Units
+ThisChapter:
+POIN TurnEventList
+POIN CharacterEventList
+POIN LocationEventList
+POIN ActionEventList
+POIN DunnoList DunnoList DunnoList
+POIN TutorialList
+POIN TrapList TrapList
+POIN unPlayerList unPlayerList
 POIN $0 $0 $0 $0 $0 $0
-POIN BeginningScene EndingScene
+POIN scBeginning scEnding
 
-Units:
+unPlayerList:
 UNIT 0x01 0x02 0x00 Level(1, Ally, 1) [25,7] 0x00 0x00 0x0 0x00 [0x14] NoAI
 UNIT 0x04 0x4E 0x01 Level(1, Ally, 1) [24,8] 0x00 0x00 0x0 0x00 [0x14] NoAI
 UNIT 0x07 0x45 0x01 Level(1, Ally, 1) [25,8] 0x00 0x00 0x0 0x00 [0x4B] NoAI
@@ -24,7 +24,7 @@ UNIT 0x08 0x19 0x01 Level(1, Ally, 1) [1,6] 0x00 0x00 0x0 0x00 [0x2D] NoAI
 UNIT
 
 
-TurnBasedEvents:
+TurnEventList:
 TurnEventPlayer(0x0,EventAfterExitingPrepScreen,1)
 TurnEventPlayer(0x0,SnowCome,2)
 TurnEventPlayer(0x0,RegoW1,2)
@@ -44,11 +44,11 @@ TurnEventPlayer(0x0,ImpendingDoom,14)
 TurnEventPlayer(0x0,SnowMore,15)
 END_MAIN
 
-CharacterBasedEvents:
-CharacterEventBothWays(0x7,SoWhatsUpWithFrelianFoodAnyway,Void,Kirsten)
+CharacterEventList:
+CharacterEventBothWays(0x7,SoWhatsUpWithFrelianFoodAnyway,CharVoid,CharKirsten)
 END_MAIN
 
-LocationBasedEvents:
+LocationEventList:
 Seize(18,1)
 Armory(OnlyShopBo,13,9)
 #ifdef __DEBUG__
@@ -56,29 +56,29 @@ Seize(25,7)
 #endif
 END_MAIN
 
-MiscBasedEvents:
+ActionEventList:
 CauseGameOverIfLordDies
 END_MAIN
 
-Dunno:
+DunnoList:
 //DO NOT TOUCH
 WORD $00
 
-Tutorial:
+TutorialList:
 //DO NOT TOUCH
 WORD $00
 
-TrapData:
+TrapList:
 END_MAIN
 
 ALIGN 4
 
-BeginningScene:
+scBeginning:
 //Text to be added later
 //I suggest a scene where the boss mutters to himself that he's glad he paid bandits to help him defend and
 //they should be here any moment now; it foreshadows the turn 15 berserkers
 
-LOAD2 0x1 Units
+LOAD2 0x1 unPlayerList
 ENUN
 LOAD1 0x1 Bad
 ENUN
@@ -92,7 +92,7 @@ CAM1 0x01
 GotoPrepScreen
 ENDB
 
-EndingScene:
+scEnding:
 MUSC 0x31
 Text(Ch5Ending)
 //yay we've won, etc; short ending scene where the new recruit pops in and says hi if she was recruited.
@@ -175,9 +175,9 @@ ENDA
 RegoGreen:
 LOAD1 0x1 GreenistheColourofAir
 ENUN
-CAM1 Kirsten
+CAM1 CharKirsten
 STAL 30
-FlashCursor(Kirsten,50)
+FlashCursor(CharKirsten,50)
 STAL 10
 //Text: peg knight is hyped to defeat the boss all by herself
 //REMA
@@ -225,10 +225,10 @@ SoWhatsUpWithFrelianFoodAnyway:
 MUSC 0x2a
 STAL 10
 Text(RecruitingKirsten)
-//main lord tries and fails to convince Kirsten how dumb it is to attack a castle on your own
-//when you're a pegagirl. Kirsten should talk like a British chav (uwotm8)
+//main lord tries and fails to convince CharKirsten how dumb it is to attack a castle on your own
+//when you're a pegagirl. CharKirsten should talk like a British chav (uwotm8)
 
-TurnAlly(Kirsten)
+TurnAlly(CharKirsten)
 STAL 20
 NoFade
 ENDA
@@ -238,7 +238,7 @@ ENDA
 
 // Scripted Fights
 
-// Units
+// unPlayerList
 Bad:
 UNIT 0x4A 0x0B 0x00 Level(1, Enemy, 0) [18,1] 0x2 0x00 0x0 0x00 [0x10, 0x28] NeverMoveAI
 UNIT 0x80 0x09 0x00 Level(14, Enemy, 1) [13,4] 0x00 0x00 0x0 0x00 [0x1b] AttackInRangeAI

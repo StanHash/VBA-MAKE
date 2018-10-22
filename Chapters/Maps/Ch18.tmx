@@ -6,7 +6,7 @@
  <layer name="Calque de Tile 1" width="25" height="20">
   <properties>
    <property name="Anims1" value="5"/>
-   <property name="ChapterID" value="0x12"/>
+   <property name="ChapterID" value="Ch18Id"/>
    <property name="MapID" value="0x53"/>
    <property name="ObjectType" value="1"/>
    <property name="PaletteID" value="2"/>

@@ -1,6 +1,3 @@
-#FE8 Boss Death Quote Editor by flyingace24
-#
-
 1
 FE8 Boss/Special Death Quote Editor by flyingace24
 0x9ECD4C
@@ -11,19 +8,25 @@ NULL
 
 Character
 0
+2
+NEDU
+NULL
+
+Mode
+2
 1
-NDHU
-Characters.txt
+NEDU
+NULL
 
 Chapter
 3
 1
-NDHU
-Chapters.txt
+NEDU
+NULL
 
 Event ID
 4
-1
+2
 NEHU
 NULL
 

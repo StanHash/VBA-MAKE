@@ -1,0 +1,19 @@
+#ifndef CHAPTERS
+#define CHAPTERS
+
+{
+#include "Ch00Prologue/PrologueMap.event"
+#include "Ch00Prologue/Prologue.event"
+}
+
+{
+#include "Ch01/Ch1.event"
+#include "Ch01/Ch1Map.event"
+}
+
+// The goal is to not do this anymore
+#include "Events/EventsInstaller.event"
+#include "Events/WMEventsInstaller.event"
+#include "MasterMapInstaller.event"
+
+#endif // CHAPTERS

@@ -5,7 +5,7 @@ Tim,EvenRhythmID
 Tam,OddRhythmID
 Jerome,GaleforceID
 Leeroy,ProvokeID
-Anna,LuckySevenID
+AnnaMyrm,LuckySevenID
 Bede,RallySpectrumID
 Jay,AdeptID
 Not Arch,SealSpdID
@@ -20,9 +20,9 @@ Arve,LancebreakerID
 Tye,RallyMovID
 Celicia,AcrobatID
 Eevster,SealLukID
-Anna,DespoilID
+AnnaMyrm,DespoilID
 Nikita,RenewalID
-Anna,ArmsthriftID
+AnnaMyrm,ArmsthriftID
 Edgeworth,RallySpectrumID
 Zigludo,PersonalityID
 Kaga,LungeID
@@ -97,7 +97,7 @@ Deathgoyle (Ch 11B),0x0
 Entombed (Monster Boss),0x0
 Lyria (Ch20),WrathID
 Meriah (Ch19),LunaID
-Plum (Ch20),CharmID
+Plum (Ch20),mID
 Yuni (Ch20),CunningID
 Hunter (Ch 16),0x0
 0,0x0
