@@ -20,7 +20,7 @@ Oh and this also has an updated skill system \:)
 
 The setup required to build this is very much similar to what you need for [FE-CHAX](https://github.com/StanHash/FE-CHAX) (although not all CHAX tools are used yet, but they will most likely be eventually), so tl;dr you need:
 
-- devkitARM and the `DEVKITARM` env var (unused yet)
+- devkitARM and the `DEVKITARM` env var
 - some unix/msys
 - python 3 in your path
 - A non-standard EA as `Tools/EventAssembler` (see CHAX for details and link), used for generation make dependencies
