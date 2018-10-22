@@ -14,9 +14,9 @@
 *.lz
 *.gbapal
 
-# *.o
-# *.dmp
-# *.lyn.event
+*.o
+*.dmp
+*.lyn.event
 
 Writans/Text/.TextEntries
 Writans/*.event
