@@ -184,11 +184,19 @@ ifeq ($(MAKECMDGOALS),clean)
   TMXS := $(shell find -type f -name '*.tmx')
   MAP_GENERATED := $(TMXS:.tmx=.event) $(TMXS:.tmx=_data.dmp)
 
+  # Portraits and generated files
   PORTRAITS := $(wildcard Spritans/Portraits/*.png)
 
   PORTRAIT_GENERATED := \
     $(PORTRAITS:.png=_mug.dmp) $(PORTRAITS:.png=_palette.dmp) \
     $(PORTRAITS:.png=_frames.dmp) $(PORTRAITS:.png=_minimug.dmp)
+
+  # ASM/C and generated files
+  CFILES := $(shell find -type f -name '*.c')
+  SFILES := $(shell find -type f -name '*.s')
+
+  ASM_C_GENERATED := $(CFILES:.c=.o) $(SFILES:.s=.o) $(CFILES:.c=.s)
+  ASM_C_GENERATED += $(ASM_C_GENERATED:.o=.dmp) $(ASM_C_GENERATED:.o=.lyn.event)
 
   # All files that are going to be cleaned
   ALL_TO_CLEAN := \
@@ -200,7 +208,8 @@ ifeq ($(MAKECMDGOALS),clean)
     $(WRITANS_INSTALLER) \
     $(WRITANS_DEFINITIONS) \
     $(PORTRAIT_INSTALLER) \
-    $(PORTRAIT_GENERATED)
+    $(PORTRAIT_GENERATED) \
+    $(ASM_C_GENERATED)
 
 endif
 

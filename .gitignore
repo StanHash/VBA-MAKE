@@ -13,8 +13,10 @@
 *.4bpp
 *.lz
 *.gbapal
-*.dmp
-*.lyn.event
+
+# *.o
+# *.dmp
+# *.lyn.event
 
 Writans/Text/.TextEntries
 Writans/*.event
