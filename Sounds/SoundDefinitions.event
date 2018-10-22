@@ -1,0 +1,28 @@
+#ifndef SOUND_DEFINITIONS
+#define SOUND_DEFINITIONS
+
+// Song group definitions (constants)
+
+#define SG_BATTLE_MUSIC 0
+#define SG_MAP_MUSIC    1
+#define SG_SFX          6
+
+// Song id definitions
+
+#define SONG_TWELVEATTACK $019
+#define SONG_TWELVEDEFEND $01A
+#define SONG_TWOBOSS      $01B
+#define SONG_DWELL        $01C
+
+#define SONG_GRITSTHEME   $057
+#define SONG_KNIGHTSOFTRS $00A
+#define SONG_ENDLESSB     $00C
+#define SONG_CELICA_EP2   $058
+#define SONG_ALM_EP1      $059
+#define SONG_CELICA_PP1   $05D
+#define SONG_ALM_PP1      $05F
+#define SONG_LIGHTINHERIT $062
+#define SONG_WHOM         $063
+#define SONG_SPOOPY       $0C6
+
+#endif // SOUND_DEFINITIONS

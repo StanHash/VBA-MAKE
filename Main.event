@@ -76,7 +76,7 @@ ORG FreeSpace
 
     // Music
 
-    #include "Songs/Songs.event"
+    #include "Sounds/Sounds.event"
 
     // Chapters
 

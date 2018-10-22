@@ -1,0 +1,62 @@
+#ifndef SOUNDS
+#define SOUNDS
+
+#include "SoundDefinitions.event"
+
+{
+
+#include "DrumFixFe8.event"
+
+// Why?
+PUSH; ORG $1001860
+	#incbin "Bin/CustomPiano.bin"
+POP
+
+voicegroup000:
+	#incbin "Bin/NIMapCustomPiano.bin"
+
+SongTable(SONG_TWELVEATTACK, twelveatktest, SG_BATTLE_MUSIC)
+#include "Songs/TwelveAttack.lyn.event"
+
+SongTable(SONG_TWELVEDEFEND, twelvedeftest, SG_BATTLE_MUSIC)
+#include "Songs/TwelveDefense.lyn.event"
+
+SongTable(SONG_TWOBOSS, twobossnew, SG_BATTLE_MUSIC)
+#include "Songs/TwoBossNew.lyn.event"
+
+SongTable(SONG_DWELL, dwellfe8, SG_BATTLE_MUSIC)
+#include "Songs/DwellFe8.lyn.event"
+
+SongTable(SONG_GRITSTHEME, grit__s_theme, SG_MAP_MUSIC)
+#include "Songs/GritsTheme.lyn.event"
+
+SongTable(SONG_KNIGHTSOFTRS, lazeriatest, SG_MAP_MUSIC)
+#include "Songs/KnightsOfLazeria.lyn.event"
+
+SongTable(SONG_ENDLESSB, endlessb, SG_MAP_MUSIC)
+#include "Songs/Endlessb.lyn.event"
+
+SongTable(SONG_CELICA_EP2, Enemy_Phase_2_Celica, SG_MAP_MUSIC)
+#include "Songs/EnemyPhase2Celica.lyn.event"
+
+SongTable(SONG_ALM_EP1, Enemy_Phase_1_Alm, SG_MAP_MUSIC)
+#include "Songs/EnemyPhase1Alm.lyn.event"
+
+SongTable(SONG_CELICA_PP1, Celica_Phase, SG_MAP_MUSIC) // change to celica player phase 1
+#include "Songs/CelicaPhase.lyn.event"
+
+SongTable(SONG_ALM_PP1, Alm_Phase, SG_MAP_MUSIC) // change to alm player phase 1
+#include "Songs/AlmPhase.lyn.event"
+
+SongTable(SONG_LIGHTINHERIT, isaachtest, SG_MAP_MUSIC) // Light Inheritors
+#include "Songs/IsaachFe8.lyn.event"
+
+SongTable(SONG_WHOM, whomtest, SG_BATTLE_MUSIC)
+#include "Songs/WhomFe8.lyn.event"
+
+SongTable(SONG_SPOOPY, skeletest, SG_MAP_MUSIC)
+#include "Songs/Spoopy.lyn.event"
+
+}
+
+#endif // SOUNDS

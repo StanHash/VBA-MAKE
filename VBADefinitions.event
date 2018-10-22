@@ -16,10 +16,11 @@
     #define DebuffTable 0x203F100
 #endif
 
+#include "Wizardry/SkillSystem/SkillDefinitions.event"
+#include "Sounds/SoundDefinitions.event"
+
 #define LunarBrace MoonBracelet
 #define SolarBrace SunBracelet
-
-#include "Wizardry/SkillSystem/SkillDefinitions.event"
 
 #define Void 1
 #define Tim 2
