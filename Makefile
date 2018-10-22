@@ -127,8 +127,8 @@ $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS): $(WRITANS_TEXT_MAIN) $(WRITANS_ALL_
 	$(NOTIFY_PROCESS)
 	@$(GBAGFX) $< $@
 
-# -------------
-# OBJECTS & ASM
+# --------------
+# OBJECTS & DMPS
 
 # OBJ to event
 %.lyn.event: %.o
@@ -145,10 +145,26 @@ $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS): $(WRITANS_TEXT_MAIN) $(WRITANS_ALL_
 	$(NOTIFY_PROCESS)
 	@$(OBJCOPY) -S $< -O binary $@
 
+# --------------------
+# ASSEMBLY/COMPILATION
+
+# Setting C/ASM include directories up (there is none yet)
+INCLUDE_DIRS := 
+INCFLAGS     := $(foreach dir, $(INCLUDE_DIRS), -I "$(dir)")
+
+# setting up compilation flags
+ARCH    := -mcpu=arm7tdmi -mthumb -mthumb-interwork
+CFLAGS  := $(ARCH) $(INCFLAGS) -Wall -Os -mtune=arm7tdmi -fomit-frame-pointer -ffast-math -ffreestanding
+ASFLAGS := $(ARCH) $(INCFLAGS)
+
+# defining dependency flags
+CDEPFLAGS = -MMD -MT "$*.o" -MT "$*.asm" -MF "$(CACHE_DIR)/$(notdir $*).d" -MP
+SDEPFLAGS = --MD "$(CACHE_DIR)/$(notdir $*).d"
+
 # ASM to OBJ rule
 %.o: %.s
 	$(NOTIFY_PROCESS)
-	@$(AS) $(ARCH) $(SDEPFLAGS) -I $(dir $<) $< -o $@ $(ERROR_FILTER)
+	@$(AS) $(ASFLAGS) $(SDEPFLAGS) -I $(dir $<) $< -o $@ $(ERROR_FILTER)
 
 # C to ASM rule
 %.s: %.c
@@ -200,4 +216,5 @@ clean:
 
 ifneq ($(MAKECMDGOALS),clean)
   -include $(EVENT_DEPENDS)
+  -include $(wildcard $(CACHE_DIR)/*.d)
 endif
