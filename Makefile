@@ -101,7 +101,7 @@ $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS): $(WRITANS_TEXT_MAIN) $(WRITANS_ALL_
 # Convert CSV+NMM to event
 %.event: %.csv %.nmm
 	$(NOTIFY_PROCESS)
-	@echo | $(C2EA) -csv $*.csv -nmm $*.nmm -out $*.event $(ROM_SOURCE)
+	@echo | $(C2EA) -csv $*.csv -nmm $*.nmm -out $*.event $(ROM_SOURCE) > /dev/null
 
 # ========
 # = MAPS =
@@ -110,7 +110,7 @@ $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS): $(WRITANS_TEXT_MAIN) $(WRITANS_ALL_
 # TMX to event + dmp
 %.event %_data.dmp: %.tmx
 	$(NOTIFY_PROCESS)
-	@echo | $(TMX2EA) $<
+	@echo | $(TMX2EA) $< > /dev/null
 
 # ==========================
 # = GRAPHICS & COMPRESSION =

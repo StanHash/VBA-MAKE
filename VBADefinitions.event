@@ -10,19 +10,33 @@
 #define ChapterTileAnims(chapter, anim1, anim2) "PUSH; ORG 0x8b0890 + (148* chapter) + 9; BYTE anim1 anim2; POP"
 
 #ifndef ItemTable
-  #define ItemTable 0x809B10
+	#define ItemTable 0x809B10
 #endif
+
 #ifndef DebuffTable
-    #define DebuffTable 0x203F100
+	#define DebuffTable 0x203F100
 #endif
+
+#include "GameData/Definitions/Chapters.event"
+#include "GameData/Definitions/Characters.event"
+#include "GameData/Definitions/ChapterAssets.event"
 
 #include "Wizardry/SkillSystem/SkillDefinitions.event"
 #include "Sounds/SoundDefinitions.event"
-#include "GameData/ChapterDefinitions.event"
-#include "GameData/CharacterDefinitions.event"
-#include "GameData/ChapterAssetDefinitions.event"
 
 #define LunarBrace MoonBracelet
 #define SolarBrace SunBracelet
+
+#ifndef CustomGameSpeedConfig
+	#define CustomGameSpeedConfig
+
+	#define GameSpeedNormalValue       6
+	#define GameSpeedNormalCheckSlow   True
+	#define GameSpeedNormalCheckAPress False
+
+	#define GameSpeedFastValue         7
+	#define GameSpeedFastCheckSlow     True
+	#define GameSpeedFastCheckAPress   False
+#endif // CustomGameSpeedConfig
 
 #endif // VBA_DEFINITIONS

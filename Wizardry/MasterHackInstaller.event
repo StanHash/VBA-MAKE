@@ -113,4 +113,6 @@ POP
   #include "IconRework/IconRework.event"   // Allows using standard Icon routines to draw skill icons
   // #include "PopupRework/PopupRework.event" // Allows to expand on vanilla popups by adding components
 
+  #include "CustomGameSpeed/CustomGameSpeed.event"
+
   #include "UnitMenu.event"

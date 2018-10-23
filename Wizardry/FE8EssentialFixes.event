@@ -27,8 +27,8 @@ POP
 //Set Default Options
   ORG $30d8a  //animations type 2
   SHORT $3306
-  ORG $30da6  //Game/text speed Fast, Autocursor off
-  SHORT $22d0
+  ORG $30da6  // text speed Fast, Autocursor off
+  SHORT $2250
   
 //Allow Visit from any tile
   PUSH
@@ -66,9 +66,10 @@ POP
   ORG $180b4
   SHORT $2a00 $dc00 $2201
 
-//Hold A to speed up movement (credit Gryz)
-  ORG $794ee
-  SHORT 0
+// Hold A to speed up movement (credit Gryz)
+// Use CustomGameSpeed instead
+//  ORG $794ee
+//  SHORT 0
 
 //Skip H&S screen
   ORG $CC20C

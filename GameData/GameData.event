@@ -1,10 +1,6 @@
 #ifndef GAMEDATA
 #define GAMEDATA
 
-#include "ChapterDefinitions.event"
-#include "CharacterDefinitions.event"
-#include "ChapterAssetDefinitions.event"
-
 #include "TableHelpers.event"
 
 #include "Tables/SkillSystem/ClassSkills.event"
