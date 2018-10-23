@@ -33,6 +33,29 @@ The setup required to build this is very much similar to what you need for [FE-C
 
 I plan on eventually distributing an all in one "Tools" package to make this a bit easier but right now I'm still messing with everything all the time and updating the packing to go with it would be impractical.
 
+## File extensions conventions
+
+Because of make rules and also consistency, I am defining rules for what extension corresponds to what file type:
+
+| File type         | Extension | Can generate | Can be generated from           | Notes |
+| ----------------- | --------- | ------------ | ------------------------------- | ----- |
+| Event Source      | `.event`  | -            | `.csv`+`.nmm`; `.tmx`; `.o`... | events generated from `.o` have full extension `.lyn.event`.
+| Compressed Binary | `.lz`     | -            | any                             | generated `.lz` don't lose original extension (`.4bpp` => `4bpp.lz`).
+| Arbitrary Binary  | `.bin`    | -            | -                               | -
+| Generated Binary  | `.dmp`    | -            | `.o`; `.tmx`; `.png` (portrait), `.fetxt` | -
+| GBA Tile Graphics | `.4bpp`   | -            | `.png`                          | -
+| GBA Palette       | `.gbapal` | -            | `.png`                          | -
+| FE Formatted Text | `.fetxt`  | `.dmp`       | `.txt` (textprocess)            | generated dmps have full extension `.fetxt.dmp`.
+| Generic Image     | `.png`    | `.4bpp`; `.gbapal`; `.dmp` (portrait) | -      | portrait `.dmp`s have `_mug`, `_minimug`, `_frames` and `_palette` postfixes.
+| ASM Source        | `.s`      | `.o`         | `.c`                            | -
+| C Source          | `.c`      | `.s`         | -                               | -
+| Relocatable Object | `.o`     | `.lyn.event`; `.dmp` | `.s`                    | ELF
+| Tiled Map         | `.tmx`    | `.dmp`+`.event` | -                            | `.dmp`s have `_data` postfix
+| Table CSV Sheet   | `.csv`    | `.event`     | -                               | `.event` generation requires corresponding `.nmm`
+| Table NMM         | `.nmm`    | `.event`     | -                               | `.event` generation requires corresponding `.csv`
+
+Note: all files don't follow those conventions yet, but this plan is that they eventually will.
+
 # Original VBA Credits
 
 Chapters

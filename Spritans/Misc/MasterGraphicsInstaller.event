@@ -1,54 +1,63 @@
-#define ClassAnimTable (0xc00008-0x20)
+#define ClassAnimTable (0xC00008-0x20)
 
-#define AnimTableEntry(index) "ORG ClassAnimTable + (index * 0x20)"
+#define AnimTableEntry(aIndex) "ORG ClassAnimTable + (aIndex * 0x20)"
+
+{
 
 PUSH
-  ORG $AC188
-  POIN NewDifficultyButtons
 
-  ORG $8AEFE4
-  BYTE 1 //make eirika use anims for lance not swd
-  ORG $8AEFFC
-  BYTE 1 //same for promo
+	ORG $AC188
+		POIN NewDifficultyButtons
 
-  ORG $c5830
-  POIN NewTitleScroll
+	ORG $8AEFE4
+		BYTE 1 //make eirika use anims for lance not swd
 
-  ORG $aac5ac
-  #incbin "FETitle.4bpp.lz"
+	ORG $8AEFFC
+		BYTE 1 //same for promo
 
-  ORG $a16dec
-  #incbin "EditedStatusNames.4bpp"
+	ORG $c5830
+		POIN NewTitleScroll
 
-  ORG $aac58c //clearing dragon palette to only use 1 colour
-  BYTE $90 $42 $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A
+	ORG $aac5ac
+		#incbin "Gfx/MainTitleVba.4bpp.lz"
+
+	ORG $a16dec
+		#incbin "Gfx/StatusNames.4bpp"
+
+	ORG $aac58c //clearing dragon palette to only use 1 colour
+		BYTE $90 $42 $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A $EE $2A
+
 POP
 
 NewDifficultyButtons:
-#incbin "Difficulty.4bpp.lz"
+	#incbin "Gfx/MainMenuGfx.4bpp.lz"
 
 NewTitleScroll:
-#incbin "TitleScroll.4bpp.lz"
+	#incbin "Gfx/MainSubtitleVba.4bpp.lz"
 
 PUSH
-ORG 0x5926F4+(0x80*8)
-#incbin "Blitzicon.4bpp"
-ORG 0x5926F4+(0x80*0xb0)
-#incbin "Superblitzicon.4bpp"
-ORG 0x5926F4+(0x80*0x42)
-#incbin "Auraicon.4bpp"
+
+	ORG 0x5926F4+(0x80*8)
+		#incbin "Gfx/BlitzLanceIcon.4bpp"
+
+	ORG 0x5926F4+(0x80*0xb0)
+		#incbin "Gfx/SuperBlitzIcon.4bpp"
+
+	ORG 0x5926F4+(0x80*0x42)
+		#incbin "Gfx/AuraTomeIcon.4bpp"
+
 POP
 
 ch24palette:
-#incbin "Bch24palette.bin"
+	#incbin "Bin/B24Palette.bin"
 
 SnowPalette:
-// #incbin "SnowPalette_FE8.bin"
-#incbin "B21palette.bin"
-// #incbin "b21palette.gbapal"
+	#incbin "Bin/B21Palette.bin"
+	// #incbin "SnowTilesetPal.bin"
+	// #incbin "b21palette.gbapal"
 
 SnowTileConfig:
-#incbin "SnowTileConfigLZ.bin"
+	#incbin "Bin/SnowTilesetConfig.bin"
 
 EventPointerTable(AssetMountainsPalCh24, ch24palette)
 EventPointerTable(AssetShrinePalSnow,    SnowPalette)
@@ -56,42 +65,57 @@ EventPointerTable(AssetShrineConfigSnow, SnowTileConfig)
 
 #include "BattleAnimPointers.event"
 
+ALIGN 4
 TikiTransformPal:
-#incbin "TikiTransformedPal.dmp.lz"
+	#incbin "Bin/TikiTransformedPal.bin.lz"
 
+ALIGN 4
 TikiNormalPal:
-#incbin "TikiUntransformedPal.dmp.lz"
+	#incbin "Bin/TikiUntransformedPal.bin.lz"
 
 PUSH
-ORG (0xc00008-0x20)+(0xc5*0x20)+(7*4)
-POIN TikiTransformPal
-ORG (0xc00008-0x20)+(0xc6*0x20)+(7*4)
-POIN TikiTransformPal
-ORG (0xc00008-0x20)+(0xc7*0x20)+(7*4)
-POIN TikiNormalPal
 
-ORG (0xc00008-0x20)+(0xc4*0x20)+(7*4)
-POIN TikiTransformPal
+	ORG (0xc00008-0x20)+(0xc5*0x20)+(7*4)
+		POIN TikiTransformPal
+
+	ORG (0xc00008-0x20)+(0xc6*0x20)+(7*4)
+		POIN TikiTransformPal
+
+	ORG (0xc00008-0x20)+(0xc7*0x20)+(7*4)
+		POIN TikiNormalPal
+
+	ORG (0xc00008-0x20)+(0xc4*0x20)+(7*4)
+		POIN TikiTransformPal
 
 POP
 
+// Stat screen
 
-//Stat screen
 PUSH
-ORG $88638
-POIN NewStatScreen
-ORG $88620
-POIN RemoveGlowy
-ORG $88640
-POIN NewStatScreenPal
+
+	ORG $88638
+		POIN NewStatScreen
+
+	ORG $88620
+		POIN RemoveGlowy
+
+	ORG $88640
+		POIN NewStatScreenPal
+
 POP
 
+ALIGN 4
 NewStatScreen:
-#incbin "StatScreenB.4bpp.lz"
-NewStatScreenPal:
-#incbin "StatScreenB.gbapal"
+	#incbin "Gfx/StatScreenVba.4bpp.lz"
 
+ALIGN 4
+NewStatScreenPal:
+	#incbin "Gfx/StatScreenVba.gbapal"
+
+ALIGN 4
 RemoveGlowy:
-#incbin "RemoveGlowy.4bpp.lz"
+	#incbin "Gfx/BlankGlowy.4bpp.lz"
 
 #include "LanceVoidPromo.event"
+
+}

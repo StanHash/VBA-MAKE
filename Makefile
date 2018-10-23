@@ -8,8 +8,9 @@ include Tools.mak
 CACHE_DIR := .MkCache
 $(shell mkdir -p $(CACHE_DIR) > /dev/null)
 
-# -----------
-# MAIN TARGET
+# ===============
+# = MAIN TARGET =
+# ===============
 
 # When making, we want the dependency file to be regenerated
 # So we use this phony rule to delete it and call make recursively
@@ -19,8 +20,9 @@ hack:
 	@rm -f $(EVENT_DEPENDS)
 	@$(MAKE) $(ROM_TARGET)
 
-# -------------
-# THE BUILDFILE
+# =================
+# = THE BUILDFILE =
+# =================
 
 # ROMs
 ROM_SOURCE    := FE8U.gba
@@ -48,8 +50,9 @@ $(EVENT_DEPENDS):
 	@$(EA) A FE8 -output $(ROM_TARGET) -input $(EVENT_MAIN) -MM -MG -MT $(EVENT_DEPENDS) -MF $(EVENT_DEPENDS)
 	@sed -i s/\\\\/\\//g $(EVENT_DEPENDS)
 
-# ---------
-# PORTRAITS
+# =============
+# = PORTRAITS =
+# =============
 
 PORTRAIT_LIST      := Spritans/PortraitList.txt
 PORTRAIT_INSTALLER := Spritans/Portraits.event
@@ -64,8 +67,9 @@ $(PORTRAIT_INSTALLER): $(PORTRAIT_LIST)
 	$(NOTIFY_PROCESS)
 	@$(PORTRAITFORMATTER) $<
 
-# ----
-# TEXT
+# ========
+# = TEXT =
+# ========
 
 # Variable listing all text files in the writans directory
 # The text installer depends on them (in case there was any change)
@@ -86,28 +90,31 @@ $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS): $(WRITANS_TEXT_MAIN) $(WRITANS_ALL_
 
 # Convert formatted text to insertable binary
 # Nulling output because it's annoying
-%.fetxt.bin: %.fetxt
+%.fetxt.dmp: %.fetxt
 	$(NOTIFY_PROCESS)
 	@$(PARSEFILE) $< -o $@ > /dev/null
 
-# ------
-# TABLES
+# ==========
+# = TABLES =
+# ==========
 
 # Convert CSV+NMM to event
 %.event: %.csv %.nmm
 	$(NOTIFY_PROCESS)
 	@echo | $(C2EA) -csv $*.csv -nmm $*.nmm -out $*.event $(ROM_SOURCE)
 
-# ----
-# MAPS
+# ========
+# = MAPS =
+# ========
 
 # TMX to event + dmp
 %.event %_data.dmp: %.tmx
 	$(NOTIFY_PROCESS)
 	@echo | $(TMX2EA) $<
 
-# ----------------------
-# GRAPHICS & COMPRESSION
+# ==========================
+# = GRAPHICS & COMPRESSION =
+# ==========================
 
 # PNG to 4bpp rule
 %.4bpp: %.png
@@ -127,8 +134,9 @@ $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS): $(WRITANS_TEXT_MAIN) $(WRITANS_ALL_
 	$(NOTIFY_PROCESS)
 	@$(GBAGFX) $< $@
 
-# --------------
-# OBJECTS & DMPS
+# ==================
+# = OBJECTS & DMPS =
+# ==================
 
 # OBJ to event
 %.lyn.event: %.o
@@ -145,8 +153,9 @@ $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS): $(WRITANS_TEXT_MAIN) $(WRITANS_ALL_
 	$(NOTIFY_PROCESS)
 	@$(OBJCOPY) -S $< -O binary $@
 
-# --------------------
-# ASSEMBLY/COMPILATION
+# ========================
+# = ASSEMBLY/COMPILATION =
+# ========================
 
 # Setting C/ASM include directories up (there is none yet)
 INCLUDE_DIRS := 
@@ -171,8 +180,13 @@ SDEPFLAGS = --MD "$(CACHE_DIR)/$(notdir $*).d"
 	$(NOTIFY_PROCESS)
 	@$(CC) $(CFLAGS) $(CDEPFLAGS) -S $< -o $@ -fverbose-asm $(ERROR_FILTER)
 
-# ----------
-# MAKE CLEAN
+# Avoid make deleting objects it thinks it doesn't need anymore
+# Without this make may fail to detect some files as being up to date
+.PRECIOUS: %.o;
+
+# ==============
+# = MAKE CLEAN =
+# ==============
 
 ifeq ($(MAKECMDGOALS),clean)
 
@@ -220,8 +234,9 @@ clean:
 
 	@echo all clean!
 
-# --------------------
-# INCLUDE DEPENDENCIES
+# ========================
+# = INCLUDE DEPENDENCIES =
+# ========================
 
 ifneq ($(MAKECMDGOALS),clean)
   -include $(EVENT_DEPENDS)
