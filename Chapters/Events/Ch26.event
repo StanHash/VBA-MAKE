@@ -1,7 +1,7 @@
 //Made by Camtech075 of SerenesForest
 //Modified by Nintenlord
 
-EventPointerTable(0x75,ThisChapter)
+EventPointerTable(AssetCh26Data, ThisChapter)
 
 ThisChapter:
 POIN TurnEventList

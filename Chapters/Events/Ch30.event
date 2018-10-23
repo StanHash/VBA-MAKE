@@ -1,6 +1,6 @@
 #include "EAstdlib.event"
 
-EventPointerTable(0x87,ThisChapter)
+EventPointerTable(AssetCh30Data, ThisChapter)
 
 VeinEffect(0, StopGargoyles)
 VeinEffect(1, FreezeAndDebuff)

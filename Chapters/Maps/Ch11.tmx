@@ -13,10 +13,10 @@
   <properties>
    <property name="ChapterID" value="Ch11Id"/>
    <property name="Main" value=""/>
-   <property name="MapID" value="0xcf"/>
-   <property name="ObjectType" value="0x3c"/>
-   <property name="PaletteID" value="0x3d"/>
-   <property name="TileConfig" value="0x3e"/>
+   <property name="MapID" value="AssetCh11Map"/>
+   <property name="ObjectType" value="AssetFortObj"/>
+   <property name="PaletteID" value="AssetFortPal"/>
+   <property name="TileConfig" value="AssetFortConfig"/>
   </properties>
   <data>
    <tile gid="822"/>

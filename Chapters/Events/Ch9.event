@@ -1,4 +1,4 @@
-EventPointerTable(0x2d,ThisChapter)
+EventPointerTable(AssetCh09Data, ThisChapter)
 
 ThisChapter:
 POIN TurnEventList

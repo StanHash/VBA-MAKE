@@ -1,6 +1,6 @@
 #include "EAstdlib.event"
 
-EventPointerTable(0x71,ThisChapter)
+EventPointerTable(AssetCh24Data, ThisChapter)
 
 ThisChapter:
 POIN TurnEventList

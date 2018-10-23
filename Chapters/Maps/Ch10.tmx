@@ -7,10 +7,10 @@
   <properties>
    <property name="ChapterID" value="Ch10Id"/>
    <property name="Main" value=""/>
-   <property name="MapID" value="0x31"/>
-   <property name="ObjectType" value="0x2e"/>
-   <property name="PaletteID" value="0x2f"/>
-   <property name="TileConfig" value="0x30"/>
+   <property name="MapID" value="AssetCh10Map"/>
+   <property name="ObjectType" value="AssetPlainsObj"/>
+   <property name="PaletteID" value="AssetPlainsPal"/>
+   <property name="TileConfig" value="AssetPlainsConfig"/>
   </properties>
   <data>
    <tile gid="594"/>

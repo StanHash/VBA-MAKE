@@ -7,11 +7,11 @@
   <properties>
    <property name="ChapterID" value="Ch8Id"/>
    <property name="Main" value=""/>
-   <property name="MapChangesID" value="0x1d"/>
-   <property name="MapID" value="0x1b"/>
-   <property name="ObjectType" value="0x0e"/>
-   <property name="PaletteID" value="0x72"/>
-   <property name="TileConfig" value="0x10"/>
+   <property name="MapChangesID" value="AssetCh08MapChanges"/>
+   <property name="MapID" value="AssetCh08Map"/>
+   <property name="ObjectType" value="AssetVillageObj"/>
+   <property name="PaletteID" value="AssetVillagePalOcean"/>
+   <property name="TileConfig" value="AssetVillageConfig"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJyFkskNwjAQRb1cINAHCCSa4ACCNoBbuiD0EUgjgLjQRTixFcG3gpUfa5wcnsyMJ8/jwZlWKlc1piOO7cXqtG6PC8RziidGqbuumZoq/3DfWaVGYAxy5I/gZOL9Pf7uBDU3XZGBITnPcC3AEpyRv4BrxMm9s/NGzhjlvxd2hHdfwfHWNeuIk2e9Qd9bsLPNmie+fTkf+ND6NdW57HErO/dwZeAAZuTt4XcfJGBA69DKPYZeT2rl+7fNXAs+nqVzdvl4P6zl2HtT2zzLhG9Q+D8kj3T3knL8BsO7+bqSvOFMU2H+7m175sF5vkfvkd4mOwthX+pD6jvWJ7tKIfcDp1mY4Q==

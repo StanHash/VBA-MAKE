@@ -14,15 +14,15 @@
  </tileset>
  <layer name="main" width="18" height="20">
   <properties>
-   <property name="Anims1" value="0x00"/>
-   <property name="Anims2" value="0x00"/>
+   <property name="Anims1" value="0"/>
+   <property name="Anims2" value="0"/>
    <property name="ChapterID" value="Ch6Id"/>
    <property name="Main" value=""/>
-   <property name="MapChangesID" value="0x23"/>
-   <property name="MapID" value="0x22"/>
-   <property name="ObjectType" value="0x3C"/>
-   <property name="PaletteID" value="0x3D"/>
-   <property name="TileConfig" value="0x3E"/>
+   <property name="MapChangesID" value="AssetCh06MapChanges"/>
+   <property name="MapID" value="AssetCh06Map"/>
+   <property name="ObjectType" value="AssetFortObj"/>
+   <property name="PaletteID" value="AssetFortPal"/>
+   <property name="TileConfig" value="AssetFortConfig"/>
   </properties>
   <data encoding="csv">
 585,427,427,593,427,427,462,427,427,494,724,755,755,755,755,755,755,755,

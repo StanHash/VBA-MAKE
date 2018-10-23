@@ -3,7 +3,7 @@
 
 #include "EAstdlib.event"
 
-EventPointerTable(0x37,ThisChapter)
+EventPointerTable(AssetCh12Data, ThisChapter)
 // EventPointerTable(0xd1, ThisChapter)
 
 EscapePointPointerTable(12, Ch12EscapePoint)

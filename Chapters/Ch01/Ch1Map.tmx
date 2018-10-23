@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="26" height="32" tilewidth="16" tileheight="16" nextobjectid="1">
- <tileset firstgid="1" name="FE8 - Fields - 01000203" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
-  <image source="Tilesets/FE8/01000203.png" trans="ffffff" width="512" height="512"/>
+ <tileset firstgid="1" name="Mountains (01000203)" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
+  <image source="../Tilesets/Mountains-01000203.png" trans="ffffff" width="512" height="512"/>
  </tileset>
  <layer name="Tile Layer 1" width="26" height="32">
   <properties>
-   <property name="Anims1" value="5"/>
+   <property name="Anims1" value="AssetWaterAnims"/>
    <property name="ChapterID" value="Ch1Id"/>
    <property name="Main" value=""/>
-   <property name="MapChangesID" value="9"/>
-   <property name="MapID" value="8"/>
-   <property name="ObjectType" value="1"/>
-   <property name="PaletteID" value="2"/>
-   <property name="TileConfig" value="3"/>
+   <property name="MapChangesID" value="AssetCh01MapChanges"/>
+   <property name="MapID" value="AssetCh01Map"/>
+   <property name="ObjectType" value="AssetMountainsObj"/>
+   <property name="PaletteID" value="AssetMountainsPal"/>
+   <property name="TileConfig" value="AssetMountainsConfig"/>
   </properties>
   <data>
    <tile gid="245"/>

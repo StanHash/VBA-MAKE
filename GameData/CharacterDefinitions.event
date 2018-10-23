@@ -50,6 +50,10 @@
 #define CharCh0Boss     ONeill
 #define CharCh0Generic  0x80
 
+#define CharCh1Kid      Breguet
+#define CharCh1Boss     0xBD
+#define CharCh1Generic  0x80
+
 #define CharCh8Boss     0x4D
 #define CharCh8Generic  0x99
 #define CharCh21Boss    0xC5

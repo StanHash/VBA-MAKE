@@ -5,13 +5,13 @@
  </tileset>
  <layer name="Tile Layer 1" width="24" height="30">
   <properties>
-   <property name="Anims1" value="5"/>
+   <property name="Anims1" value="AssetWaterAnims"/>
    <property name="ChapterID" value="Ch16Id"/>
    <property name="Main" value=""/>
-   <property name="MapID" value="0x49"/>
-   <property name="ObjectType" value="1"/>
-   <property name="PaletteID" value="2"/>
-   <property name="TileConfig" value="3"/>
+   <property name="MapID" value="AssetCh16Map"/>
+   <property name="ObjectType" value="AssetMountainsObj"/>
+   <property name="PaletteID" value="AssetMountainsPal"/>
+   <property name="TileConfig" value="AssetMountainsConfig"/>
   </properties>
   <data>
    <tile gid="783"/>

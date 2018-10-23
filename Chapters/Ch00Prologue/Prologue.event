@@ -1,8 +1,7 @@
 #ifndef CHAPTER_PROLOGUE
 #define CHAPTER_PROLOGUE
 
-// TODO: use definitions
-EventPointerTable(0x7, ThisChapter)
+EventPointerTable(AssetCh00Data, ThisChapter)
 
 // TODO: Move this elsewhere
 #define eidCasualMode $B0

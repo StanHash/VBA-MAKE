@@ -1,6 +1,6 @@
 #include "EAstdlib.event"
 
-EventPointerTable(0x64,ThisChapter) //Final Eirika Pt1
+EventPointerTable(AssetCh21Data, ThisChapter) //Final Eirika Pt1
 
 ThisChapter:
 POIN TurnEventList

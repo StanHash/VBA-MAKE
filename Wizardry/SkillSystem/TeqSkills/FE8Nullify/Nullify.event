@@ -1,5 +1,8 @@
-//FE8 Nullify, with potential weapon effectiveness and Slayer overhaul
-//By Tequila
+#ifndef HAX_SERW_NULLFY
+#define HAX_SERW_NULLFY
+
+// FE8 Nullify, with potential weapon effectiveness and Slayer overhaul
+// By Tequila
 
 #ifndef _FE8_
     ERROR "You're not assembling to an FE8 ROM!"
@@ -15,7 +18,7 @@
 
 #ifndef __SLAYER_AND_EFFECTIVENESS_REWORK__
 	//we merely add Slayer and Nullify checks as necessary
-	
+
 	PUSH
 	
 	//Slayer
@@ -44,9 +47,18 @@
 	POIN SkillTester
 	WORD NullifyID
 	
-#else
-	//OVERHAUL, BABY
-	
+#else // __SLAYER_AND_EFFECTIVENESS_REWORK__
+	// OVERHAUL, BABY
+
+	#ifndef SlayerEffectivenessReworkMacrosDefined
+		#define SlayerEffectivenessReworkMacrosDefined
+
+		#define SlayerTableEntry(aClassId, aTypeList, aCoeffTimes2) "BYTE aClassId aCoeffTimes2; SHORT aTypeList"
+		#define ItemEffectivenessPtr(aItemId, aEffectivenessOffset) "PUSH; ORG ItemTable + 0x24*aItemId + 0x10; POIN aEffectivenessOffset; POP"
+		#define SetWeaponEffectiveness(aTypeList, aCoeffTimes2) "BYTE 0 aCoeffTimes2; SHORT aTypeList"
+		#define SetProtection(aTypeList) "SHORT 0 aTypeList"
+	#endif // SlayerEffectivenessReworkMacrosDefined
+
 	PUSH
 	
 	//Modify the part that multiplies weapon might for effective weapons and slayer
@@ -77,16 +89,14 @@
 	POIN SkillTester
 	WORD NullifyID
 	
-	#define SlayerTableEntry(class_id, type_list, coefficient_times_2) "BYTE class_id coefficient_times_2; SHORT type_list"
 	ALIGN 4
 	SlayerTable:
-	SlayerTableEntry(Bishop, MonsterType, 6)
-	SlayerTableEntry(Bishop_F, MonsterType, 6)
-	SlayerTableEntry(Ranger_F, MonsterType, 6)
+	SlayerTableEntry(Bishop, EFF_MONSTER, 6)
+	SlayerTableEntry(Bishop_F, EFF_MONSTER, 6)
+	SlayerTableEntry(Ranger_F, EFF_MONSTER, 6)
 	WORD 0 //terminator
 	
 	//Change existing effective items (class weaknesses are already part of the class data table)
-	#define ItemEffectivenessPtr(item_id, label_to_point_to) "PUSH; ORG ItemTable + 0x24*item_id + 0x10; POIN label_to_point_to; POP"
 	ItemEffectivenessPtr(Rapier, LordWeaponEffectiveness)
 	ItemEffectivenessPtr(Armorslayer, ArmorEffectiveness)
 	ItemEffectivenessPtr(Wyrmslayer, DragonEffectiveness)
@@ -130,41 +140,41 @@
 	//Protector item (macro still works, even if it's wrongly named)
 	ItemEffectivenessPtr(DelphiShield, FlierProtection)
 	
-	#define SetWeaponEffectiveness(type_list, coefficient_times_2) "BYTE 0 coefficient_times_2; SHORT type_list"
 	LordWeaponEffectiveness:
-	SetWeaponEffectiveness(ArmorType|SwordType, 6)
+	SetWeaponEffectiveness(EFF_ARMOR|EFF_SWORD, 6)
 	WORD 0 //terminator
 	ArmorEffectiveness:
-	SetWeaponEffectiveness(ArmorType, 6)
+	SetWeaponEffectiveness(EFF_ARMOR, 6)
 	WORD 0
 	HorseEffectiveness:
-	SetWeaponEffectiveness(HorseType, 6)
+	SetWeaponEffectiveness(EFF_HORSE, 6)
 	WORD 0
 	DragonEffectiveness:
-	SetWeaponEffectiveness(DragonType, 6)
+	SetWeaponEffectiveness(EFF_DRAGON, 6)
 	WORD 0
 	FlierEffectiveness:
-	SetWeaponEffectiveness(FlierType, 6)
+	SetWeaponEffectiveness(EFF_FLIER, 6)
 	WORD 0
 	SwordEffectiveness:
-	SetWeaponEffectiveness(SwordType, 6)
+	SetWeaponEffectiveness(EFF_SWORD, 6)
 	WORD 0
 	MonsterEffectiveness:
-	SetWeaponEffectiveness(MonsterType, 6)
+	SetWeaponEffectiveness(EFF_MONSTER, 6)
 	WORD 0
 	SacredWeaponEffectiveness:
-	SetWeaponEffectiveness(MonsterType, 4)
+	SetWeaponEffectiveness(EFF_MONSTER, 4)
 	WORD 0
 	FlierAndMonster1: //Beacon bow
-	SetWeaponEffectiveness(FlierType|MonsterType, 6)
+	SetWeaponEffectiveness(EFF_FLIER|EFF_MONSTER, 6)
 	WORD 0
 	FlierAndMonster2: //Nidhogg
-	SetWeaponEffectiveness(FlierType, 6)
-	SetWeaponEffectiveness(MonsterType, 4)
+	SetWeaponEffectiveness(EFF_FLIER, 6)
+	SetWeaponEffectiveness(EFF_MONSTER, 4)
 	WORD 0
 	
-	#define SetProtection(type_list) "SHORT 0 type_list"
 	FlierProtection:
-	SetProtection(FlierType)
+	SetProtection(EFF_FLIER)
 	
-#endif
+#endif // __SLAYER_AND_EFFECTIVENESS_REWORK__
+
+#endif // HAX_SERW_NULLFY

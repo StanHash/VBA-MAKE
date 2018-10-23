@@ -56,60 +56,38 @@
 //Weapon Ability 4 definitions
 #define CannotDoubleEffect 0xC
 
-//Character/Class Ability 1 definitions:
-#define MountedAid 0x1
-#define HasCanto 0x2
-#define Steal 0x4
-#define CanUseLockpick 0x8
-#define CanDance 0x10
-#define CanPlay 0x20
-#define CritBoost 0x40
-#define ImmuneToLethality 0x40
-#define UseBallista 0x80
+// Char/Class Attributes definitions
 
-//Ability 2 definitions:
-#define IsPromoted 0x1
-#define IsSupply 0x2
-#define HorseIcon 0x4
-#define DragonIcon 0x8
-#define PegIcon 0x10
-#define IsLord 0x20
-#define IsFemale 0x40
-#define IsBoss 0x80
-
-//Ability 3 definitions:
-#define SwordmasterUnlock 0x2
-#define UseMonsterWeapons 0x4
-#ifdef _FE7_
-  #define Morph 0x8
-#endif
-#ifdef _FE8_
-  #define TraineeLevelCap 0x8
-#endif
-#define CannotControl 0x10
-#define TriangleAttack 0x20
-#define TriangleAttack2 0x40
-#define DecrementIDAfterLoad 0x80
-
-//Ability 4 definitions:
-#define GiveNoExp 0x1
-#define Lethality 0x2
-#define RecoverMines 0x2
-#define IsMagicSeal 0x3
-#ifdef _FE7_
-  #define DropLastItem 0x8
-  #define UnlockEliwood 0x10
-  #define UnlockHector 0x20
-  #define UnlockLyn 0x40
-  #define UnlockAthos 0x80
-#endif
-#ifdef _FE8_
-  #define Summoning 0x8
-  #define UnlockEirika 0x10
-  #define UnlockEphraim 0x20
-  #define UnlockLock3 0x40
-  #define UnlockLock4 0x80
-#endif
+#define CA_NONE                  0x00000000
+#define CA_MOUNTEDAID            0x00000001
+#define CA_CANTO                 0x00000002
+#define CA_STEAL                 0x00000004
+#define CA_LOCKPICK              0x00000008
+#define CA_DANCE                 0x00000010
+#define CA_PLAY                  0x00000020
+#define CA_CRITBONUS             0x00000040
+#define CA_BALLISTAE             0x00000080
+#define CA_PROMOTED              0x00000100
+#define CA_SUPPLY                0x00000200
+#define CA_MOUNTED               0x00000400
+#define CA_WYVERN                0x00000800
+#define CA_PEGASUS               0x00001000
+#define CA_LORD                  0x00002000
+#define CA_FEMALE                0x00004000
+#define CA_BOSS                  0x00008000
+#define CA_LOCK_1                0x00010000
+#define CA_LOCK_2                0x00020000
+#define CA_LOCK_3                0x00040000 // Dragons or Monster depending of game
+#define CA_MAXLEVEL10            0x00080000
+#define CA_UNSELECTABLE          0x00100000
+#define CA_TRIANGLEATTACK_PEGASI 0x00200000
+#define CA_TRIANGLEATTACK_ARMORS 0x00400000
+#define CA_LETHALITY             0x02000000
+#define CA_SUMMON                0x08000000
+#define CA_LOCK_4                0x10000000
+#define CA_LOCK_5                0x20000000
+#define CA_LOCK_6                0x40000000
+#define CA_LOCK_7                0x80000000
 
 //weapon types
 /*
@@ -147,11 +125,21 @@
 // Used in the class editor and item editor tables
 // To understand how this works, check out Engine Hacks/Skill System/Teq Skills/FE8-Nullify/_README.txt
 
-#define ArmorType   0x01
-#define HorseType   0x02
-#define FlierType   0x04
-#define DragonType  0x08
-#define MonsterType 0x10
-#define SwordType   0x20
+#ifndef SlayerEffectivenessReworkMacrosDefined
+  #define SlayerEffectivenessReworkMacrosDefined
+
+  #define SlayerTableEntry(aClassId, aTypeList, aCoeffTimes2) "BYTE aClassId aCoeffTimes2; SHORT aTypeList"
+  #define ItemEffectivenessPtr(aItemId, aEffectivenessOffset) "PUSH; ORG ItemTable + 0x24*aItemId + 0x10; POIN aEffectivenessOffset; POP"
+  #define SetWeaponEffectiveness(aTypeList, aCoeffTimes2) "BYTE 0 aCoeffTimes2; SHORT aTypeList"
+  #define SetProtection(aTypeList) "SHORT 0 aTypeList"
+#endif // SlayerEffectivenessReworkMacrosDefined
+
+#define EFF_ARMOR   0x0001
+#define EFF_HORSE   0x0002
+#define EFF_FLIER   0x0004
+#define EFF_DRAGON  0x0008
+#define EFF_MONSTER 0x0010
+#define EFF_SWORD   0x0020
+#define EFF_LYON    0x0040 // For Super Blitz
 
 #endif // TABLE_DEFINITIONS

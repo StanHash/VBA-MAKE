@@ -6,14 +6,14 @@
  <layer name="Tile Layer 1" width="17" height="36">
   <properties>
    <property name="Anims1" value="0"/>
-   <property name="Anims2" value="0x54"/>
+   <property name="Anims2" value="AssetVolcanoPalAnims"/>
    <property name="ChapterID" value="Ch17Id"/>
    <property name="Main" value=""/>
-   <property name="MapChangesID" value="0x4e"/>
-   <property name="MapID" value="0x4d"/>
-   <property name="ObjectType" value="0x50"/>
-   <property name="PaletteID" value="0x51"/>
-   <property name="TileConfig" value="0x52"/>
+   <property name="MapChangesID" value="AssetCh17MapChanges"/>
+   <property name="MapID" value="AssetCh17Map"/>
+   <property name="ObjectType" value="AssetVolcanoObj"/>
+   <property name="PaletteID" value="AssetVolcanoPal"/>
+   <property name="TileConfig" value="AssetVolcanoConfig"/>
   </properties>
   <data>
    <tile gid="459"/>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="15" tilewidth="16" tileheight="16" nextobjectid="1">
- <tileset firstgid="1" name="FE8 - Plains - 2e002f30" tilewidth="16" tileheight="16">
-  <image source="Tilesets/FE8/2e002f30.png" trans="ffffff" width="512" height="512"/>
+ <tileset firstgid="1" name="Plains (2E002F30)" tilewidth="16" tileheight="16">
+  <image source="../Tilesets/Plains-2E002F30.png" trans="ffffff" width="512" height="512"/>
  </tileset>
  <layer name="Tile Layer 1" width="25" height="15">
   <properties>
-   <property name="Anims1" value="5"/>
+   <property name="Anims1" value="AssetWaterAnims"/>
    <property name="ChapterID" value="ChPrologueId"/>
    <property name="Main" value=""/>
-   <property name="MapID" value="4"/>
-   <property name="ObjectType" value="0x2e"/>
-   <property name="PaletteID" value="0x2f"/>
-   <property name="TileConfig" value="0x30"/>
+   <property name="MapID" value="AssetCh00Map"/>
+   <property name="ObjectType" value="AssetPlainsObj"/>
+   <property name="PaletteID" value="AssetPlainsPal"/>
+   <property name="TileConfig" value="AssetPlainsConfig"/>
   </properties>
   <data>
    <tile gid="617"/>

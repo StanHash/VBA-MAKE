@@ -5,12 +5,12 @@
  </tileset>
  <layer name="Calque de Tile 1" width="20" height="25">
   <properties>
-   <property name="Anims1" value="5"/>
+   <property name="Anims1" value="AssetWaterAnims"/>
    <property name="ChapterID" value="Ch19Id"/>
-   <property name="MapID" value="0x58"/>
-   <property name="ObjectType" value="1"/>
-   <property name="PaletteID" value="0x38"/>
-   <property name="TileConfig" value="3"/>
+   <property name="MapID" value="AssetCh19Map"/>
+   <property name="ObjectType" value="AssetMountainsObj"/>
+   <property name="PaletteID" value="AssetMountainsPalGreen"/>
+   <property name="TileConfig" value="AssetMountainsConfig"/>
   </properties>
   <data encoding="csv">
 246,246,246,213,245,213,213,93,203,263,200,783,783,783,601,783,783,783,67,67,

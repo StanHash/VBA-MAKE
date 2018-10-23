@@ -50,9 +50,9 @@ SnowPalette:
 SnowTileConfig:
 #incbin "SnowTileConfigLZ.bin"
 
-EventPointerTable(0x8b, ch24palette)
-EventPointerTable(0x8c, SnowPalette)
-EventPointerTable(0x8d, SnowTileConfig)
+EventPointerTable(AssetMountainsPalCh24, ch24palette)
+EventPointerTable(AssetShrinePalSnow,    SnowPalette)
+EventPointerTable(AssetShrineConfigSnow, SnowTileConfig)
 
 #include "BattleAnimPointers.event"
 

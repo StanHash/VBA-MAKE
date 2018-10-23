@@ -7,11 +7,11 @@
   <properties>
    <property name="ChapterID" value="ChFinalId"/>
    <property name="Main" value=""/>
-   <property name="MapChangesID" value="0xcb"/>
-   <property name="MapID" value="0xca"/>
-   <property name="ObjectType" value="0x5f"/>
-   <property name="PaletteID" value="0x60"/>
-   <property name="TileConfig" value="0x61"/>
+   <property name="MapChangesID" value="AssetCh30MapChanges"/>
+   <property name="MapID" value="AssetCh30Map"/>
+   <property name="ObjectType" value="AssetDemonTempleObj"/>
+   <property name="PaletteID" value="AssetDemonTemplePal"/>
+   <property name="TileConfig" value="AssetDemonTempleConfig"/>
   </properties>
   <data>
    <tile gid="279"/>

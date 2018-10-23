@@ -7,11 +7,11 @@
   <properties>
    <property name="ChapterID" value="Ch29Id"/>
    <property name="Main" value=""/>
-   <property name="MapChangesID" value="0x8f"/>
-   <property name="MapID" value="0x8e"/>
-   <property name="ObjectType" value="0x5f"/>
-   <property name="PaletteID" value="0x60"/>
-   <property name="TileConfig" value="0x61"/>
+   <property name="MapChangesID" value="AssetCh29MapChanges"/>
+   <property name="MapID" value="AssetCh29Map"/>
+   <property name="ObjectType" value="AssetDemonTempleObj"/>
+   <property name="PaletteID" value="AssetDemonTemplePal"/>
+   <property name="TileConfig" value="AssetDemonTempleConfig"/>
   </properties>
   <data encoding="csv">
 279,279,279,279,279,279,279,279,279,279,279,279,279,279,279,279,279,279,279,279,279,279,279,279,279,279,279,279,279,

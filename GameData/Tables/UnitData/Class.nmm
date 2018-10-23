@@ -1,150 +1,147 @@
-#FE8 Class Editor by SpyroDi
-#
-
 1
-FE8 Class Editor by SpyroDi
-0x807110
-128
+USE WITH NMM2CSV
+0x807164
+127
 84
-FE8 Class Editor.txt
+NULL
 NULL
 
-Class Name
+Name Text Id
 0
 2
 NEHU
 NULL
 
-Class Description
+Desc Text Id
 2
 2
 NEHU
 NULL
 
-Class Number
+Class Id
 4
 1
 NDHU
-Class List.txt
+NULL
 
 Default Promotion
 5
 1
 NDHU
-Class List.txt
+NULL
 
-Map Sprite# (standing)
+Map Sprite Id
 6
 1
 NEHU
 NULL
 
-Walking Speed
+Slow Walking
 7
 1
 NDDU
-Walking Speed.txt
+NULL
 
 Default Portrait
 8
 2
 NDHU
-Portrait List.txt
+NULL
 
-***UNKNOWN***
+unk
 10
 1
 NEHU
 NULL
 
-Base HP
+Hp Base
 11
 1
 NEDS
 NULL
 
-Base STR/MGC
+Pow Base
 12
 1
 NEDS
 NULL
 
-Base SKL
+Skl Base
 13
 1
 NEDS
 NULL
 
-Base SPD
+Spd Base
 14
 1
 NEDS
 NULL
 
-Base DEF
+Def Base
 15
 1
 NEDS
 NULL
 
-Base MDF
+Res Base
 16
 1
 NEDS
 NULL
 
-Base CON
+Con Base
 17
 1
-NEDS
+NEDU
 NULL
 
-Base MOV
+Mov Base
 18
 1
-NEDS
+NEDU
 NULL
 
-Max HP
+Hp Max
 19
 1
 NEDU
 NULL
 
-Max STR/MGC
+Pow Max
 20
 1
-NEDS
+NEDU
 NULL
 
-Max SKL
+Skl Max
 21
 1
-NEDS
+NEDU
 NULL
 
-Max SPD
+Spd Max
 22
 1
-NEDS
+NEDU
 NULL
 
-Max DEF
+Def Max
 23
 1
-NEDS
+NEDU
 NULL
 
-Max MDF
+Res Max
 24
 1
-NEDS
+NEDU
 NULL
 
-Max CON
+Con Max
 25
 1
-NEDS
+NEDU
 NULL
 
 Class Relative Power
@@ -153,199 +150,181 @@ Class Relative Power
 NEDS
 NULL
 
-HP Growth
+Hp Growth
 27
 1
 NEDS
 NULL
 
-STR/MGC Growth
+Pow Growth
 28
 1
 NEDS
 NULL
 
-SKL Growth
+Skl Growth
 29
 1
 NEDS
 NULL
 
-SPD Growth
+Spd Growth
 30
 1
 NEDS
 NULL
 
-DEF Growth
+Def Growth
 31
 1
 NEDS
 NULL
 
-MDF Growth
+Res Growth
 32
 1
 NEDS
 NULL
 
-LUK Growth
+Luk Growth
 33
 1
 NEDS
 NULL
 
-HP Promotion Bonus
+Hp Promotion
 34
 1
 NEDS
 NULL
 
-STR/MGC Promotion Bonus
+Pow Promotion
 35
 1
 NEDS
 NULL
 
-SKL Promotion Bonus
+Skl Promotion
 36
 1
 NEDS
 NULL
 
-SPD Promotion Bonus
+Spd Promotion
 37
 1
 NEDS
 NULL
 
-DEF Promotion Bonus
+Def Promotion
 38
 1
 NEDS
 NULL
 
-MDF Promotion Bonus
+Res Promotion
 39
 1
 NEDS
 NULL
 
-Class Ability 1
+C-Attributes
 40
-1
-NDHU
-Ability 1.txt
+4
+NEHU
+NULL
 
-Class Ability 2
-41
-1
-NDHU
-Ability 2.txt
-
-Class Ability 3
-42
-1
-NDHU
-Ability 3.txt
-
-Class Ability 4
-43
-1
-NDHU
-Ability 4.txt
-
-Base Sword Level
+Sword Rank
 44
 1
-NDDU
-Weapon Rank.txt
+NEDU
+NULL
 
-Base Lance Level
+Lance Rank
 45
 1
-NDDU
-Weapon Rank.txt
+NEDU
+NULL
 
-Base Axe Level
+Axe Rank
 46
 1
-NDDU
-Weapon Rank.txt
+NEDU
+NULL
 
-Base Bow Level
+Bow Rank
 47
 1
-NDDU
-Weapon Rank.txt
+NEDU
+NULL
 
-Base Staff Level
+Staff Rank
 48
 1
-NDDU
-Weapon Rank.txt
+NEDU
+NULL
 
-Base Anima Level
+Anima Rank
 49
 1
-NDDU
-Weapon Rank.txt
+NEDU
+NULL
 
-Base Light Level
+Light Rank
 50
 1
-NDDU
-Weapon Rank.txt
+NEDU
+NULL
 
-Base Dark Level
+Dark Rank
 51
 1
-NDDU
-Weapon Rank.txt
+NEDU
+NULL
 
-Battle Animation Pointer
+Battle Animations
 52
 4
-NDHU
-Battle Animations.txt
+NEHU
+NULL
 
-Movement Type Pointer
+Movement Cost
 56
 4
 NEHU
 NULL
 
-Movement Cost(rain) Pointer
+Movement Cost (rain)
 60
 4
 NEHU
 NULL
 
-Movement Cost(snow) Pointer
+Movement Cost (snow)
 64
 4
 NEHU
 NULL
 
-Terrain avoid bonus
+Terrain Avoid
 68
 4
-NDHU
-Terrain Bonus Type.txt
+NEHU
+NULL
 
-Terrain defence bonus
+Terrain Defense
 72
 4
-NDHU
-Terrain Bonus Type.txt
+NEHU
+NULL
 
-Terrain resistance bonus
+Terrain Resistance
 76
 4
-NDHU
-Terrain Bonus Type.txt
+NEHU
+NULL
 
-***UNKNOWN*** Pointer
+Class Type/Weakness
 80
 4
 NEHU

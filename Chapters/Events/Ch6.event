@@ -1,7 +1,7 @@
 #ifndef CHAPTER6_EVENTS_EVENT
 #define CHAPTER6_EVENTS_EVENT
 
-EventPointerTable(0x24, ThisChapter)
+EventPointerTable(AssetCh06Data, ThisChapter)
 
 #define Ch6_charBoss 0x6A
 

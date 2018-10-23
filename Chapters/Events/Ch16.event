@@ -1,8 +1,8 @@
 ﻿//Chapter 16 for FEU CCB1
 //By Vennobennu
-EventPointerTable(0x4b, ThisChapter)
+EventPointerTable(AssetCh16Data, ThisChapter)
 
-EscapePointPointerTable(16, Ch16EscapePoint)
+EscapePointPointerTable(Ch16Id, Ch16EscapePoint)
 Ch16EscapePoint:
 EscapePoint(21, 0, MoveUp)
 EscapePointEnd

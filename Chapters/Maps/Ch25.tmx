@@ -27,12 +27,12 @@
   <properties>
    <property name="ChapterID" value="Ch25Id"/>
    <property name="Main" value=""/>
-   <property name="MapChangesID" value="0xd4"/>
-   <property name="MapID" value="0xd2"/>
-   <property name="ObjectType" value="0x18"/>
-   <property name="PaletteID" value="0xcc"/>
-   <property name="TileAnimations1" value="0x1c"/>
-   <property name="TileConfig" value="0x1a"/>
+   <property name="MapChangesID" value="AssetCh25MapChanges"/>
+   <property name="MapID" value="AssetCh25Map"/>
+   <property name="ObjectType" value="AssetCastleObj"/>
+   <property name="PaletteID" value="AssetCastlePalCh25"/>
+   <property name="TileAnimations1" value="AssetCastleAnims"/>
+   <property name="TileConfig" value="AssetCastleConfig"/>
   </properties>
   <data encoding="csv">
 897,609,610,899,743,897,609,610,899,743,897,609,610,899,459,

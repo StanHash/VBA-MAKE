@@ -10,7 +10,7 @@
 //#define TestAITs AttackInRange
 //[0x0C,0x03]
 
-EventPointerTable(0xD1, Chapter11This) //Ch 11 Eirika events
+EventPointerTable(AssetCh11Data, Chapter11This) //Ch 11 Eirika events
 //EventPointerTable(0xCF, Chapter11This) //Ch 11 Eirika map
 //EventPointerTable(0xD0, Chapter11This) //Ch 11 Eirika map changes, which I'm not using
 

@@ -1,5 +1,5 @@
-EventPointerTable(0xd5, ThisChapter)
-EventPointerTable(0xcc, NewPalette)
+EventPointerTable(AssetCh25Data, ThisChapter)
+EventPointerTable(AssetCastlePalCh25, NewPalette)
 NewPalette:
 #incbin "B25palette.bin"
 ALIGN 4

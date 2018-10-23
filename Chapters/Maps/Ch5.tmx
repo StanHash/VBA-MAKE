@@ -5,13 +5,13 @@
  </tileset>
  <layer name="Main" width="28" height="10">
   <properties>
-   <property name="Anims1" value="5"/>
+   <property name="Anims1" value="AssetWaterAnims"/>
    <property name="ChapterID" value="Ch5Id"/>
    <property name="Main" value=""/>
-   <property name="MapID" value="0x1f"/>
-   <property name="ObjectType" value="0x2e"/>
-   <property name="PaletteID" value="0x34"/>
-   <property name="TileConfig" value="0x30"/>
+   <property name="MapID" value="AssetCh05Map"/>
+   <property name="ObjectType" value="AssetPlainsObj"/>
+   <property name="PaletteID" value="AssetPlainsPal2"/>
+   <property name="TileConfig" value="AssetPlainsConfig"/>
   </properties>
   <data encoding="csv">
 692,298,132,955,820,114,810,955,827,951,820,207,163,632,672,672,906,907,908,909,910,847,944,945,163,719,132,847,

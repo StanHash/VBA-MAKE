@@ -14,14 +14,14 @@
  </tileset>
  <layer name="Tile Layer 1" width="24" height="20">
   <properties>
-   <property name="Anims1" value="5"/>
+   <property name="Anims1" value="AssetWaterAnims"/>
    <property name="ChapterID" value="Ch13Id"/>
    <property name="Main" value=""/>
-   <property name="MapChangesID" value="0x3a"/>
-   <property name="MapID" value="0x39"/>
-   <property name="ObjectType" value="0x42"/>
-   <property name="PaletteID" value="0x43"/>
-   <property name="TileConfig" value="0x44"/>
+   <property name="MapChangesID" value="AssetCh13MapChanges"/>
+   <property name="MapID" value="AssetCh13Map"/>
+   <property name="ObjectType" value="AssetDesertObj"/>
+   <property name="PaletteID" value="AssetDesertPal"/>
+   <property name="TileConfig" value="AssetDesertConfig"/>
   </properties>
   <data>
    <tile gid="434"/>

@@ -1,8 +1,7 @@
 #ifndef CHAPTER1
 #define CHAPTER1
 
-// TODO: use definitions
-EventPointerTable(0xA, ThisChapter)
+EventPointerTable(AssetCh01Data, ThisChapter)
 
 ALIGN 4
 ThisChapter:
@@ -71,46 +70,46 @@ TutorialList:
 
 ALIGN 4
 unPlayerList:
-	UNIT CharVoid EirikaLord 0x00 Level(1, Ally, 1) [19,12] 0 0 0 0 [Rapier, Vulnerary] NoAI 
-	UNIT CharTim Fighter 0x00 Level(1, Ally, 1) [21,12] 0 0 0 0 [IronAxe, HandAxe] NoAI 
-	UNIT CharTam Fighter 0x00 Level(1, Ally, 1) [20,10] 0 0 0 0 [SteelAxe, Hatchet] NoAI 
-	UNIT CharJerome Soldier 0x00 Level(1, Ally, 1) [22,11] 0 0 0 0 [IronLance, Vulnerary] NoAI 
-	UNIT CharLeeroy Paladin 0x00 Level(1, Ally, 1) [18,13] 0 0 0 0 [SilverLance, SteelSword, Elixir] NoAI 
+	UNIT CharVoid   EirikaLord 0 Level(1, Ally, 1) [19,12] 0 0 0 0 [Rapier, Vulnerary] NoAI 
+	UNIT CharTim    Fighter    0 Level(1, Ally, 1) [21,12] 0 0 0 0 [IronAxe, HandAxe] NoAI 
+	UNIT CharTam    Fighter    0 Level(1, Ally, 1) [20,10] 0 0 0 0 [SteelAxe, Hatchet] NoAI 
+	UNIT CharJerome Soldier    0 Level(1, Ally, 1) [22,11] 0 0 0 0 [IronLance, Vulnerary] NoAI 
+	UNIT CharLeeroy Paladin    0 Level(1, Ally, 1) [18,13] 0 0 0 0 [SilverLance, SteelSword, Elixir] NoAI 
 
 	UNIT // End
 
 ALIGN 4
 NewUnit:
-	UNIT CharAnnaMyrm Myrmidon_F 0x00 Level(2, NPC, 1) [24,18] 2 0 0 0 [Shamshir, Vulnerary, WhiteGem] GuardTileAI 
-	UNIT Breguet Civilian 0x00 Level(1, NPC, 1) [23,9] 0 0 0 0 [0x00] NeverMoveAI 
+	UNIT CharAnnaMyrm Myrmidon_F 0 Level(2, NPC, 1) [24, 18] 2 0 0 0 [Shamshir, Vulnerary, WhiteGem] GuardTileAI 
+	UNIT CharCh1Kid   Civilian   0 Level(1, NPC, 1) [23, 9]  0 0 0 0 [0] NeverMoveAI 
 
 	UNIT // End
 
 ALIGN 4
 EnemyUnits1:
-	UNIT 0xBD DracoZombie 0x00 Level(20, Enemy, 1) [19,23] 0x00 0x00 0x0 0x00 [WretchedAir] NeverMoveAI 
+	UNIT CharCh1Boss DracoZombie 0 Level(20, Enemy, 1) [19,23] 0 0 0 0 [WretchedAir] NeverMoveAI 
 
 	UNIT // End
 
 ALIGN 4
 EnemyUnits2:
-	UNIT 0x80 Fighter 0x00 Level(1, Enemy, 1) [24,29] 0x00 0x00 0x0 0x00 [HandAxe] NoAI 
-	UNIT 0x80 Fighter 0x00 Level(2, Enemy, 1) [23,27] 0x00 0x00 0x0 0x00 [IronAxe] NoAI 
-	UNIT 0x80 Fighter 0x00 Level(1, Enemy, 1) [1,21] 0x00 0x00 0x0 0x00 [HandAxe] NoAI 
-	UNIT 0x80 Fighter 0x00 Level(2, Enemy, 1) [5,20] 0x00 0x00 0x0 0x00 [IronAxe] NoAI 
-	UNIT 0x80 Fighter 0x00 Level(2, Enemy, 1) [1,24] 0x02  0x00 0x0 0x00 [HandAxe,Vulnerary] NeverMoveAI 
-	UNIT 0x80 Archer 0x00 Level(2, Enemy, 1) [13,21] 0x00 0x00 0x0 0x00 [IronBow] NoAI 
-	UNIT 0x80 Archer 0x00 Level(2, Enemy, 1) [12,20] 0x00 0x00 0x0 0x00 [IronBow] NoAI 
-	UNIT 0x80 Archer 0x00 Level(1, Enemy, 1) [12,5] 0x00 0x00 0x0 0x00 [IronBow] NoAI 
-	UNIT 0x80 Archer 0x00 Level(1, Enemy, 1) [11,6] 0x00 0x00 0x0 0x00 [IronBow] NoAI 
-	UNIT 0x80 Archer 0x00 Level(2, Enemy, 1) [9,6] 0x00 0x00 0x0 0x00 [IronBow] NoAI 
+	UNIT CharCh1Generic Fighter 0 Level(1, Enemy, 1) [24,29] 0 0 0 0 [HandAxe] NoAI
+	UNIT CharCh1Generic Fighter 0x00 Level(2, Enemy, 1) [23,27] 0 0 0 0 [IronAxe] NoAI
+	UNIT CharCh1Generic Fighter 0x00 Level(1, Enemy, 1) [1,21] 0 0 0 0 [HandAxe] NoAI
+	UNIT CharCh1Generic Fighter 0x00 Level(2, Enemy, 1) [5,20] 0 0 0 0 [IronAxe] NoAI
+	UNIT CharCh1Generic Fighter 0x00 Level(2, Enemy, 1) [1,24] 2 0 0 0 [HandAxe, Vulnerary] NeverMoveAI
+	UNIT CharCh1Generic Archer 0x00 Level(2, Enemy, 1) [13,21] 0 0 0 0 [IronBow] NoAI
+	UNIT CharCh1Generic Archer 0x00 Level(2, Enemy, 1) [12,20] 0 0 0 0 [IronBow] NoAI
+	UNIT CharCh1Generic Archer 0x00 Level(1, Enemy, 1) [12,5] 0 0 0 0 [IronBow] NoAI
+	UNIT CharCh1Generic Archer 0x00 Level(1, Enemy, 1) [11,6] 0 0 0 0 [IronBow] NoAI
+	UNIT CharCh1Generic Archer 0x00 Level(2, Enemy, 1) [9,6] 0 0 0 0 [IronBow] NoAI
 
 	UNIT // End
 
 ALIGN 4
 EnemyUnits3:
-	UNIT 0x80 Cavalier 0x00 Level(2, Enemy, 1) [7,12] 0x00 0x00 0x0 0x00 [IronLance,IronSword] NoAI 
-	UNIT 0x80 Cavalier 0x00 Level(3, Enemy, 1) [3,10] 0x02 0x00 0x0 0x00 [Javelin,Elixir] NoAI 
+	UNIT CharCh1Generic Cavalier 0x00 Level(2, Enemy, 1) [7,12] 0 0 0 0 [IronLance,IronSword] NoAI 
+	UNIT CharCh1Generic Cavalier 0x00 Level(3, Enemy, 1) [3,10] 0x02 0x00 0x0 0x00 [Javelin,Elixir] NoAI 
 
 	UNIT // End
 
@@ -208,7 +207,7 @@ ALIGN 4
 scVillageCheck: {
 	ENUF 10
 
-	ASMC CheckForKid|1
+	ASMC (CheckForKid|1)
 
 	BEQ  0 rB r0
 
@@ -255,11 +254,11 @@ ShopItems:
 	SHLI Vulnerary Mine Heal Torch
 
 ALIGN 4
-CheckForCard: //asm
+CheckForCard:
 	#incbin "Asm/CheckForCard.dmp"
 
 ALIGN 4
-CheckForKid: //asm
+CheckForKid:
 	#incbin "Asm/CheckForKid.dmp"
 
 #endif // CHAPTER1

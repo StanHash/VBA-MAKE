@@ -20,6 +20,7 @@
 #include "Sounds/SoundDefinitions.event"
 #include "GameData/ChapterDefinitions.event"
 #include "GameData/CharacterDefinitions.event"
+#include "GameData/ChapterAssetDefinitions.event"
 
 #define LunarBrace MoonBracelet
 #define SolarBrace SunBracelet

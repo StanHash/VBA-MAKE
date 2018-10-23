@@ -7,11 +7,11 @@
   <properties>
    <property name="ChapterID" value="Ch3Id"/>
    <property name="Main" value=""/>
-   <property name="MapChangesID" value="0x13"/>
-   <property name="MapID" value="0x11"/>
-   <property name="ObjectType" value="0x0E"/>
-   <property name="PaletteID" value="0x0f"/>
-   <property name="TileConfig" value="0x10"/>
+   <property name="MapChangesID" value="AssetCh03MapChanges"/>
+   <property name="MapID" value="AssetCh03Map"/>
+   <property name="ObjectType" value="AssetVillageObj"/>
+   <property name="PaletteID" value="AssetVillagePal"/>
+   <property name="TileConfig" value="AssetVillageConfig"/>
   </properties>
   <data>
    <tile gid="455"/>
