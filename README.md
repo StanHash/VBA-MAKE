@@ -18,6 +18,8 @@ Oh and this also has an updated skill system \:)
 
 ## Building
 
+![cool gif](https://cdn.discordapp.com/attachments/358238759227228165/504352658824626198/TimeMake.gif)
+
 The setup required to build this is very much similar to what you need for [FE-CHAX](https://github.com/StanHash/FE-CHAX) (although not all CHAX tools are used yet, but they will most likely be eventually), so tl;dr you need:
 
 - devkitARM and the `DEVKITARM` env var
