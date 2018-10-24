@@ -63,5 +63,7 @@ int GetUnitSkills(const struct Unit* unit, uint8_t buffer[]) {
 				buffer[count++] = learnedSkills[i];
 	}
 
+	buffer[count++] = 0; // null-terminate list
+
 	return count;
 }
