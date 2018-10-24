@@ -1,0 +1,30 @@
+#ifndef SKILL_SYSTEM_CORE
+#define SKILL_SYSTEM_CORE
+
+// =================================
+// = PUBLIC SKILL SYSTEM FUNCTIONS =
+// =================================
+
+// Core Skill System, now in C!
+#include "Src/SkillSystemCore.lyn.event"
+
+// ASM Wrappers for compat and stuff
+#include "Src/SkillGetterLegacy.lyn.event"
+#include "Src/NihilTester.lyn.event" // TODO: move elsewhere (not core enough)
+#include "Src/SkillDescHelpTextLadder.lyn.event" // TODO: move elsewhere (mss helpers)
+
+#ifndef SetSymbolDefined
+	// SetSymbol macro as an alternative to "Name = Value" (for backwards/ColorzCore compatibility)
+
+	#define SetSymbolDefined
+	#define SetSymbol(__aName, __aValue) "PUSH; ORG (__aValue); __aName:; POP"
+#endif // SetSymbolDefined
+
+// for-compatibility-and-without-thumb-bit aliases
+// the plan is to eventually not need those
+
+SetSymbol(SkillTester,     NihilTester-1)
+SetSymbol(Skill_Getter,    SkillGetterLegacy-1)
+SetSymbol(SkillDescGetter, SkillDescHelpTextLadder-1)
+
+#endif // SKILL_SYSTEM_CORE

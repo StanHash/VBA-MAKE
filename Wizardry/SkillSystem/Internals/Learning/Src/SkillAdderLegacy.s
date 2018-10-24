@@ -1,7 +1,7 @@
 .thumb
 
-@adds a skill to the given unit's list of skills. Returns 0 if unit already has 4 skills
-@r0 is unit in ram
+@ adds a skill to the given unit's list of skills. Returns 0 if unit already has 4 skills
+@ r0 is unit in ram
 
 .global SkillAdderLegacy
 .type   SkillAdderLegacy, %function

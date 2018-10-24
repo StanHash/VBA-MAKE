@@ -2,10 +2,10 @@
 
 SkillsBuffer = 0x202B6D0
 
-.global SkillGetter
-.type   SkillGetter, %function
+.global SkillGetterLegacy
+.type   SkillGetterLegacy, %function
 
-SkillGetter:
+SkillGetterLegacy:
 	push {r4, lr}
 
 	ldr r4, =SkillsBuffer

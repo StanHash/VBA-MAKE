@@ -1,11 +1,11 @@
+.thumb
+
 @ NihilTester - given ram data in r0 and skill number in r1, changes r1 to 0xFF before passing it to SkillTester when:
 @ the skill is a skill that Nihil nullifies/negates (so if in the NegatedSkills list)
 @ the skill is being tested in a battle or whilst targeting an enemy
 @ the skill to be tested belongs to either the attacker or the defender (so they are in a battle/targeting)
 @ skill 0 is always true, skill FF is always false.
 @ I probably was really wasteful with the registers but oh well I did not think about that until I had tested a billion skills and I lazy
-
-.thumb
 
 .global NihilTester
 .type   NihilTester, %function

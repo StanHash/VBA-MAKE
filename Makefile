@@ -161,7 +161,7 @@ LYN_REFERENCE := Tools/CLib/reference/FE8U-20180806.o
 # ========================
 
 # Setting C/ASM include directories up (there is none yet)
-INCLUDE_DIRS := Tools/CLib/include
+INCLUDE_DIRS := Tools/CLib/include Wizardry/Include
 INCFLAGS     := $(foreach dir, $(INCLUDE_DIRS), -I "$(dir)")
 
 # setting up compilation flags
@@ -218,7 +218,7 @@ ifeq ($(MAKECMDGOALS),clean)
   CFILES := $(shell find -type f -name '*.c')
   SFILES := $(shell find -type f -name '*.s')
 
-  ASM_C_GENERATED := $(CFILES:.c=.o) $(SFILES:.s=.o) $(CFILES:.c=.s)
+  ASM_C_GENERATED := $(CFILES:.c=.o) $(SFILES:.s=.o) $(CFILES:.c=.asm)
   ASM_C_GENERATED += $(ASM_C_GENERATED:.o=.dmp) $(ASM_C_GENERATED:.o=.lyn.event)
 
   # All files that are going to be cleaned

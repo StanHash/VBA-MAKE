@@ -16,6 +16,8 @@ The goals of this project are (in no particlular order):
 
 Oh and this also has an updated skill system \:)
 
+Perhaps imporant note: I'm going to take a lot of liberties as to what I add and change, as well as in how I do so. Trying to keep using old stuff for the sake of doing so is getting tiring and I'd rather do what I feel would be better. More specifically, the skill system in this project will probably end up looking very different from the main Skill System branch; and will probably be much incompatible.
+
 ## Building
 
 ![cool gif](https://cdn.discordapp.com/attachments/358238759227228165/504352658824626198/TimeMake.gif)
