@@ -138,15 +138,18 @@ $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS): $(WRITANS_TEXT_MAIN) $(WRITANS_ALL_
 # = OBJECTS & DMPS =
 # ==================
 
+LYN_REFERENCE := Tools/CLib/reference/FE8U-20180806.o
+
 # OBJ to event
-%.lyn.event: %.o
+%.lyn.event: %.o $(LYN_REFERENCE)
 	$(NOTIFY_PROCESS)
-	@$(LYN) $< > $@
+	@$(LYN) $< $(LYN_REFERENCE) > $@
 
 # OBJ to event (alt)
-%.lyn.event: %.elf
+# TODO: we shouldn't need this
+%.lyn.event: %.elf $(LYN_REFERENCE)
 	$(NOTIFY_PROCESS)
-	@$(LYN) $< > $@
+	@$(LYN) $< $(LYN_REFERENCE) > $@
 
 # OBJ to DMP rule
 %.dmp: %.o
@@ -158,7 +161,7 @@ $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS): $(WRITANS_TEXT_MAIN) $(WRITANS_ALL_
 # ========================
 
 # Setting C/ASM include directories up (there is none yet)
-INCLUDE_DIRS := 
+INCLUDE_DIRS := Tools/CLib/include
 INCFLAGS     := $(foreach dir, $(INCLUDE_DIRS), -I "$(dir)")
 
 # setting up compilation flags

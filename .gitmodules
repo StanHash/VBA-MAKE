@@ -1,3 +1,6 @@
 [submodule "Tools/Py"]
 	path = Tools/Py
 	url = https://github.com/StanHash/FE-PyTools/
+[submodule "Tools/CLib"]
+	path = Tools/CLib
+	url = https://github.com/StanHash/FE-CLib
