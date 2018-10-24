@@ -49,8 +49,9 @@ Because of make rules and also consistency, I am defining rules for what extensi
 | GBA Palette       | `.gbapal` | -            | `.png`                          | -
 | FE Formatted Text | `.fetxt`  | `.dmp`       | `.txt` (textprocess)            | generated dmps have full extension `.fetxt.dmp`.
 | Generic Image     | `.png`    | `.4bpp`; `.gbapal`; `.dmp` (portrait) | -      | portrait `.dmp`s have `_mug`, `_minimug`, `_frames` and `_palette` postfixes.
-| ASM Source        | `.s`      | `.o`         | `.c`                            | -
-| C Source          | `.c`      | `.s`         | -                               | -
+| ASM Source        | `.s`      | `.o`         | -                               | -
+| Generated ASM     | `.asm`    | -            | `.c`                            | for reference and debugging C only
+| C Source          | `.c`      | `.asm`, `.o` | -                               | -
 | Relocatable Object | `.o`     | `.lyn.event`; `.dmp` | `.s`                    | ELF
 | Tiled Map         | `.tmx`    | `.dmp`+`.event` | -                            | `.dmp`s have `_data` postfix
 | Table CSV Sheet   | `.csv`    | `.event`     | -                               | `.event` generation requires corresponding `.nmm`
