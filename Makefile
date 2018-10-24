@@ -179,6 +179,12 @@ SDEPFLAGS = --MD "$(CACHE_DIR)/$(notdir $*).d"
 	@$(AS) $(ASFLAGS) $(SDEPFLAGS) -I $(dir $<) $< -o $@ $(ERROR_FILTER)
 
 # C to ASM rule
+# I would be fine with generating an intermediate .s file but this breaks dependencies
+%.o: %.c
+	$(NOTIFY_PROCESS)
+	@$(CC) $(CFLAGS) $(CDEPFLAGS) -c $< -o $@ $(ERROR_FILTER)
+
+# C to ASM rule
 %.s: %.c
 	$(NOTIFY_PROCESS)
 	@$(CC) $(CFLAGS) $(CDEPFLAGS) -S $< -o $@ -fverbose-asm $(ERROR_FILTER)

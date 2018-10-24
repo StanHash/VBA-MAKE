@@ -56,11 +56,9 @@ ORG $18680
 jumpToHack(Unset_Attack_Flag_2)
 POP
 
-Skill_Getter: //gets a list of skills
-#incbin "SkillGetter.dmp"
-POIN PersonalSkillTable
-POIN ClassSkillTable
-POIN LevelUpSkillTable
+#include "SkillSystemCore.lyn.event"
+
+#include "SkillGetter.lyn.event"
 
 SkillTesterOriginal: //does unit have X skill?
 #incbin "SkillTester.dmp"
