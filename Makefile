@@ -185,7 +185,7 @@ SDEPFLAGS = --MD "$(CACHE_DIR)/$(notdir $*).d"
 	@$(CC) $(CFLAGS) $(CDEPFLAGS) -c $< -o $@ $(ERROR_FILTER)
 
 # C to ASM rule
-%.s: %.c
+%.asm: %.c
 	$(NOTIFY_PROCESS)
 	@$(CC) $(CFLAGS) $(CDEPFLAGS) -S $< -o $@ -fverbose-asm $(ERROR_FILTER)
 

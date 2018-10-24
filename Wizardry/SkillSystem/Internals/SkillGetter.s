@@ -1,11 +1,11 @@
 .thumb
 
-.set SkillsBuffer, 0x202b6d0 @0x202b156 @0x202a6ac
+SkillsBuffer = 0x202B6D0
 
-.global Skill_Getter
-.type   Skill_Getter, %function
+.global SkillGetter
+.type   SkillGetter, %function
 
-Skill_Getter:
+SkillGetter:
 	push {r4, lr}
 
 	ldr r4, =SkillsBuffer
@@ -13,7 +13,7 @@ Skill_Getter:
 	@          @ arg r0 = unit
 	mov r1, r4 @ arg r1 = buffer
 
-	bl GetUnitSkills
+	bl SS_GetUnitSkillList
 
 	mov r1, r0 @ result r1 = count @ PLEASE DO NOT USE (kept for compatibility)
 	mov r0, r4 @ result r0 = buffer

@@ -1,6 +1,7 @@
 @hack of 8075ca8 to accept r1=3
 @hook at 8075d64
 .thumb
+
 .macro blh to, reg=r3
   ldr \reg, =\to
   mov lr, \reg
@@ -18,9 +19,9 @@ bx r1
 
 LearnSkill:
 ldr r0, TextID
-blh 0x800a240
+blh GetStringFromIndex
 mov r4, r0
-blh 0x8003edc
+blh GetStringTextWidth
 mov r7, r0
 add r7, #0x10
 add r0, r7, #7
@@ -28,11 +29,11 @@ asr r6, r0, #3
 ldr r0, =0x20234a8
 lsl r1, r6, #0x10
 lsr r1, #0x10
-blh 0x8075b78
+blh MakeBattlePopupTileMapFromTSA
 ldr r5, =0x2017660
 mov r0, r5
 mov r1, r6
-blh 0x8003d5c
+blh Text_InitClear
 lsl r0, r6, #3
 sub r0, r7
 asr r0, #1
@@ -44,14 +45,14 @@ ldr r0, =0x8803bd0
 ldr r1, =0x6002100
 swi #0x12
 ldr r0, TextID
-blh 0x800a240
+blh GetStringFromIndex
 mov r4, r0
 mov r0, r5
 mov r1, #0
 strb r1, [r0, #3]
 mov r0, r5
 mov r1, r4
-blh 0x8004004
+blh Text_AppendString
 add r1, r6, #2
 lsl r1, #3
 mov r0, #0xe0
@@ -62,13 +63,13 @@ lsl r1, #0x10
 lsr r1, #0x10
 ldr r2, =0xffd0
 mov r0, #1
-blh 0x800148c
+blh SetBgPosition
 mov r0, #2
-blh 0x8001fac
-blh 0x8003578
+blh EnableBgSyncByMask
+blh _ResetIconGraphics
 mov r0, #0 @palette
 mov r1, #0x12
-blh 0x80035d4
+blh LoadIconPalette
 mov r0, r10
 
 mov r1, #0x01 @ STAN EDIT: bit 15 -> bit 9 (0x0100 | Skill Icon Index), to make it work with Icon Rework
