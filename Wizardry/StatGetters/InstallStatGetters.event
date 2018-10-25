@@ -1,10 +1,6 @@
 #ifndef INSTALL_STAT_GETTERS_EVENT
 #define INSTALL_STAT_GETTERS_EVENT
 
-#include "../MSG/InstallCore.event"
-#include "../MSG/InstallHelpers.event"
-#include "../MSG/Extentions/SkillSystem.event"
-
 #include "Common.event"
 
 #include "MaxHP.event"

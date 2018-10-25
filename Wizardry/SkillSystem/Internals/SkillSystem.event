@@ -66,7 +66,7 @@ PUSH
 		// jumpToHack(AlternateIconPopup)
 
 	ORG $75D64
-		jumpToHack(AnimsOnPopupHack)
+	//	jumpToHack(AnimsOnPopupHack)
 
 	ORG $2B3EC
 		jumpToHack(Rerun_Battle_Calcs)
@@ -103,7 +103,7 @@ Rerun_Battle_Calcs:
 Unset_Attack_Flag_2:
 #incbin "ClearAttackFlag.dmp"
 
-#include "LevelPopups.event"
+// #include "LevelPopups.event"
 #include "MapAnimsRoutines.event"
 #include "Popupdisplayroutines.event"
 #include "HPHealing.event"

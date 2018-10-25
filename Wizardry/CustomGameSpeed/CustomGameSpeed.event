@@ -22,13 +22,13 @@
 
 {
 
-#ifndef LynJumpToDefined
-	#define LynJumpToDefined
-	#define LynJumpTo(aTarget) "WORD $46C04778 $E59FC000 $E12FFF1C; POIN aTarget"
-#endif // LynJumpToDefined
+#ifndef LynJumpDefined
+	#define LynJumpDefined
+	#define LynJump(aTarget) "WORD $46C04778 $E59FC000 $E12FFF1C; POIN aTarget"
+#endif // LynJumpDefined
 
 PUSH; ORG $794E8
-	LynJumpTo(CustomGameSpeedHook)
+	LynJump(CustomGameSpeedHook)
 POP
 
 #include "Asm/CustomGameSpeed.lyn.event"
