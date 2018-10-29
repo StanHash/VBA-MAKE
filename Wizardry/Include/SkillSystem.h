@@ -13,12 +13,12 @@ enum { // Special skill ids
 	SKILL_NEVER_ID  = 0xFF, // units never have this skill
 };
 
-enum { // SS_UnitLearnSkill error codes
-	SKILL_LEARN_SUCCESS           = 0,
+enum { // skill learning error codes
+	SKILL_LEARN_SUCCESS           = 0, // only used for functions without other results
 
-	SKILL_LEARN_ERR_GENERIC       = 1,
-	SKILL_LEARN_ERR_ALREADY_KNOWN = 2,
-	SKILL_LEARN_ERR_NO_ROOM       = 3,
+	SKILL_LEARN_ERR_GENERIC       = -1,
+	SKILL_LEARN_ERR_ALREADY_KNOWN = -2,
+	SKILL_LEARN_ERR_NO_ROOM       = -3,
 };
 
 #pragma long_calls
@@ -34,6 +34,10 @@ int SS_GetSkillDescId(int skillId);
 
 int SS_GenerateUnitInitialLearnedSkillList(const struct Unit* unit, u8 buffer[]);
 int SS_GetUnitLearnedSkillList(const struct Unit* unit, u8 buffer[]);
+int SS_UnitCanLearnSkills(const struct Unit* unit);
+int SS_UnitGetFreeSkillSlot(const struct Unit* unit);
+int SS_UnitForgetSkillSlot(struct Unit* unit, unsigned slot);
+int SS_UnitSetSkillSlot(struct Unit* unit, unsigned slot, unsigned skillId);
 int SS_UnitLearnSkill(struct Unit* unit, unsigned skillId);
 int SS_UnitGetLevelUpSkill(const struct Unit* unit, unsigned level);
 

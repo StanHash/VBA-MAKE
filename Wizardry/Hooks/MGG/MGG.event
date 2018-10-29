@@ -1,0 +1,26 @@
+#ifndef HAX_MGG
+#define HAX_MGG
+
+// Modular Growth Getters
+// Heavily based on Tequila's amazing work (hack itself by StanH_)
+
+#include "Src/MGGIncreaseStats.lyn.event"
+
+#include "Src/MGGGrowthGetter.lyn.event"
+
+#ifndef SetSymbolDefined
+	// SetSymbol macro as an alternative to "Name = Value" (for backwards/ColorzCore compatibility)
+
+	#define SetSymbolDefined
+	#define SetSymbol(__aName, __aValue) "PUSH; ORG (__aValue); __aName:; POP"
+#endif // SetSymbolDefined
+
+SetSymbol(GetUnitHpGrowth,  GetUnitStatGrowthVanilla)
+SetSymbol(GetUnitPowGrowth, GetUnitStatGrowthVanilla)
+SetSymbol(GetUnitSklGrowth, GetUnitStatGrowthVanilla)
+SetSymbol(GetUnitSpdGrowth, GetUnitStatGrowthVanilla)
+SetSymbol(GetUnitDefGrowth, GetUnitStatGrowthVanilla)
+SetSymbol(GetUnitResGrowth, GetUnitStatGrowthVanilla)
+SetSymbol(GetUnitLukGrowth, GetUnitStatGrowthVanilla)
+
+#endif // HAX_MGG

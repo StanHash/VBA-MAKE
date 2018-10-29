@@ -4,7 +4,40 @@
 #include "Extensions/Hack Installation.txt"
 #include "UnitMenuDefs.event"
 
-////////////////////////////////SUPPORTING CHANGES
+/*
+
+General file layout:
+	config (definitions that change the way hacks work)
+	bl range hacks (hacks requiring being in bl-range) (the plan is to not have this)
+	modular hook hacks: other hacks may have "optional dependency" on those
+	other hacks: hacks
+	modular hook lists: last so that we can safely use ifdef to build our list "dynamically"
+
+*/
+
+// ==================
+// = WIZARDY CONFIG =
+// ==================
+
+// Icon stuff
+
+#define ICON_SHEET_COUNT 2
+
+#define ICON_SKILL_SHEET 1
+
+// Popup stuff
+
+#define POPR_COMPONENT_COUNT 0x10
+
+#define POPR_SKILL_ICON_COMPONENT 0x0D
+#define POPR_SKILL_NAME_COMPONENT 0x0E
+
+#define BattlePopupTableDeclared // Define this as we are declaring the table after the file
+
+// ======================
+// = SUPPORTING CHANGES =
+// ======================
+
 PUSH
 	//Include essential fixes and autopatches
 	#include "FE8EssentialFixes.event"
@@ -16,8 +49,12 @@ PUSH
 	#endif
 POP
 
+// =========================
+// = HACKS WITHIN BL RANGE =
+// =========================
 
-////////////////////////////////FREE SPACE WITHIN BL RANGE
+// Eventually there will be none :)
+
 PUSH; ORG FreeSpaceBLRange // defined in custom definitions
 	#define inBLRange
 
@@ -37,76 +74,80 @@ PUSH; ORG FreeSpaceBLRange // defined in custom definitions
 	#undef inBLRange
 POP
 
-////////////////////////////////FREE SPACE OUT OF BL RANGE
-//start of Free space
+// ==============================
+// = FREE SPACE OUT OF BL RANGE =
+// ==============================
 
-	ALIGN 4
-	#include "HookUtil/MSG/InstallCore.event"
-	#include "HookUtil/MSG/InstallHelpers.event"
-	#include "HookUtil/MSG/Extentions/SkillSystem.event"
-	#include "HookUtil/IconRework/IconRework.event"	 // Allows using standard Icon routines to draw skill icons
-	#include "HookUtil/PopupRework/PopupRework.event" // Allows to expand on vanilla popups by adding components
+#include "Hooks/MSG/InstallCore.event"
+#include "Hooks/MSG/InstallHelpers.event"
+#include "Hooks/MSG/Extentions/SkillSystem.event"
+#include "Hooks/IconRework/IconRework.event" // Allows using standard Icon routines to draw skill icons
+#include "Hooks/CPopupRework/PopupRework.event" // Allows to expand on vanilla popups by adding components
+#include "Hooks/ModLu/ModLu.event" // Modular stuff that happens on level up!
+#include "Hooks/MGG/MGG.event" // Modular stat getters, that also happen on level up!
+#include "Hooks/BattleUnitHook/BattleUnitHook.event"
 
-	//HP Bars (and effective weapon warning)
-	#include "HpBars/HpBars.event"
+//HP Bars (and effective weapon warning)
+#include "HpBars/HpBars.event"
 
-	//Improved Sound Mixer
-	#include "ImprovedSoundMixer/SoundMixer.event"
+//Improved Sound Mixer
+#include "ImprovedSoundMixer/SoundMixer.event"
 
-	//Danger Zone (select button)
-	#include "DangerZone/DangerZone.event"
+//Danger Zone (select button)
+#include "DangerZone/DangerZone.event"
 
-	//Event Writer ASMC
-	#include "EventWriter/EventWriter.event"
+//Event Writer ASMC
+#include "EventWriter/EventWriter.event"
 
-	//Casual Mode (based on Event ID 0xB0)
-	#include "CasualMode/CasualMode.event"
+//Casual Mode (based on Event ID 0xB0)
+#include "CasualMode/CasualMode.event"
 
-	//Movement Arrow doesn't update on allies
-	#include "MovementArrowHack/MovementArrowHack.event"
+//Movement Arrow doesn't update on allies
+#include "MovementArrowHack/MovementArrowHack.event"
 
-	//negative stat boosts
-	#include "NegativeStatBoosts/NegativeStatBoosts.event"
+//negative stat boosts
+#include "NegativeStatBoosts/NegativeStatBoosts.event"
 
-	//Dragon Veins
-	#include "DragonVeins/DragonVeins.event"
+//Dragon Veins
+#include "DragonVeins/DragonVeins.event"
 
-	//Modular Stat Screen
-	#include "MSS/ModularStatScreen.event"
+//Modular Stat Screen
+#include "MSS/ModularStatScreen.event"
 
-	//Expanded Suspend + Debuffs
-	#include "SuspendDebuffs/SuspendDebuffs.event"
+//Expanded Suspend + Debuffs
+#include "SuspendDebuffs/SuspendDebuffs.event"
 
-	//Stat Screens palette by allegiance
-	// #include "StatScreenAllegiance/StatScreenAllegiance.event"
+//Stat Screens palette by allegiance
+// #include "StatScreenAllegiance/StatScreenAllegiance.event"
 
-	//menu semitransparency
-	#include "Misc/SemitransparencyChanges.event"
+//menu semitransparency
+#include "Misc/SemitransparencyChanges.event"
 
-	#include "Misc/PrologueSupply.event"
+#include "Misc/PrologueSupply.event"
 
-	//Chapter names as text
-	#include "TextChNames/TextChNames.event"
+//Chapter names as text
+#include "TextChNames/TextChNames.event"
 
-	//PC and Generic Music Hack (writes to e80000/e90000)
-	// #include "Misc/PCAndGenericMusic.event"
+//PC and Generic Music Hack (writes to e80000/e90000)
+// #include "Misc/PCAndGenericMusic.event"
 
-	#include "EventRescue/EventRescue.event"
-	#include "EventAddTraps/EventAddTraps.event"
-	#include "EventSendToConvoy/EventSendToConvoy.event"
+#include "EventRescue/EventRescue.event"
+#include "EventAddTraps/EventAddTraps.event"
+#include "EventSendToConvoy/EventSendToConvoy.event"
 
-	//Change Sick Status to Freeze
-	#include "Freeze/Freeze.event"
-	#include "Freeze/EventFreeze.event"
+//Change Sick Status to Freeze
+#include "Freeze/Freeze.event"
+#include "Freeze/EventFreeze.event"
 
-	#include "SkillSystem/MasterSkillInstaller.event"
+#include "SkillSystem/MasterSkillInstaller.event"
 
-	#include "FE8BattleStatsWithAnimsOff/FE8BattleStatsMasterEAFile.event"
+#include "FE8BattleStatsWithAnimsOff/FE8BattleStatsMasterEAFile.event"
 
-	#include "StatGetters/InstallStatGetters.event"
+#include "StatGetters/InstallStatGetters.event"
 
-	#include "CustomGameSpeed/CustomGameSpeed.event"
+#include "CustomGameSpeed/CustomGameSpeed.event"
 
-	#include "UnitMenu.event"
+#include "UnitMenu.event"
+#include "HookLists.event"
 
 #endif // WIZARDY

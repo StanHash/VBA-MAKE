@@ -1,0 +1,44 @@
+#ifndef CSKILLS_LEVELUP_LEARNING
+#define CSKILLS_LEVELUP_LEARNING
+
+#ifndef HAX_POPR
+	ERROR "CSkills LevelUp Learning requires PopR to be installed!"
+#endif // HAX_POPR
+
+#include "Extensions/PopupDefinitions.txt"
+
+#ifndef POPR_SKILL_ICON_COMPONENT
+	#define POPR_SKILL_ICON_COMPONENT 0x0D
+#endif // POPR_SKILL_ICON_COMPONENT
+
+#ifndef POPR_SKILL_NAME_COMPONENT
+	#define POPR_SKILL_NAME_COMPONENT 0x0E
+#endif // POPR_SKILL_NAME_COMPONENT
+
+#include "Src/SSLearningLevelUp.lyn.event"
+
+ALIGN 4
+gpSSLearningState:
+	WORD $2026E20
+
+ALIGN 4
+gPopup_SS_SkillLearned:
+	Popup_SetSound(0x5A)
+
+	Popup_SetColor(0)
+	Popup_StringId(8) // "Got [X]" // TODO: "Learned [X]"
+
+	Popup_Space(1)
+	WORD POPR_SKILL_ICON_COMPONENT 0
+	Popup_Space(1)
+
+	// TODO: skill name
+	// Popup_SetColor(2)
+	// Popup_StringId(0x22) // ".[X]"
+
+	Popup_End
+
+PopRSetPopupCodeHandlers(POPR_SKILL_ICON_COMPONENT, gSS_PopRComponent_SkillIcon)
+// TODO: PopRSetPopupCodeHandlers(POPR_SKILL_NAME_COMPONENT, gSS_PopRComponent_SkillName)
+
+#endif // CSKILLS_LEVELUP_LEARNING

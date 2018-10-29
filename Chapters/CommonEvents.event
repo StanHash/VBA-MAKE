@@ -1,0 +1,53 @@
+#ifndef COMMON_EVENTS
+#define COMMON_EVENTS
+
+// Vanilla callable events
+
+#define scStartPrepScreen      $591FD8 // args: -
+
+#define scNoSkipFadeOut        $591F40 // args: -
+#define scNoSkipFadeIn         $591F64 // args: -
+
+#define scLoadReinforcements   $9EE274 // args: s2 = pointer to UNITs
+
+#define scConvoClearBackground $9EE2E8 // args: -
+#define scConvoShowBackground  $9EE2E8 // args: s2 = background id
+#define scConvoShowTextWithBg  $9EE310 // args: s2 = background id, s3 = text id
+
+// Slot identifiers
+
+#define s0 0
+#define s1 1
+#define s2 2
+#define s3 3
+#define s4 4
+#define s5 5
+#define s6 6
+#define s7 7
+#define s8 8
+#define s9 9
+#define sA $A
+#define sB $B
+#define sC $C
+#define sD $D
+
+#define sNil s0
+#define sPos sB
+#define sRet sC
+#define sIdx sD
+
+// Common events
+
+ALIGN 4
+NoTraps:
+	ENDTRAP
+
+ALIGN 4
+NoEventList:
+	END_MAIN
+
+ALIGN 4
+NoTutorialList:
+	WORD 0
+
+#endif // COMMON_EVENTS

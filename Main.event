@@ -6,6 +6,15 @@
 #include "EAstdlib.event"
 #include "VBADefinitions.event"
 
+PROTECT $019900
+PROTECT $019968
+PROTECT $01999C
+PROTECT $030134
+PROTECT $030C78
+PROTECT $034680
+PROTECT $0346AC
+PROTECT $0346DC
+
 ORG FreeSpace
 
     // Text first for Text ID definitions

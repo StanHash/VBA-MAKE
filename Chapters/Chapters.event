@@ -1,6 +1,8 @@
 #ifndef CHAPTERS
 #define CHAPTERS
 
+#include "CommonEvents.event"
+
 {
 #include "Ch00Prologue/PrologueMap.event"
 #include "Ch00Prologue/Prologue.event"

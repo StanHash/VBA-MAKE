@@ -119,11 +119,18 @@ void SS_InitializeUnitLearnedSkills(struct Unit* unit) {
 }
 
 /*!
- * \param unit the unit who to learn the skill to
- * \param skillId skill id
- * \return error code (or zero on sucess)
+ * \param unit
+ * \return non-zero if the unit is able to learn skills
  */
-int SS_UnitLearnSkill(struct Unit* unit, unsigned skillId) {
+int SS_UnitCanLearnSkills(const struct Unit* unit) {
+	return !IsUnitGeneric(unit);
+}
+
+/*!
+ * \param unit unit
+ * \return error code (slot id on success)
+ */
+int SS_UnitGetFreeSkillSlot(const struct Unit* unit) {
 	// Check if unit is generic (which can't learn skills)
 
 	if (IsUnitGeneric(unit))
@@ -131,24 +138,63 @@ int SS_UnitLearnSkill(struct Unit* unit, unsigned skillId) {
 
 	u8* learnedSkills = GetUnitSavedSkillsArray(unit);
 
-	// Check if unit already knows the skill
-
 	for (unsigned i = 0; i < SKILL_SAVED_COUNT; ++i)
-		if (learnedSkills[i] == skillId)
-			return SKILL_LEARN_ERR_ALREADY_KNOWN;
-
-	// Find room in the list to add the skill
-
-	for (unsigned i = 0; i < SKILL_SAVED_COUNT; ++i) {
-		if (learnedSkills[i] == 0) {
-			learnedSkills[i] = skillId;
-			return SKILL_LEARN_SUCCESS;
-		}
-	}
-
-	// We didn't find room :(
+		if (!learnedSkills[i])
+			return i;
 
 	return SKILL_LEARN_ERR_NO_ROOM;
+}
+
+/*!
+ * \param unit unit
+ * \param slot the slot in which the skill to forget resides
+ * \return error code (zero/SKILL_LEARN_SUCCESS on success)
+ */
+int SS_UnitForgetSkillSlot(struct Unit* unit, unsigned slot) {
+	// Check if unit is generic (which can't learn skills)
+
+	if (IsUnitGeneric(unit))
+		return SKILL_LEARN_ERR_GENERIC;
+
+	u8* learnedSkills = GetUnitSavedSkillsArray(unit);
+
+	for (unsigned i = slot; i < (SKILL_SAVED_COUNT-1); ++i)
+		learnedSkills[i] = learnedSkills[i+1];
+
+	learnedSkills[SKILL_SAVED_COUNT-1] = 0;
+
+	return SKILL_LEARN_SUCCESS;
+}
+
+/*!
+ * \param unit unit
+ * \param slot skill slot
+ * \param skillId skill id to put in slot
+ * \return error code (zero/SKILL_LEARN_SUCCESS on success)
+ */
+int SS_UnitSetSkillSlot(struct Unit* unit, unsigned slot, unsigned skillId) {
+	if (IsUnitGeneric(unit))
+		return SKILL_LEARN_ERR_GENERIC;
+
+	u8* learnedSkills = GetUnitSavedSkillsArray(unit);
+
+	learnedSkills[slot] = skillId;
+	return SKILL_LEARN_SUCCESS;
+}
+
+/*!
+ * \param unit the unit who to learn the skill to
+ * \param skillId skill id
+ * \return error code (zero/SKILL_LEARN_SUCCESS on success)
+ */
+int SS_UnitLearnSkill(struct Unit* unit, unsigned skillId) {
+	int slot = SS_UnitGetFreeSkillSlot(unit);
+
+	if (slot < 0)
+		return slot; // error!
+
+	SS_UnitSetSkillSlot(unit, slot, skillId);
+	return SKILL_LEARN_SUCCESS;
 }
 
 /*!

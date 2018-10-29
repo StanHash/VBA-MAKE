@@ -4,6 +4,7 @@
 
 #include "Core/SkillSystemCore.event"
 #include "Learning/SkillSystemLearning.event"
+#include "LevelUpLearning/CSkillsLevelupLearning.event"
 
 DefaultSkillDesc:
 	SHORT SS_SkillsDefaultRText
@@ -61,13 +62,6 @@ NegatedSkills:
 {
 
 PUSH
-	// now managed by Icon Rework (see Engine Hacks/IconRework) -Stan
-	// ORG $3730
-		// jumpToHack(AlternateIconPopup)
-
-	ORG $75D64
-	//	jumpToHack(AnimsOnPopupHack)
-
 	ORG $2B3EC
 		jumpToHack(Rerun_Battle_Calcs)
 

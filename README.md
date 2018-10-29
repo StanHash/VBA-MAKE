@@ -16,7 +16,23 @@ The goals of this project are (in no particlular order):
 
 Oh and this also has an updated skill system \:)
 
-Perhaps imporant note: I'm going to take a lot of liberties as to what I add and change, as well as in how I do so. Trying to keep using old stuff for the sake of doing so is getting tiring and I'd rather do what I feel would be better. More specifically, the skill system in this project will probably end up looking very different from the main Skill System branch; and will probably be much incompatible.
+## Engine hacks changes
+
+I'm going to take a lot of liberties as to what I add and change, as well as in how I do so.
+
+Trying to keep using old stuff for the sake of doing so is getting tiring and I'd rather do what I feel would be better. The skill system in this project will probably end up looking very different from the main Skill System branch; and will probably be much incompatible.
+
+This will involve rethinking hooks, modularise everything and stuff; And porting half (and only half! see below) of the hacks to C \:)
+
+### ASM vs. C
+
+As you *may* know, I have been primarily hacking in C for the past almost year now (I started doing that around december 2017). So it would be logical (albeit a bit overkill) for me to port everything to C and stuff.
+
+I'm not going to do that.
+
+Don't get me wrong, the plan *still is* to review everything; but for this project in particular, since the goal is provide a complete example, I want to keep a healthy mix of both ASM and C. So even some of the new stuff I'm adding will be 100% ASM.
+
+However, everything written in ASM *will* be ported to use lyn and the [`FE-CLib`](https://github.com/StanHash/FE-CLib) reference, will hopefully no exception.
 
 ## Building
 

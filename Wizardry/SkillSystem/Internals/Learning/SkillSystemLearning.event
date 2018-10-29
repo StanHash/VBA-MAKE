@@ -1,5 +1,5 @@
-#ifndef SKILL_SYSTEM_LEARNING
-#define SKILL_SYSTEM_LEARNING
+#ifndef CSKILLS_LEARNING
+#define CSKILLS_LEARNING
 
 // ===================================
 // = PUBLIC SKILL LEARNING FUNCTIONS =
@@ -28,7 +28,7 @@ SetSymbol(SkillAdder, SkillAdderLegacy-1)
 
 {
 
-#include "Src/SkillLearnerHook.lyn.event"
+// #include "Src/SkillLearnerHook.lyn.event"
 #include "Src/UnitLoadingHook.lyn.event"
 
 PUSH
@@ -70,8 +70,9 @@ PUSH
 	ORG $A4140
 		SHORT 0 //nop the 0x200000
 
-	ORG $76018
-		jumpToHack(SkillLearnerHook)
+//	Dead hook because of PopupRework
+//	ORG $76018
+//		jumpToHack(SkillLearnerHook)
 
 	ORG $17EF4
 		jumpToHack(UnitLoadingHook)
@@ -80,4 +81,4 @@ POP
 
 }
 
-#endif // SKILL_SYSTEM_LEARNING
+#endif // CSKILLS_LEARNING

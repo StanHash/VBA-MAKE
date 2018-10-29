@@ -1,0 +1,26 @@
+#ifndef HAX_MODLU
+#define HAX_MODLU
+
+// Modular Level Up
+// hack by StanH_
+
+#include "ModLuInternal.event"
+
+/*
+
+// This commented block is provided as example usage of this hack
+// I recommend you to copy-paste this in another part of your hack installer
+// And edit it if your other installed hacks need it (note: this hack is useless if not).
+
+ALIGN 4
+gpGetUnitMaxLevel:
+	POIN MLUStandardGetMaxLevel // Vanilla max level getter ()
+
+ALIGN 4
+gLevelUpFuncList:
+	POIN MLUStandardStatGains // Vanilla stat gain routine
+	WORD 0 // End
+
+*/
+
+#endif // HAX_MODLU

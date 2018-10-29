@@ -8,30 +8,23 @@ EventPointerTable(AssetCh00Data, ThisChapter)
 
 ALIGN 4
 ThisChapter:
-	POIN TurnEventList
-	POIN CharacterEventList
-	POIN LocationEventList
-	POIN ActionEventList
-	POIN DunnoList DunnoList DunnoList
-	POIN TutorialList
-	POIN TrapList TrapList2
+	POIN NoEventList       // turn events
+	POIN NoEventList       // talk events
+	POIN LocationEventList // tile events
+	POIN ActionEventList   // post-action events
+	POIN NoEventList       // select events
+	POIN NoEventList       // pre-move events
+	POIN NoEventList       // post-move events
+
+	POIN NoTutorialList
+	POIN NoTraps NoTraps
 	POIN unPlayerList unPlayerList
 	WORD 0 0 0 0 0 0
 	POIN scBeginning scEnding
 
 ALIGN 4
-TurnEventList:
-CharacterEventList:
-DunnoList:
-	END_MAIN
-
-ALIGN 4
 LocationEventList:
 	Seize(15, 1)
-
-#ifdef __DEBUG__
-	Seize(13, 12)
-#endif
 
 	END_MAIN
 
@@ -46,7 +39,7 @@ TutorialList:
 	WORD 0
 
 unPlayerList:
-	UNIT CharVoid   EirikaLord 0 Level(1, Ally, 1) [13, 12] 0 0 0 0 [Rapier, Vulnerary, MoonBracelet] NoAI
+	UNIT CharVoid   EirikaLord 0 Level(1, Ally, 1) [13, 12] 0 0 0 0 [Rapier, GoldGem, Vulnerary, MoonBracelet] NoAI
 	UNIT CharTim    Fighter    0 Level(1, Ally, 1) [12, 13] 0 0 0 0 [IronAxe, HandAxe] NoAI
 	UNIT CharTam    Fighter    0 Level(1, Ally, 1) [14, 13] 0 0 0 0 [SteelAxe, Hatchet] NoAI
 	UNIT CharJerome Soldier    0 Level(1, Ally, 1) [15, 13] 0 0 0 0 [IronLance, Vulnerary] NoAI
@@ -70,11 +63,6 @@ unEnemyStartingList:
 	UNIT // End
 
 ALIGN 4
-TrapList:
-TrapList2:
-	ENDTRAP
-
-ALIGN 4
 scBeginning:
 	CHECK_TUTORIAL
 	BEQ 0 rC r0 // TODO: use sC/s0 instead
@@ -82,19 +70,30 @@ scBeginning:
 	ENUT eidCasualMode // turn on casual mode if easy
 
 LABEL 0
-	// TODO: decompose
-	Text(Ch0IntroTalk)
-
-	LOAD1 1 unPlayerList // 0 instead of 1 seems to be for allies on maps with prep screens
+	LOAD1 1 unPlayerList
 	LOAD1 1 unEnemyStartingList
 	ENUN
 
+	CALL scNoSkipFadeOut
+
+	TEXTSTART
+
+	TEXTSHOW Ch0IntroTalk
+	TEXTEND
+
+	REMA
+
+	NoFade
 	ENDA
 
 ALIGN 4
 scEnding:
-	// TODO: decompose
-	Text(PrologueEnding)
+	TEXTSTART
+
+	TEXTSHOW PrologueEnding
+	TEXTEND
+
+	REMA
 
 	// Go to next chapter (chapter 1)
 	MNC2 Ch1Id
