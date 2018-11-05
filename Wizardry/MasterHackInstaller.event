@@ -84,6 +84,8 @@ POP
 // It's annoying :( I'm not using it
 // #include "QoL/MovementArrowHack/MovementArrowHack.event"
 
+#include "PerChapterBattleQuotes/PerChapterBattleQuotes.event"
+
 //Improved Sound Mixer
 #include "ImprovedSoundMixer/SoundMixer.event"
 
