@@ -27,16 +27,4 @@
 #define LunarBrace MoonBracelet
 #define SolarBrace SunBracelet
 
-#ifndef CustomGameSpeedConfig
-	#define CustomGameSpeedConfig
-
-	#define GameSpeedNormalValue       6
-	#define GameSpeedNormalCheckSlow   True
-	#define GameSpeedNormalCheckAPress False
-
-	#define GameSpeedFastValue         7
-	#define GameSpeedFastCheckSlow     True
-	#define GameSpeedFastCheckAPress   False
-#endif // CustomGameSpeedConfig
-
 #endif // VBA_DEFINITIONS

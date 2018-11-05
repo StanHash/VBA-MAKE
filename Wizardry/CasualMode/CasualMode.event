@@ -1,26 +1,28 @@
 #ifndef CASUAL_MODE
 #define CASUAL_MODE
 
-// eid $B0 enables Casual Mode (fallen units come back next chapter).
-// hack by circleseverywhere
+// eid $B0 (by default) enables Casual Mode (fallen units come back next chapter).
+// hack by circleseverywhere, rewritten by StanH_
 
 #ifdef _FE8_
 
-  {
+	#ifndef eidCasualMode
+		#define eidCasualMode $B0
+	#endif
 
-  PUSH
-    ORG $18418
-      jumpToHack(CasualMode)
-  POP
+	{
 
-  ALIGN 4
-  CasualMode:
-    #incbin "Asm/CasualModeFE8.dmp"
+	PUSH
+		ORG $18418
+			jumpToHack(CasualModeHook)
+	POP
 
-  }
+	#include "Src/CasualMode.lyn.event"
+
+	}
 
 #else // _FE8_
-  ERROR Casual mode hack is for FE8
+	ERROR Casual mode hack is for FE8
 #endif // _FE8_
 
 #endif // CASUAL_MODE

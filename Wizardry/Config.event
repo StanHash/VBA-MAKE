@@ -1,0 +1,69 @@
+#ifndef WIZARDRY_CONFIG
+#define WIZARDRY_CONFIG
+
+// ==============
+// = Icon stuff =
+// ==============
+
+#define ICON_SHEET_COUNT 2
+
+#define ICON_SKILL_SHEET 1
+
+// ===============
+// = Popup stuff =
+// ===============
+
+#define POPR_COMPONENT_COUNT 0x10
+
+#define POPR_SKILL_ICON_COMPONENT 0x0D
+#define POPR_SKILL_NAME_COMPONENT 0x0E
+
+#define BattlePopupTableDeclared // Define this as we are declaring the table after the file
+
+// ================
+// = Action stuff =
+// ================
+
+#define ACTION_TABLE_SIZE 0x30
+
+// Heroes Movement Actions
+#define ACTION_MOVETARGET 0x23
+#define ACTION_MOVEACTIVE 0x24
+#define ACTION_SWAP       0x25
+#define ACTION_PUSH       0x26
+
+// ===========================
+// = BL RANGE HOOK LOCATIONS =
+// ===========================
+
+// See also: "RAM-AND-BL-RANGE-FREE-SPACE.txt"
+
+#define LTOGGLE_BLRANGE_HOOK $01115C
+
+// ===================
+// = Heroes Movement =
+// ===================
+
+#define TEXT_BOTTOMHELP_PIVOT      0
+#define TEXT_BOTTOMHELP_REPOSITION 0
+#define TEXT_BOTTOMHELP_SWAP       0
+#define TEXT_BOTTOMHELP_SHOVE      0
+#define TEXT_BOTTOMHELP_SMITE      0
+
+// =====================
+// = Custom game speed =
+// =====================
+
+#ifndef CustomGameSpeedConfig
+	#define CustomGameSpeedConfig
+
+	#define GameSpeedNormalValue       6
+	#define GameSpeedNormalCheckSlow   True
+	#define GameSpeedNormalCheckAPress False
+
+	#define GameSpeedFastValue         7
+	#define GameSpeedFastCheckSlow     True
+	#define GameSpeedFastCheckAPress   False
+#endif // CustomGameSpeedConfig
+
+#endif // WIZARDRY_CONFIG

@@ -29,7 +29,6 @@
 /// ==================================================================================================
 
 #include "../StanHaxCommon/StanCommonASM.event"
-#include "../UnitActionRework/UnitActionRework.event"
 
 #include "6CDefinitions.event"
 
@@ -451,10 +450,10 @@ __psName:
 
 }
 
-SetUnitAction(ACTION_MOVETARGET, ActionRoutine(_prMoveTargetUnitAction+1))
-SetUnitAction(ACTION_MOVEACTIVE, ActionRoutine(_prMoveActiveUnitAction+1))
-SetUnitAction(ACTION_SWAP,       ActionRoutine(_prSwapAction+1))
-SetUnitAction(ACTION_PUSH,       ActionRoutine(_prPushAction+1))
+InjectUnitAction(ACTION_MOVETARGET, ActionRoutine(_prMoveTargetUnitAction+1))
+InjectUnitAction(ACTION_MOVEACTIVE, ActionRoutine(_prMoveActiveUnitAction+1))
+InjectUnitAction(ACTION_SWAP,       ActionRoutine(_prSwapAction+1))
+InjectUnitAction(ACTION_PUSH,       ActionRoutine(_prPushAction+1))
 
 ALIGN 4 // For good measure
 

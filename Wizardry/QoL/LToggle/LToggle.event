@@ -1,0 +1,36 @@
+#ifndef LTOGGLE_HACK
+#define LTOGGLE_HACK
+
+// Toggle Battle Animations On/Off by holding L.
+// Hack by circleseverywhere, hook redone by StanH_
+
+#ifdef _FE8_
+
+#ifndef LTOGGLE_BLRANGE_HOOK
+	#define LTOGGLE_BLRANGE_HOOK $01115C
+#endif // LTOGGLE_BLRANGE_HOOK
+
+{
+
+#ifndef LynJumpDefined
+	#define LynJumpDefined
+	#define LynJump(aTarget) "WORD $46C04778 $E59FC000 $E12FFF1C; POIN aTarget; PROTECT CURRENTOFFSET-16 CURRENTOFFSET"
+#endif // LynJumpDefined
+
+#include "Src/LToggle.lyn.event"
+
+PUSH
+	ORG $02CAF2
+		BL(LTOGGLE_BLRANGE_HOOK)
+
+	ORG (LTOGGLE_BLRANGE_HOOK)
+		LynJump(LToggleHook)
+POP
+
+}
+
+#else // _FE8_
+	ERROR LToggle hack is for FE8
+#endif // _FE8_
+
+#endif // LTOGGLE_HACK

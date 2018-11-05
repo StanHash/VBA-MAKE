@@ -28,7 +28,6 @@ SetSymbol(SkillAdder, SkillAdderLegacy-1)
 
 {
 
-// #include "Src/SkillLearnerHook.lyn.event"
 #include "Src/UnitLoadingHook.lyn.event"
 
 PUSH

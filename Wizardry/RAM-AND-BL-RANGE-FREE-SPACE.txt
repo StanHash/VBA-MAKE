@@ -10,6 +10,8 @@ BL-RANGE:
 	FREE $8010F48-$801116C ($224 bytes) [CPopupRework]
 	FREE $8011280-$80113C0 ($140 bytes) [CPopupRework]
 
+	USED $801115C-$801116C ($10 bytes) [LToggle]
+
 RAM:
 	FREE $2026AD0-$2026E30 ($360 bytes) [CIconDisplay]
 

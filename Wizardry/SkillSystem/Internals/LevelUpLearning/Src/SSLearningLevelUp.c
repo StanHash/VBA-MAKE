@@ -41,9 +41,19 @@ static void SS_PopRSkillIcon_Display(struct PopupReworkProc* proc, struct TextHa
 // ===========================
 
 void SSLearn_OnBattleUnitInit(struct BattleUnit* bu, struct Unit* unit) {
+	// Clean any leftover state for this unit
+
+	for (unsigned i = 0; i < 4; ++i) {
+		if (gpSSLearningState->skillLearnedUnitId[i] == unit->index) {
+			gpSSLearningState->skillLearnedUnitId[i] = 0;
+			gpSSLearningState->skillLearnedId[i]     = 0;
+			gpSSLearningState->skillForgetSlot[i]    = (-1);
+		}
+	}
+
 	// Because unsigned overflow is well defined in C, even for bitfields
 	// We can use gpSSLearningState->nextSlotIndex to interate on the 4
-	// Valid indices in a loopy manner
+	// Valid indices without worrying about manually looping
 
 	unsigned i = gpSSLearningState->nextSlotIndex++;
 
@@ -85,7 +95,7 @@ void SSLearn_UnitLevelUp(struct BattleUnit* bu) {
 		if (gpSSLearningState->skillLearnedUnitId[i] != bu->unit.index)
 			continue;
 
-		gpSSLearningState->skillLearnedId[i] = 50;//SS_UnitGetLevelUpSkill(&bu->unit, bu->unit.level);
+		gpSSLearningState->skillLearnedId[i] = SS_UnitGetLevelUpSkill(&bu->unit, bu->unit.level);
 		break;
 	}
 }

@@ -3,9 +3,6 @@
 
 EventPointerTable(AssetCh00Data, ThisChapter)
 
-// TODO: Move this elsewhere
-#define eidCasualMode $B0
-
 ALIGN 4
 ThisChapter:
 	POIN NoEventList       // turn events

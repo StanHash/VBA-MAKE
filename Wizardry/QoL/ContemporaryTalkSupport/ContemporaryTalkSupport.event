@@ -1,0 +1,29 @@
+#ifndef CONTEMPORARY_TALK_SUPPORT
+#define CONTEMPORARY_TALK_SUPPORT
+
+// Contemporary talk and support.
+// Hack by circleseverywhere, rewritten to C and to using ActionRework by StanH_
+
+// include while in BL range, with inBLRange defined
+
+#ifdef _FE8_
+#ifdef HAX_AAR
+
+	{
+
+	#include "Src/TalkSupportFixes.lyn.event"
+
+	InjectUnitAction(0x0E, ActionRoutine(NewTalkAction))
+	InjectUnitAction(0x0F, ActionRoutine(NewSupportAction))
+
+	}
+
+#else // HAX_AAR
+	ERROR "Talk and Support hack must be installed after CUnitAction"
+#endif // HAX_AAR
+
+#else // _FE8_
+	ERROR Talk and Support hack is for FE8
+#endif // _FE8_
+
+#endif // CONTEMPORARY_TALK_SUPPORT

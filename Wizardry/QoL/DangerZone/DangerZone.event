@@ -1,0 +1,28 @@
+#ifndef DANGER_ZONE
+#define DANGER_ZONE
+
+// Enable Danger Zone display by pressing select.
+// hack by circleseverywhere, rewritten by StanH_
+
+#ifdef _FE8_
+
+	#ifndef LynJumpDefined
+		#define LynJumpDefined
+		#define LynJump(aTarget) "WORD $46C04778 $E59FC000 $E12FFF1C; POIN aTarget; PROTECT CURRENTOFFSET-16 CURRENTOFFSET"
+	#endif // LynJumpDefined
+
+	{
+
+	#include "Src/DangerZone.lyn.event"
+
+	PUSH; ORG $01CAD4
+		LynJump(DangerZoneHook)
+	POP
+
+	}
+
+#else // _FE8_
+	ERROR DangerZone hack is for FE8
+#endif // _FE8_
+
+#endif // DANGER_ZONE

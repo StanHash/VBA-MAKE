@@ -7,17 +7,6 @@
 
 #include "Tools/Tool Helpers.txt"
 
-#define ACTION_MOVETARGET 0x23
-#define ACTION_MOVEACTIVE 0x24
-#define ACTION_SWAP       0x25
-#define ACTION_PUSH       0x26
-
-#define TEXT_BOTTOMHELP_PIVOT      0
-#define TEXT_BOTTOMHELP_REPOSITION 0
-#define TEXT_BOTTOMHELP_SWAP       0
-#define TEXT_BOTTOMHELP_SHOVE      0
-#define TEXT_BOTTOMHELP_SMITE      0
-
 prPivotCommand_Availability:
 	rGetWrapper // value defaults to 0 (False)
 		rIfUnitHasNotState(US_CANTOING)

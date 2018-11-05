@@ -19,27 +19,14 @@ General file layout:
 // = WIZARDY CONFIG =
 // ==================
 
-// Icon stuff
-
-#define ICON_SHEET_COUNT 2
-
-#define ICON_SKILL_SHEET 1
-
-// Popup stuff
-
-#define POPR_COMPONENT_COUNT 0x10
-
-#define POPR_SKILL_ICON_COMPONENT 0x0D
-#define POPR_SKILL_NAME_COMPONENT 0x0E
-
-#define BattlePopupTableDeclared // Define this as we are declaring the table after the file
+#include "Config.event"
 
 // ======================
 // = SUPPORTING CHANGES =
 // ======================
 
 PUSH
-	//Include essential fixes and autopatches
+	// Include essential fixes and autopatches
 	#include "FE8EssentialFixes.event"
 
 	// Debug Startup Screen
@@ -58,11 +45,8 @@ POP
 PUSH; ORG FreeSpaceBLRange // defined in custom definitions
 	#define inBLRange
 
-	//Talk and Support don't end your turn
-	#include "ContemporaryTalkSupport/ContemporaryTalkSupport.event"
-
 	//Hold L to toggle Anims
-	#include "LToggle/LToggle.event"
+	#include "QoL/LToggle/LToggle.event"
 
 	//negative wt/crit
 	#include "NegativeWStatDisplay/NegativeDisplay.event"
@@ -78,6 +62,7 @@ POP
 // = FREE SPACE OUT OF BL RANGE =
 // ==============================
 
+// Core hooks (other hacks will depend on those)
 #include "Hooks/MSG/InstallCore.event"
 #include "Hooks/MSG/InstallHelpers.event"
 #include "Hooks/MSG/Extentions/SkillSystem.event"
@@ -86,24 +71,24 @@ POP
 #include "Hooks/ModLu/ModLu.event" // Modular stuff that happens on level up!
 #include "Hooks/MGG/MGG.event" // Modular stat getters, that also happen on level up!
 #include "Hooks/BattleUnitHook/BattleUnitHook.event"
+#include "Hooks/CUnitAction/UnitAction.event" // Allows action handlers to be routines instead of jumps + other stuff
 
-//HP Bars (and effective weapon warning)
-#include "HpBars/HpBars.event"
+// Quality of Life hacks
+#include "QoL/HpBars/HpBars.event"
+#include "QoL/ContemporaryTalkSupport/ContemporaryTalkSupport.event"
+#include "QoL/DangerZone/DangerZone.event"
+#include "QoL/FE8BattleStatsWithAnimsOff/FE8BattleStatsMasterEAFile.event"
+#include "QoL/CustomGameSpeed/CustomGameSpeed.event"
+
+// Movement Arrow doesn't update on allies
+// It's annoying :( I'm not using it
+// #include "QoL/MovementArrowHack/MovementArrowHack.event"
 
 //Improved Sound Mixer
 #include "ImprovedSoundMixer/SoundMixer.event"
 
-//Danger Zone (select button)
-#include "DangerZone/DangerZone.event"
-
-//Event Writer ASMC
-#include "EventWriter/EventWriter.event"
-
 //Casual Mode (based on Event ID 0xB0)
 #include "CasualMode/CasualMode.event"
-
-//Movement Arrow doesn't update on allies
-#include "MovementArrowHack/MovementArrowHack.event"
 
 //negative stat boosts
 #include "NegativeStatBoosts/NegativeStatBoosts.event"
@@ -131,9 +116,11 @@ POP
 //PC and Generic Music Hack (writes to e80000/e90000)
 // #include "Misc/PCAndGenericMusic.event"
 
-#include "EventRescue/EventRescue.event"
-#include "EventAddTraps/EventAddTraps.event"
-#include "EventSendToConvoy/EventSendToConvoy.event"
+// ASMCs
+#include "ASMCs/EventWriter/EventWriter.event"
+#include "ASMCs/EventRescue/EventRescue.event"
+#include "ASMCs/EventAddTraps/EventAddTraps.event"
+#include "ASMCs/EventSendToConvoy/EventSendToConvoy.event"
 
 //Change Sick Status to Freeze
 #include "Freeze/Freeze.event"
@@ -141,11 +128,7 @@ POP
 
 #include "SkillSystem/MasterSkillInstaller.event"
 
-#include "FE8BattleStatsWithAnimsOff/FE8BattleStatsMasterEAFile.event"
-
 #include "StatGetters/InstallStatGetters.event"
-
-#include "CustomGameSpeed/CustomGameSpeed.event"
 
 #include "UnitMenu.event"
 #include "HookLists.event"
