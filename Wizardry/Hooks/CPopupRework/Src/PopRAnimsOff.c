@@ -178,6 +178,6 @@ static void PopR_AnimsOffWrapperLoop(struct AnimsOffWrapperProc* proc) {
 		return;
 	}
 
-	NewPopupSimple(type.definition, type.time, 0, (struct Proc*) (proc));
+	Popup_Create(type.definition, type.time, 0, (struct Proc*) (proc));
 	BreakProcLoop((struct Proc*) (proc));
 }

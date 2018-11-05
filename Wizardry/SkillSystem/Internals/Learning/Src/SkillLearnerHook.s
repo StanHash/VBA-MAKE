@@ -62,7 +62,7 @@ SkillLearnerHook:
 
 	ldr r0, [r4]
 
-	BLX_R3 DidWeaponBreak
+	BLX_R3 BattleUnit_DidWeaponBreak
 
 	ldr r3, =ReturnLocation
 BXR3:	bx  r3

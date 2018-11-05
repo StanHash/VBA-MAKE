@@ -55,11 +55,11 @@ const struct PopupComponentType gPopR_CArticleItemNameComponent = {
 };
 
 static int PopRCArticleItemName_GetLength(struct PopupReworkProc* proc, u32 argument) {
-	return GetStringTextWidth(GetItemSomeString(gPopupItem, TRUE));
+	return GetStringTextWidth(GetItemStringWithArticle(gPopupItem, TRUE));
 }
 
 static void PopRCArticleItemName_Display(struct PopupReworkProc* proc, struct TextHandle* text, u32 argument) {
-	Text_AppendString(text, GetItemSomeString(gPopupItem, TRUE));
+	Text_AppendString(text, GetItemStringWithArticle(gPopupItem, TRUE));
 }
 
 // ====================================
@@ -75,11 +75,11 @@ const struct PopupComponentType gPopR_LArticleItemNameComponent = {
 };
 
 static int PopRLArticleItemName_GetLength(struct PopupReworkProc* proc, u32 argument) {
-	return GetStringTextWidth(GetItemSomeString(gPopupItem, FALSE));
+	return GetStringTextWidth(GetItemStringWithArticle(gPopupItem, FALSE));
 }
 
 static void PopRLArticleItemName_Display(struct PopupReworkProc* proc, struct TextHandle* text, u32 argument) {
-	Text_AppendString(text, GetItemSomeString(gPopupItem, FALSE));
+	Text_AppendString(text, GetItemStringWithArticle(gPopupItem, FALSE));
 }
 
 // =======================
@@ -95,11 +95,11 @@ const struct PopupComponentType gPopR_UnitNameComponent = {
 };
 
 static int PopRUnitName_GetLength(struct PopupReworkProc* proc, u32 argument) {
-	return GetStringTextWidth(GetStringFromIndex(gpPopupUnit->pCharacterData->nameTextId));
+	return GetStringTextWidth(String_GetFromIndex(gpPopupUnit->pCharacterData->nameTextId));
 }
 
 static void PopRUnitName_Display(struct PopupReworkProc* proc, struct TextHandle* text, u32 argument) {
-	Text_AppendString(text, GetStringFromIndex(gpPopupUnit->pCharacterData->nameTextId));
+	Text_AppendString(text, String_GetFromIndex(gpPopupUnit->pCharacterData->nameTextId));
 }
 
 // ============================
@@ -115,11 +115,11 @@ const struct PopupComponentType gPopR_StringIdComponent = {
 };
 
 static int PopRStringId_GetLength(struct PopupReworkProc* proc, u32 argument) {
-	return GetStringTextWidth(GetStringFromIndex(argument));
+	return GetStringTextWidth(String_GetFromIndex(argument));
 }
 
 static void PopRStringId_Display(struct PopupReworkProc* proc, struct TextHandle* text, u32 argument) {
-	Text_AppendString(text, GetStringFromIndex(argument));
+	Text_AppendString(text, String_GetFromIndex(argument));
 }
 
 // =================================

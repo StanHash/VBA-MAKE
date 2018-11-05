@@ -2,13 +2,13 @@
 
 // TODO: add to libgbafe {
 
-extern const u8 gGfxBattlePopup[];
-extern const u16 gPalBattlePopup[];
-extern const u8 gTSA_BattlePopup[];
-extern const u8 gGfxPopupTextBG[];
-extern const u32 gPopupIconFrameData[];
+extern const u8 gGfx_BattlePopup[];
+extern const u16 gPal_BattlePopup[];
+extern const u8 gTsa_BattlePopup[];
+extern const u8 gGfx_BattlePopupTextBg[];
+extern const u32 gAnimScr_PopupIcon[];
 
-extern u8 gSomeTSABuffer[];
+extern u8 gSpellFxTsaBuffer[];
 
 extern struct FontData gSomeFontStruct;
 
@@ -61,9 +61,9 @@ static void PopR_AnimsOnAddIcon(struct PopupReworkProc* proc, unsigned iconId, u
 	struct PopupReworkAnimsOnProc* const pproc = (struct PopupReworkAnimsOnProc*) proc;
 
 	if (pproc->iconAis)
-		AIS_Free(pproc->iconAis);
+		DeleteAIS(pproc->iconAis);
 
-	pproc->iconAis = AIS_Create(gPopupIconFrameData, 150);
+	pproc->iconAis = CreateAIS(gAnimScr_PopupIcon, 150);
 
 	pproc->iconAis->oam2base  = 0x2440;
 	pproc->iconAis->xPosition = proc->pop.xTileReal + 0x10 + xOffset;
@@ -93,16 +93,16 @@ static void PopR_AnimsOnDraw(struct PopupReworkAnimsOnProc* proc) {
 	struct TextHandle text;
 	Text_InitClear(&text, xTileSize);
 
-	CopyToPaletteBuffer(gPalBattlePopup, COMMON_PAL * 0x20, 0x20);
+	CopyToPaletteBuffer(gPal_BattlePopup, COMMON_PAL * 0x20, 0x20);
 
-	Decompress(gGfxBattlePopup, BOX_GFX_VRAM);
-	Decompress(gGfxPopupTextBG, TEXT_GFX_VRAM);
+	Decompress(gGfx_BattlePopup, BOX_GFX_VRAM);
+	Decompress(gGfx_BattlePopupTextBg, TEXT_GFX_VRAM);
 
 	Text_SetXCursor(&text, xStartOffset);
 
 	PopR_DisplayComponents(&proc->popr, &text);
 
-	Decompress(gTSA_BattlePopup, gSomeTSABuffer);
+	Decompress(gTsa_BattlePopup, gSpellFxTsaBuffer);
 	MakeBattlePopupTileMapFromTSA(gBg1MapBuffer, xTileSize);
 
 	SetBgPosition(1, -proc->popr.pop.xTileReal, -proc->popr.pop.yTileReal);
@@ -128,7 +128,7 @@ static void PopR_AnimsOnWait(struct PopupReworkAnimsOnProc* proc) {
 
 static void PopR_AnimsOnCleanup(struct PopupReworkAnimsOnProc* proc) {
 	if (proc->iconAis)
-		AIS_Free(proc->iconAis);
+		DeleteAIS(proc->iconAis);
 
 	FillBgMap(gBg1MapBuffer, 0);
 	EnableBgSyncByIndex(1);
@@ -160,8 +160,8 @@ PROC_LABEL(1),
 void PopR_StartBattlePopups(void) {
 	struct AnimsOnWrapperProc* proc = (struct AnimsOnWrapperProc*) StartProc(sProc_PopR_AnimsOnWrapper, ROOT_PROC_3);
 
-	gpPopup6C = (struct Proc*) (proc);
-	gBoolPopupEnded = FALSE;
+	gpBattlePopupProc = (struct Proc*) (proc);
+	gBattlePopupEnded = FALSE;
 
 	if (gSomethingRelatedToAnimAndDistance == 4)
 		// Promoting!
@@ -192,6 +192,6 @@ static void PopR_AnimsOnWrapperLoop(struct AnimsOnWrapperProc* proc) {
 }
 
 static void PopR_AnimsOnWrapperCleanup(struct AnimsOnWrapperProc* proc) {
-	gBoolPopupEnded = TRUE;
+	gBattlePopupEnded = TRUE;
 	Sound_SetSongVolume(0x100);
 }

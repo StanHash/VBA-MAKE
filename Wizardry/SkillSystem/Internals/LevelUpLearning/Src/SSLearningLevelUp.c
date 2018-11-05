@@ -109,14 +109,14 @@ int SS_PopR_InitSkillLearning(void) {
 		if (!gpSSLearningState->skillLearnedId[i])
 			continue;
 
-		if (gSubjectBattleStruct.unit.index == gpSSLearningState->skillLearnedUnitId[i]) {
+		if (gActiveBattleUnit.unit.index == gpSSLearningState->skillLearnedUnitId[i]) {
 			SetPopupItem(gpSSLearningState->skillLearnedId[i]);
 			gpSSLearningState->skillLearnedId[i] = 0;
 
 			return TRUE;
 		}
 
-		if (gTargetBattleStruct.unit.index == gpSSLearningState->skillLearnedUnitId[i]) {
+		if (gTargetBattleUnit.unit.index == gpSSLearningState->skillLearnedUnitId[i]) {
 			SetPopupItem(gpSSLearningState->skillLearnedId[i]);
 			gpSSLearningState->skillLearnedId[i] = 0;
 
