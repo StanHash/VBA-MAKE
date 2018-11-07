@@ -104,6 +104,8 @@ POP
 //Expanded Suspend + Debuffs
 #include "SuspendDebuffs/SuspendDebuffs.event"
 
+#include "ExpandedModularSave/ExModularSave.event"
+
 //Stat Screens palette by allegiance
 // #include "StatScreenAllegiance/StatScreenAllegiance.event"
 
