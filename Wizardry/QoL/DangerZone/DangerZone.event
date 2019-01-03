@@ -2,7 +2,7 @@
 #define DANGER_ZONE
 
 // Enable Danger Zone display by pressing select.
-// hack by circleseverywhere, rewritten by StanH_
+// hack by circleseverywhere, rewritten by Stan
 
 #ifdef _FE8_
 

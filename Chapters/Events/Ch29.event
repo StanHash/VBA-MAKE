@@ -89,8 +89,9 @@ ENDA
 // Events
 
 DebuffASMC:
-#incbin "StackingDebuffAllEnemies.dmp"
-WORD DebuffTable
+	SHORT $4770 // TODO
+	// #incbin "StackingDebuffAllEnemies.dmp"
+	// WORD <DbfTbl>
 
 UnitDied:
 //when a unit dies, their spirit debuffs every opponent

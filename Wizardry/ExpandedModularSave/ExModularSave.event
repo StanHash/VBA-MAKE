@@ -2,7 +2,7 @@
 #define EXPANDED_MODULAR_SAVE
 
 // Expanded and Modular Game and Suspend Save data system
-// hack by StanH_
+// hack by Stan
 
 // This references a lot of Colorz's Suspend expansion stuff
 // As well as his own plans for a complete expansion (which is what this hack is)
@@ -128,7 +128,7 @@ gGameSaveChunks:
 
 #include "Src/MSuFuncs.lyn.event"
 
-#include "SrcUser/SuspendUnitExtraData.lyn.event"
+#include "SrcUser/SuspendUnitDebuffs.lyn.event"
 
 ALIGN 4
 gSuspendSaveChunks:
@@ -153,9 +153,9 @@ gSuspendSaveChunks:
 	DeclSaveChunk($08C0, $08C4, ESU_SaveSuspendPlayerUnits, ESU_LoadSuspendPlayerUnits)
 	DeclSaveChunk($1184, $0898, ESU_SaveSuspendEnemyUnits,  ESU_LoadSuspendEnemyUnits)
 	DeclSaveChunk($1A1C, $0370, ESU_SaveSuspendGreenUnits,  ESU_LoadSuspendGreenUnits)
-	DeclSaveChunk($1D8C, $0900, SUE_SaveExtraData,          SUE_LoadExtraData) // Debuffs
+	DeclSaveChunk($1D8C, $0448, SUD_SaveDebuffs,            SUD_LoadDebuffs) // Debuffs
 
-	// Unused:
+	// Unused (replaced):
 	// DeclSaveChunk($08C0, $0A5C, MSu_SavePlayerUnits,  MSu_LoadPlayerUnits)  // Player Units
 	// DeclSaveChunk($131C, $0C30, MSu_SaveOtherUnits,   MSu_LoadOtherUnits)   // Non-Player Units
 
@@ -164,9 +164,6 @@ gSuspendSaveChunks:
 	// free up to $2E78
 
 	DeclSaveChunkEnd
-
-gpSuspendExtraDataRAM:
-	WORD DebuffTable // size: $0900
 
 // ===================================
 // = MODULAR EXPANDED SAVE INTERNALS =

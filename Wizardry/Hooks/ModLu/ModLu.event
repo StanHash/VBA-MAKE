@@ -2,7 +2,7 @@
 #define HAX_MODLU
 
 // Modular Level Up
-// hack by StanH_
+// hack by Stan
 
 #include "ModLuInternal.event"
 

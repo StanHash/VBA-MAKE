@@ -4,24 +4,36 @@
 #include "Common.event"
 
 pSpeedModifiers: // Speed
-	POIN prAddUnitSpeed prHalveIfRescuing prHalveIfCapturing prDebuffSpd prAddEquipSpeed prRallySpd prLifeAndDeathBonus prSkillFury
-	#ifdef __DebuffMinZero__
-	POIN prMinZero
-	#endif
-WORD 0
+	POIN MAddUnitSpd MHalveIfRescuing
 
-prAddUnitSpeed:
+#ifdef HAX_CAPTURE
+	POIN MHalveIfCapturing
+#endif // HAX_CAPTURE
+
+	POIN MAddEquipSpd
+
+#ifdef HAX_DEBUFFS
+	POIN MDebuff_ModifySpd MDebuff_RallyModifySpd MDebuff_RallyModifySpectrum
+#endif // HAX_DEBUFFS
+
+#ifdef HAX_SKILL_LND
+	POIN MLifeAndDeathBonus
+#endif // HAX_SKILL_LND
+
+#ifdef HAX_SKILL_FURY
+	POIN MSkillFury
+#endif // HAX_SKILL_FURY
+
+#ifdef __DebuffMinZero__
+	POIN MMinZero
+#endif
+
+	WORD 0 // End
+
+MAddUnitSpd:
 	rAdd(rSByteAt(UNIT_SPEED))
 
-prAddEquipSpeed:
+MAddEquipSpd:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemSpdBonus)))
-
-prDebuffSpd:
-	#incbin "Asm/DebuffSpd.bin"
-	WORD DebuffTable
-
-prRallySpd:
-	#incbin "Asm/RallySpd.bin"
-	WORD DebuffTable
 
 #endif // MODULAR_GETTER_SPEED_EVENT

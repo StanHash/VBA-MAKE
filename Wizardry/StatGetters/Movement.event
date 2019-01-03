@@ -4,33 +4,40 @@
 #include "Common.event"
 
 pMovModifiers: // Movement
-	POIN prAddUnitBaseMov prAddUnitMovBonus prRallyMov prSkillCelerity prNullifyIfGuardAI ArmorMarchCheck prNullifyIfFreeze
-	#ifdef __DebuffMinZero__
-	POIN prMinZero
-	#endif
-WORD 0
+	POIN MAddUnitBaseMov MAddUnitMovBonus
 
-prAddUnitBaseMov: // byte 0x12 in ROM class data is base class movement
+#ifdef HAX_DEBUFFS
+	POIN MDebuff_RallyModifyMov
+#endif // HAX_DEBUFFS
+
+#ifdef HAX_SKILL_CELERITY
+	POIN MSkillCelerity
+#endif // HAX_SKILL_CELERITY
+
+	// TODO: add within debuffs
+	// POIN ArmorMarchCheck
+
+	POIN MNullifyIfGuardAI MNullifyIfFreeze
+
+#ifdef __DebuffMinZero__
+	POIN MMinZero
+#endif
+
+	WORD 0 // End
+
+MAddUnitBaseMov: // byte 0x12 in ROM class data is base class movement
 	rAdd(rForWordAt(UNIT_ROMCLASS, rSByteAt(0x12))) 
 
-prAddUnitMovBonus:
+MAddUnitMovBonus:
 	rAdd(rSByteAt(UNIT_MOV_BONUS))
 
-prSkillCelerity:
-	rIfUnitHasSkill(CelerityID)
-		rAddConst(2)
-
-prNullifyIfGuardAI:
+MNullifyIfGuardAI:
 	rIfUnitHasNotAllegience(UA_BLUE)
 		rIfUnitHasGuardAI
 			rConstant(0)
 
-prNullifyIfFreeze:
+MNullifyIfFreeze:
 	rIfUnitHasStatus(0x9)
 		rConstant(0)
-
-prRallyMov:
-	#incbin "Asm/RallyMov.bin"
-	WORD DebuffTable
 
 #endif // MODULAR_GETTER_MOVEMENT_EVENT

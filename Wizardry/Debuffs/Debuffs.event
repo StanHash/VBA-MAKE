@@ -1,0 +1,121 @@
+#ifndef HAX_DEBUFFS
+#define HAX_DEBUFFS
+
+// Debuffs
+// hack by CrazyColorz5, with additions by circleseverywhere and Kirb
+
+// Debuffs now require ExpandedModularSave and ModularStatGetters
+
+#ifdef _FE8_
+
+#include "Extensions/Hack Installation.txt"
+
+ALIGN 4
+gpDebuffTable:
+	WORD DEBUFF_TABLE_ADDR
+
+#include "Src/Debuffs.lyn.event"
+
+{
+
+#include "Src/UnitDataOperations.lyn.event"
+#include "Src/DebuffClearHook.lyn.event"
+
+/*
+
+ALIGN 4
+PerTurn:
+	#incbin "Src/ProcessDebuffs.dmp"
+	WORD <DbfTbl>
+
+ALIGN 4
+SetDamagedThisTurn:
+	#incbin "Src/SetDamagedThisTurn.dmp"
+
+ALIGN 4
+SetPostBattleDebuffs:
+	#incbin "Src/SetDebuffs.dmp"
+	WORD <DbfTbl>
+	POIN ItemTable
+	POIN WeaponDebuffTable
+
+*/
+
+DebuffDepletionProcHook:
+	PROC_CALL_ROUTINE($018858) // replaced
+	PROC_CALL_ROUTINE(Debuff_TurnUpdate)
+
+	PROC_JUMP($59A2A8) // go back
+
+PUSH
+	// Debuffs
+
+	// TODO: ModularUnitDataOperations maybe?
+
+	// Replace ClearUnit
+	ORG $0177F4
+		jumpToHack(DebuffClearUnit)
+
+	// Replace CopyUnit
+	ORG $01781C
+		jumpToHack(DebuffCopyUnit)
+
+	// TODO: ModularTurnSwitchOperations maybe?
+
+	ORG $59A2A0
+		PROC_JUMP(DebuffDepletionProcHook)
+
+	// TODO: ModularChapterStartOperations maybe?
+
+	ORG $018F36
+		SHORT $46C0 // nop
+		jumpToHack(DebuffClearHook)
+
+	// Weapons/Battle
+
+	// TODO: redo everything related to battle because this is the skill system
+
+	/*
+
+	ORG $02B54E
+		SHORT $46C0 // nop
+		jumpToHack(SetDamagedThisTurn)
+
+	ORG $02B422
+		#incbin "Src/SetHitThisTurn.dmp"
+
+	ORG $02C078
+		callHack_r3(SetPostBattleDebuffs)
+
+	*/
+
+	// prevent debuffs and loading issue (Kirb)
+
+	// this breaks chapter data win array, claim flags and some other save stuff
+	// good job Kirb
+
+	/*
+
+	ORG 0xBA30
+		WORD 0x203ED40
+
+	ORG 0xBA54
+		WORD 0x203ED40
+
+	ORG 0xFA34
+		WORD 0x203ED40
+
+	ORG 0xD5B80
+		WORD 0x203ED40
+
+	*/
+
+POP
+
+}
+
+#else // _FE8_
+	ERROR Debuff hack is for FE8
+#endif // _FE8_
+
+#endif // HAX_DEBUFFS

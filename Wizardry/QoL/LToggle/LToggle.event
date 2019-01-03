@@ -2,7 +2,7 @@
 #define LTOGGLE_HACK
 
 // Toggle Battle Animations On/Off by holding L.
-// Hack by circleseverywhere, hook redone by StanH_
+// Hack by circleseverywhere, hook redone by Stan
 
 #ifdef _FE8_
 

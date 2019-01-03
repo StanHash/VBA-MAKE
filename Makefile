@@ -166,7 +166,7 @@ INCFLAGS     := $(foreach dir, $(INCLUDE_DIRS), -I "$(dir)")
 
 # setting up compilation flags
 ARCH    := -mcpu=arm7tdmi -mthumb -mthumb-interwork
-CFLAGS  := $(ARCH) $(INCFLAGS) -Wall -Os -mtune=arm7tdmi -fomit-frame-pointer -ffast-math -ffreestanding
+CFLAGS  := $(ARCH) $(INCFLAGS) -Wall -Os -mtune=arm7tdmi -ffreestanding -mlong-calls
 ASFLAGS := $(ARCH) $(INCFLAGS)
 
 # defining dependency flags
@@ -182,7 +182,7 @@ SDEPFLAGS = --MD "$(CACHE_DIR)/$(notdir $*).d"
 # I would be fine with generating an intermediate .s file but this breaks dependencies
 %.o: %.c
 	$(NOTIFY_PROCESS)
-	@$(CC) $(CFLAGS) $(CDEPFLAGS) -c $< -o $@ $(ERROR_FILTER)
+	@$(CC) $(CFLAGS) $(CDEPFLAGS) -g -c $< -o $@ $(ERROR_FILTER)
 
 # C to ASM rule
 %.asm: %.c

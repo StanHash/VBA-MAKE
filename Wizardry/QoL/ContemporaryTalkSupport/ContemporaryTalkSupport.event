@@ -2,7 +2,7 @@
 #define CONTEMPORARY_TALK_SUPPORT
 
 // Contemporary talk and support.
-// Hack by circleseverywhere, rewritten to C and to using ActionRework by StanH_
+// Hack by circleseverywhere, rewritten to C and to using ActionRework by Stan
 
 // include while in BL range, with inBLRange defined
 

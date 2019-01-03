@@ -2,7 +2,7 @@
 #define CASUAL_MODE
 
 // eid $B0 (by default) enables Casual Mode (fallen units come back next chapter).
-// hack by circleseverywhere, rewritten by StanH_
+// hack by circleseverywhere, rewritten by Stan
 
 #ifdef _FE8_
 

@@ -2,7 +2,7 @@
 #define HAX_MGG
 
 // Modular Growth Getters
-// Heavily based on Tequila's amazing work (hack itself by StanH_)
+// Heavily based on Tequila's amazing work (hack itself by Stan)
 
 #include "Src/MGGIncreaseStats.lyn.event"
 

@@ -7,8 +7,9 @@ VeinEffect(1, FreezeAndDebuff)
 
 ALIGN 4
 DebuffASMC:
-#incbin "DebuffEnemies.dmp"
-WORD DebuffTable
+	SHORT $4770 // TODO
+	// #incbin "DebuffEnemies.dmp"
+	// WORD <DbfTbl>
 
 ThisChapter:
 POIN TurnEventList

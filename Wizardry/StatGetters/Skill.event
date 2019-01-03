@@ -4,24 +4,28 @@
 #include "Common.event"
 
 pSkillModifiers: // Skill
-	POIN prAddUnitSkill prHalveIfRescuing prHalveIfCapturing prDebuffSkl prAddEquipSkill prRallySkl
-	#ifdef __DebuffMinZero__
-	POIN prMinZero
-	#endif
-WORD 0
+	POIN MAddUnitSkl MHalveIfRescuing
 
-prAddUnitSkill:
+#ifdef HAX_CAPTURE
+	MHalveIfCapturing
+#endif // HAX_CAPTURE
+
+	POIN MAddEquipSkl
+
+#ifdef HAX_DEBUFFS
+	POIN MDebuff_ModifySkl MDebuff_RallyModifySkl MDebuff_RallyModifySpectrum
+#endif // HAX_DEBUFFS
+
+#ifdef __DebuffMinZero__
+	POIN MMinZero
+#endif
+
+	WORD 0 // End
+
+MAddUnitSkl:
 	rAdd(rSByteAt(UNIT_SKILL))
 
-prAddEquipSkill:
+MAddEquipSkl:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemSklBonus)))
-
-prDebuffSkl:
-	#incbin "Asm/DebuffSkl.bin"
-	WORD DebuffTable
-
-prRallySkl:
-	#incbin "Asm/RallySkl.bin"
-	WORD DebuffTable
 
 #endif // MODULAR_GETTER_SKILL_EVENT

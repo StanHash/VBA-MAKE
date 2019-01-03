@@ -4,24 +4,28 @@
 #include "Common.event"
 
 pLuckModifiers: // Luck
-	POIN prAddUnitLuck prHalveIfCapturing prDebuffLck prAddEquipLuck prRallyLck
-	#ifdef __DebuffMinZero__
-	POIN prMinZero
-	#endif
-WORD 0
+	POIN MAddUnitLck
 
-prAddUnitLuck:
+#ifdef HAX_CAPTURE
+	POIN MHalveIfCapturing
+#endif // HAX_CAPTURE
+
+	POIN MAddEquipLck
+
+#ifdef HAX_DEBUFFS
+	POIN MDebuff_ModifyLck MDebuff_RallyModifyLck
+#endif // HAX_DEBUFFS
+
+#ifdef __DebuffMinZero__
+	POIN MMinZero
+#endif
+
+	WORD 0 // End
+
+MAddUnitLck:
 	rAdd(rSByteAt(UNIT_LUCK))
 
-prAddEquipLuck:
+MAddEquipLck:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemLckBonus)))
-
-prDebuffLck:
-	#incbin "Asm/DebuffLck.bin"
-	WORD DebuffTable
-
-prRallyLck:
-	#incbin "Asm/RallyLck.bin"
-	WORD DebuffTable
 
 #endif // MODULAR_GETTER_LUCK_EVENT

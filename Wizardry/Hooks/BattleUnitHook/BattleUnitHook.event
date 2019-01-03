@@ -2,7 +2,7 @@
 #define HAX_BATTLEUNITHOOK
 
 // Hooks for initializing and saving battle units
-// hack by StanH_
+// hack by Stan
 
 // (Used by the skill system learning system)
 

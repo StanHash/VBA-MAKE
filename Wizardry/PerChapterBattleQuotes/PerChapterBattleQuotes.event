@@ -2,7 +2,7 @@
 #define HAX_PER_CHAPTER_QUOTES
 
 // Per chapter Battle/Death quote lists (in addition to the pre-existing global one)
-// hack by StanH_
+// hack by Stan
 
 #ifndef SetSymbolDefined
 	// SetSymbol macro as an alternative to "Name = Value" (for backwards/ColorzCore compatibility)

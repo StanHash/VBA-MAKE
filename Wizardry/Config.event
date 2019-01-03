@@ -66,4 +66,18 @@
 	#define GameSpeedFastCheckAPress   False
 #endif // CustomGameSpeedConfig
 
+// ========================
+// = Debuff Table Address =
+// ========================
+
+#ifndef DebuffTableDefined
+	#define DebuffTableDefined
+
+	#define DEBUFF_TABLE_SIZE "$448" // 137 * 8
+	#define DEBUFF_TABLE_ADDR "($02040000 - DEBUFF_TABLE_SIZE)"
+
+	// TODO: remove
+	#define DebuffTable DEBUFF_TABLE_ADDR
+#endif
+
 #endif // WIZARDRY_CONFIG

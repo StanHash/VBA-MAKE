@@ -1,23 +1,69 @@
 #ifndef MODULAR_GETTER_COMMON_EVENT
 #define MODULAR_GETTER_COMMON_EVENT
 
-prHalveIfRescuing:
+MHalveIfRescuing:
 	rIfUnitHasState(US_RESCUING)
 		rIfUnitHasNotSkill(SaviorID)
 			rHalved
 
-prHalveIfCapturing:
-	#incbin "Asm/HalveIfCapturing.bin"
-	POIN Is_Capture_Set
-	
-prMinZero:
-{
-	rIf(Check)
-	ConstantZero:
-	rConstant(0)
+MMinZero: {
+	rIf(LessThanZero)
+		ConstZero: rConstant(0)
 
-	Check:
-	prCheckLessThan(ConstantZero)
+	LessThanZero:
+		prCheckLessThan(ConstZero)
 }
+
+// TODO: move all of those in their own skill installers
+
+#ifdef HAX_CAPTURE
+
+MHalveIfCapturing:
+	#incbin "Src/HalveIfCapturing.dmp"
+	POIN Is_Capture_Set
+
+#endif // HAX_CAPTURE
+
+#ifdef HAX_SKILL_CELERITY
+
+MSkillCelerity:
+	rIfUnitHasSkill(CelerityID)
+		rAddConst(2)
+
+#endif // HAX_SKILL_CELERITY
+
+#ifdef HAX_SKILL_LND
+
+MLifeAndDeathBonus:
+	_testSkill(HeroesLifeAndDeathID,5,0)
+
+MLifeAndDeathMinus:
+	_testSkill(HeroesLifeAndDeathID, 0, 5)
+
+#endif // HAX_SKILL_LND
+
+#ifdef HAX_SKILL_FURY
+
+MSkillFury:
+	rIfUnitHasSkill(FuryID)
+		rAddConst(2)
+
+#endif // HAX_SKILL_FURY
+
+#ifdef HAX_SKILL_FORTRESS
+
+MFortressDefensePow:
+	_testSkill(FortressDefenseID, 0, 3)
+
+MFortressResistancePow:
+	_testSkill(FortressResistanceID, 0, 3)
+
+MFortressDefenseDef:
+	_testSkill(FortressDefenseID, 5, 0)
+
+MFortressResistanceRes:
+	_testSkill(FortressResistanceID, 5, 0)
+
+#endif // HAX_SKILL_FORTRESS
 
 #endif // MODULAR_GETTER_COMMON_EVENT

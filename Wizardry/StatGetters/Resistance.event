@@ -4,33 +4,43 @@
 #include "Common.event"
 
 pResistanceModifiers: // Resistance
-	POIN prAddUnitResistance prHalveIfCapturing prDebuffRes prAddEquipResistance prRallyRes prAddPureWaterBarrierMod prLifeAndDeathMinus prSkillFury prFortressResistanceRes
-	#ifdef __DebuffMinZero__
-	POIN prMinZero
-	#endif
-WORD 0
+	POIN MAddUnitResistance
 
-prAddUnitResistance:
+#ifdef HAX_CAPTURE
+	POIN MHalveIfCapturing
+#endif // HAX_CAPTURE
+
+	POIN MAddEquipResistance MAddPureWaterBarrierMod
+
+#ifdef HAX_DEBUFFS
+	POIN MDebuff_ModifyRes MDebuff_RallyModifyRes MDebuff_RallyModifySpectrum
+#endif // HAX_DEBUFFS
+
+#ifdef HAX_SKILL_LND
+	POIN MLifeAndDeathMinus
+#endif // HAX_SKILL_LND
+
+#ifdef HAX_SKILL_FURY
+	POIN MSkillFury
+#endif // HAX_SKILL_FURY
+
+#ifdef HAX_SKILL_FORTRESS
+	POIN MFortressResistanceRes
+#endif // HAX_SKILL_FORTRESS
+
+#ifdef __DebuffMinZero__
+	POIN MMinZero
+#endif
+
+	WORD 0
+
+MAddUnitResistance:
 	rAdd(rSByteAt(UNIT_RESISTANCE))
 
-prAddEquipResistance:
+MAddEquipResistance:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemResBonus)))
 
-prAddPureWaterBarrierMod: // Upper part of byte 0x31 in unit struct is current pure water/barrier bonus duration
+MAddPureWaterBarrierMod: // Upper part of byte 0x31 in unit struct is current pure water/barrier bonus duration
 	rAdd(rUpperHalfByteOf(rUByteAt(0x31)))
 
-prDebuffRes:
-	#incbin "Asm/DebuffRes.bin"
-	WORD DebuffTable
-
-prRallyRes:
-	#incbin "Asm/RallyRes.bin"
-	WORD DebuffTable
-
-prLifeAndDeathMinus:
-_testSkill(HeroesLifeAndDeathID,0,5)
-
-prFortressResistanceRes:
-	_testSkill(FortressResistanceID,5,0)
-	
 #endif // MODULAR_GETTER_RESISTANCE_EVENT

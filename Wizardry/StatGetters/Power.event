@@ -4,37 +4,43 @@
 #include "Common.event"
 
 pPowerModifiers: // Power
-	POIN prAddUnitPower prHalveIfCapturing prDebuffStr prAddEquipPower prRallyStr prLifeAndDeathBonus prSkillFury prFortressDefensePow VigorDanceCheck prFortressResistancePow
-	#ifdef __DebuffMinZero__
-	POIN prMinZero
-	#endif
-WORD 0
+	POIN MAddUnitPower
 
-prAddUnitPower:
+#ifdef HAX_CAPTURE
+	POIN MHalveIfCapturing
+#endif // HAX_CAPTURE
+
+	POIN MAddEquipPower
+
+#ifdef HAX_DEBUFFS
+	POIN MDebuff_ModifyStr MDebuff_RallyModifyStr MDebuff_RallyModifySpectrum
+#endif // HAX_DEBUFFS
+
+#ifdef HAX_SKILL_LND
+	POIN MLifeAndDeathBonus
+#endif // HAX_SKILL_LND
+
+#ifdef HAX_SKILL_FURY
+	POIN MSkillFury
+#endif // HAX_SKILL_FURY
+
+#ifdef HAX_SKILL_FORTRESS
+	POIN MFortressDefensePow MFortressResistancePow
+#endif // HAX_SKILL_FORTRESS
+
+	// TODO: support this within debuffs
+	// POIN VigorDanceCheck
+
+#ifdef __DebuffMinZero__
+	POIN MMinZero
+#endif
+
+	WORD 0 // End
+
+MAddUnitPower:
 	rAdd(rSByteAt(UNIT_POWER))
 	
-prAddEquipPower:
+MAddEquipPower:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemPowBonus)))
-
-prDebuffStr:
-	#incbin "Asm/DebuffStr.bin"
-	WORD DebuffTable
-
-prRallyStr:
-	#incbin "Asm/RallyStr.bin"
-	WORD DebuffTable
-
-prLifeAndDeathBonus:
-_testSkill(HeroesLifeAndDeathID,5,0)
-
-prSkillFury:
-  rIfUnitHasSkill(FuryID)
-    rAddConst(2)
-    
-prFortressDefensePow:
-	_testSkill(FortressDefenseID,0,3)
-
-prFortressResistancePow:
-	_testSkill(FortressResistanceID,0,3)
 
 #endif // MODULAR_GETTER_POWER_EVENT

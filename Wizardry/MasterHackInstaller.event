@@ -101,8 +101,8 @@ POP
 //Modular Stat Screen
 #include "MSS/ModularStatScreen.event"
 
-//Expanded Suspend + Debuffs
-#include "SuspendDebuffs/SuspendDebuffs.event"
+// Expanded Suspend + Debuffs
+#include "Debuffs/Debuffs.event"
 
 #include "ExpandedModularSave/ExModularSave.event"
 

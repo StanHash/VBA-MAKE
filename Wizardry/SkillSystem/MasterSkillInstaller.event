@@ -289,7 +289,7 @@ SealSkills:
 #incbin "SealSkills/SealSkills.dmp"
 POIN SkillTester
 POIN SealSkillList
-WORD DebuffTable
+WORD DebuffTable // TODO: fix
 WORD FullMetalBodyID
 SealSkillList:
 BYTE SealStrID SealSklID SealSpdID SealDefID SealResID SealLukID
@@ -447,19 +447,19 @@ VigorDanceSkill: //set a bit in the debuff table's entry for the refreshed unit
 #incbin "OtherSkills/Vigordanceskill.dmp"
 POIN SkillTester
 WORD VigorDanceID
-WORD DebuffTable
+WORD DebuffTable // TODO: fix
 WORD VigorDanceBit
 WORD 8 //size of a debuff table entry
 
 VigorDanceCheck: //check if the bit is set and if so give the unit some stats
 #incbin "OtherSkills/Vigordancecheck.dmp"
-WORD DebuffTable
+WORD DebuffTable // TODO: fix
 WORD VigorDanceBit
 WORD 8 //size of a debuff table entry
 
 VigorDanceReset:
 #incbin "OtherSkills/Vigordancereset.dmp"
-WORD DebuffTable
+WORD DebuffTable // TODO: fix
 WORD VigorDanceBit
 WORD 8 //size of a debuff table entry
 
@@ -468,7 +468,7 @@ ArmorMarchSkill: //set a bit in the debuff table's entry for the refreshed unit
 #incbin "OtherSkills/Armormarchskill.dmp"
 POIN AuraSkillCheck
 WORD ArmorMarchID
-WORD DebuffTable
+WORD DebuffTable // TODO: fix
 WORD ArmorMarchBit
 WORD 8 //size of a debuff table entry
 POIN SkillTester
@@ -483,7 +483,7 @@ ALIGN 4
 
 ArmorMarchCheck: //check if the bit is set and if so give the unit some stats
 #incbin "OtherSkills/Armormarchcheck.dmp"
-WORD DebuffTable
+WORD DebuffTable // TODO: fix
 WORD ArmorMarchBit
 WORD 8 //size of a debuff table entry
 WORD 2 //ammount of movement to grant

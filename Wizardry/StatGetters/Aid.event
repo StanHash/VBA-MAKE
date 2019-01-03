@@ -4,31 +4,29 @@
 #include "Common.event"
 
 pAidModifiers: // Aid
-	POIN prAddUnitFinalConstitution prSubstractOne prAdjustAidIfMounted
-	#ifdef __DebuffMinZero__
-	POIN prMinZero
-	#endif
-WORD 0
+	POIN MAddUnitFinalCon MSubstractOne MAdjustAidIfMounted
 
-prAddUnitFinalConstitution:
+#ifdef __DebuffMinZero__
+	POIN MMinZero
+#endif
+
+	WORD 0 // End
+
+MAddUnitFinalCon:
 	rAdd(rCallExternal(prConGetter))
 
-prSubstractOne:
+MSubstractOne:
 	rSubConst(1)
 
-prAdjustAidIfMounted:
-{
+MAdjustAidIfMounted: {
 	rIfUnitHasAttribute(CA_MOUNTEDAID)
-		rCallSequence(_prNegate _prAddBaseMountedAidBonus _prAddMoreIfNotFemale)
+		rCallSequence(_Negate _AddBaseMountedAidBonus)
 
-_prNegate:
+_Negate:
 	rMinus(rCurrent)
 
-_prAddBaseMountedAidBonus:
-	rAddConst(19)
-
-_prAddMoreIfNotFemale: // Stupid mechanic imo, but we're going vanilla so :shrug:
-	rIfUnitHasNotAttribute(CA_FEMALE, rAddConst(5))
+_AddBaseMountedAidBonus:
+	rAddConst(24)
 }
 
 #endif // MODULAR_GETTER_AID_EVENT

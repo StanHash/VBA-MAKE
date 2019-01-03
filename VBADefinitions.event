@@ -13,10 +13,6 @@
 	#define ItemTable 0x809B10
 #endif
 
-#ifndef DebuffTable
-	#define DebuffTable 0x203F100
-#endif
-
 #include "GameData/Definitions/Chapters.event"
 #include "GameData/Definitions/Characters.event"
 #include "GameData/Definitions/ChapterAssets.event"

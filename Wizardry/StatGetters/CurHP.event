@@ -6,13 +6,15 @@
 // Note: prCapHPIfOverMax comes with MSG (InstallHelpers.event) since it's direct asm (+ you'll probably want it anyway)
 
 pCurHPModifiers: // Current HP
-	POIN prAddUnitCurHP prCapHPIfOverMax
-	#ifdef __DebuffMinZero__
-	POIN prMinZero
-	#endif
-WORD 0
+	POIN MAddUnitCurHP prCapHPIfOverMax
 
-prAddUnitCurHP:
+#ifdef __DebuffMinZero__
+	POIN MMinZero
+#endif
+
+	WORD 0 // End
+
+MAddUnitCurHP:
 	rAdd(rSByteAt(UNIT_CURHP))
 
 #endif // MODULAR_GETTER_CURHP_EVENT
