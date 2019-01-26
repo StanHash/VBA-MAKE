@@ -26,8 +26,8 @@ CheckForKid:
 
 	@ Get rescuing unit
 
-	add r0, #0x1B
-	ldr r0, [r0] @ ldr?
+	add  r0, #0x1B
+	ldrb r0, [r0]
 
 	ldr r2, lGetUnit
 	mov lr, r2
