@@ -1,17 +1,10 @@
 #include "SkillSystem.h"
 #include "PopupRework.h"
 
-struct SSLearningState {
-	/* ASSUMED ALLOCATED SIZE: 10 */
+// Skill id and forgot skill slot id occupy what were previously padding bytes in the battle unit
 
-	/* 00 */ u8 skillLearnedUnitId[4];
-	/* 04 */ u8 skillLearnedId[4];
-	/* 08 */ s8 skillForgetSlot[4];
-
-	/* 0C */ unsigned nextSlotIndex : 2; // range 0..3
-};
-
-extern struct SSLearningState* const gpSSLearningState;
+#define BU_SKILL_LEARNED(bu)     (*((u8*) (((void*) (bu)) + 0x58)))
+#define BU_SKILL_FORGET_SLOT(bu) (*((s8*) (((void*) (bu)) + 0x7F)))
 
 // =============================
 // = SKILL ICON POPR COMPONENT =
@@ -41,45 +34,19 @@ static void SS_PopRSkillIcon_Display(struct PopupReworkProc* proc, struct TextHa
 // ===========================
 
 void SSLearn_OnBattleUnitInit(struct BattleUnit* bu, struct Unit* unit) {
-	// Clean any leftover state for this unit
-
-	for (unsigned i = 0; i < 4; ++i) {
-		if (gpSSLearningState->skillLearnedUnitId[i] == unit->index) {
-			gpSSLearningState->skillLearnedUnitId[i] = 0;
-			gpSSLearningState->skillLearnedId[i]     = 0;
-			gpSSLearningState->skillForgetSlot[i]    = (-1);
-		}
-	}
-
-	// Because unsigned overflow is well defined in C, even for bitfields
-	// We can use gpSSLearningState->nextSlotIndex to interate on the 4
-	// Valid indices without worrying about manually looping
-
-	unsigned i = gpSSLearningState->nextSlotIndex++;
-
-	gpSSLearningState->skillLearnedUnitId[i] = unit->index;
-	gpSSLearningState->skillLearnedId[i]     = 0;
-	gpSSLearningState->skillForgetSlot[i]    = (-1);
+	BU_SKILL_LEARNED(bu) = 0;
+	BU_SKILL_FORGET_SLOT(bu) = (-1);
 }
 
 void SSLearn_OnBattleUnitDeinit(struct Unit* unit, struct BattleUnit* bu) {
-	for (unsigned i = 0; i < 4; ++i) {
-		if (gpSSLearningState->skillLearnedUnitId[i] != unit->index)
-			continue;
+	if (BU_SKILL_FORGET_SLOT(bu) >= 0)
+		SS_UnitForgetSkillSlot(unit, BU_SKILL_FORGET_SLOT(bu));
 
-		if (gpSSLearningState->skillForgetSlot[i] >= 0)
-			SS_UnitForgetSkillSlot(unit, gpSSLearningState->skillForgetSlot[i]);
+	if (BU_SKILL_LEARNED(bu)) {
+		int slot = SS_UnitGetFreeSkillSlot(unit);
 
-		if (gpSSLearningState->skillLearnedId[i]) {
-			int slot = SS_UnitGetFreeSkillSlot(unit);
-
-			if (slot >= 0)
-				SS_UnitSetSkillSlot(unit, slot, gpSSLearningState->skillLearnedId[i]);
-		}
-
-		gpSSLearningState->skillLearnedUnitId[i] = 0;
-
-		break;
+		if (slot >= 0)
+			SS_UnitSetSkillSlot(unit, slot, BU_SKILL_LEARNED(bu));
 	}
 }
 
@@ -91,13 +58,7 @@ void SSLearn_UnitLevelUp(struct BattleUnit* bu) {
 	if (!SS_UnitCanLearnSkills(&bu->unit))
 		return;
 
-	for (unsigned i = 0; i < 4; ++i) {
-		if (gpSSLearningState->skillLearnedUnitId[i] != bu->unit.index)
-			continue;
-
-		gpSSLearningState->skillLearnedId[i] = SS_UnitGetLevelUpSkill(&bu->unit, bu->unit.level);
-		break;
-	}
+	BU_SKILL_LEARNED(bu) = SS_UnitGetLevelUpSkill(&bu->unit, bu->unit.level);
 }
 
 // =============
@@ -105,23 +66,16 @@ void SSLearn_UnitLevelUp(struct BattleUnit* bu) {
 // =============
 
 int SS_PopR_InitSkillLearning(void) {
-	for (unsigned i = 0; i < 4; ++i) {
-		if (!gpSSLearningState->skillLearnedId[i])
-			continue;
+	if (BU_SKILL_LEARNED(&gActiveBattleUnit)) {
+		SetPopupItem(BU_SKILL_LEARNED(&gActiveBattleUnit));
+		BU_SKILL_LEARNED(&gActiveBattleUnit) = 0;
 
-		if (gActiveBattleUnit.unit.index == gpSSLearningState->skillLearnedUnitId[i]) {
-			SetPopupItem(gpSSLearningState->skillLearnedId[i]);
-			gpSSLearningState->skillLearnedId[i] = 0;
+		return TRUE;
+	} else if (BU_SKILL_LEARNED(&gTargetBattleUnit)) {
+		SetPopupItem(BU_SKILL_LEARNED(&gTargetBattleUnit));
+		BU_SKILL_LEARNED(&gTargetBattleUnit) = 0;
 
-			return TRUE;
-		}
-
-		if (gTargetBattleUnit.unit.index == gpSSLearningState->skillLearnedUnitId[i]) {
-			SetPopupItem(gpSSLearningState->skillLearnedId[i]);
-			gpSSLearningState->skillLearnedId[i] = 0;
-
-			return TRUE;
-		}
+		return TRUE;
 	}
 
 	return FALSE;
