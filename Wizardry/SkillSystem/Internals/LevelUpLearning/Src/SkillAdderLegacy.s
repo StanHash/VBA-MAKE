@@ -1,10 +1,11 @@
-.thumb
 
-@ adds a skill to the given unit's list of skills. Returns 0 if unit already has 4 skills
-@ r0 is unit in ram
+	.thumb
 
-.global SkillAdderLegacy
-.type   SkillAdderLegacy, %function
+	@ adds a skill to the given unit's list of skills. Returns 0 if unit already has 4 skills
+	@ r0 is unit in ram
+
+	.global SkillAdderLegacy
+	.type   SkillAdderLegacy, %function
 
 SkillAdderLegacy:
 	push {r4, lr}
@@ -19,7 +20,8 @@ SkillAdderLegacy:
 	cmp r0, #0 @ SKILL_LEARN_SUCCESS
 	beq .ReturnTrue
 
-	cmp r0, #3 @ SKILL_LEARN_ERR_NO_ROOM
+	neg r0, r0
+	mov r0, #3 @ SKILL_LEARN_ERR_NO_ROOM
 	bne .ReturnFalse
 
 	@ Write learned skill data to 202BCDE

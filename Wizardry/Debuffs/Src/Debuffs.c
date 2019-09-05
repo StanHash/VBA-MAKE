@@ -1,26 +1,31 @@
+
 #include "Debuffs.h"
 
 // ===============
 // = DEBUFF CORE =
 // ===============
 
-static int IsUnitInUnitArray(struct Unit* unit) {
+static int IsUnitInUnitArray(struct Unit* unit)
+{
 	ptrdiff_t diff = (unit - gUnitArray);
 	return (diff >= 0) && (diff < 137);
 }
 
-struct DebuffEntry* Debuff_GetEntryForUnit(struct Unit* unit) {
+struct DebuffEntry* Debuff_GetEntryForUnit(struct Unit* unit)
+{
 	if (unit->pCharacterData && IsUnitInUnitArray(unit))
 		return gpDebuffTable + (unit - gUnitArray);
 
 	return NULL;
 }
 
-void Debuff_ClearAll(void) {
+void Debuff_ClearAll(void)
+{
 	CpuFill32(0, gpDebuffTable, DEBUFF_TABLE_SIZE * sizeof(struct DebuffEntry));
 }
 
-void Debuff_Copy(struct Unit* source, struct Unit* target) {
+void Debuff_Copy(struct Unit* source, struct Unit* target)
+{
 	struct DebuffEntry* srcDebuff = Debuff_GetEntryForUnit(source);
 	struct DebuffEntry* dstDebuff = Debuff_GetEntryForUnit(target);
 
@@ -28,21 +33,25 @@ void Debuff_Copy(struct Unit* source, struct Unit* target) {
 		memcpy(dstDebuff, srcDebuff, sizeof(struct DebuffEntry));
 }
 
-void Debuff_Clear(struct Unit* unit) {
+void Debuff_Clear(struct Unit* unit)
+{
 	struct DebuffEntry* debuff = Debuff_GetEntryForUnit(unit);
 
 	if (debuff)
 		memset(debuff, 0, sizeof(struct DebuffEntry));
 }
 
-void Debuff_TurnUpdate(struct Unit* unit) {
+void Debuff_TurnUpdate(struct Unit* unit)
+{
 	struct DebuffEntry* debuff = Debuff_GetEntryForUnit(unit);
 
 	if (debuff) {
-		#define DEBUFF_DEPLETE(aEntry, statName) do { \
+		#define DEBUFF_DEPLETE(aEntry, statName) do \
+		{ \
 			if (((aEntry)->statName ## Debuff) > 0) \
 				((aEntry)->statName ## Debuff)--; \
-		} while (0)
+		} \
+		while (0)
 
 		DEBUFF_DEPLETE(debuff, str);
 		DEBUFF_DEPLETE(debuff, mag);
@@ -63,7 +72,8 @@ void Debuff_TurnUpdate(struct Unit* unit) {
 // =========================
 
 #define DECL_DEBUFF_MODIFY(StatName, statName) \
-int MDebuff_Modify ## StatName(int stat, struct Unit* unit) { \
+int MDebuff_Modify ## StatName(int stat, struct Unit* unit) \
+{ \
 	struct DebuffEntry* debuff = Debuff_GetEntryForUnit(unit); \
 	if (debuff) \
 		stat = stat - debuff->statName ## Debuff; \
@@ -81,7 +91,8 @@ DECL_DEBUFF_MODIFY(Lck, luk)
 #undef DECL_DEBUFF_MODIFY
 
 #define DELC_DEBUFF_RALLY_MODIFY(aBonus, StatName, STAT_NAME) \
-int MDebuff_RallyModify ## StatName(int stat, struct Unit* unit) { \
+int MDebuff_RallyModify ## StatName(int stat, struct Unit* unit) \
+{ \
 	struct DebuffEntry* debuff = Debuff_GetEntryForUnit(unit); \
 	if (debuff && (debuff->rallyBits & DEBUFF_RALLY_ ## STAT_NAME)) \
 		stat = stat + (aBonus); \

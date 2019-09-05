@@ -127,7 +127,7 @@ scEnding:
 Text(Ch23Ending)
 CAM1 CharVoid
 FlashCursor(CharVoid, 60)
-SETVAL 0x3 Vidofnir
+SVAL 0x3 Vidofnir
 GIVETO 0x1
 MNCH 24
 ENDA

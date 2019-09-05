@@ -115,7 +115,7 @@ ENUN
 LOAD1 0x0 Reinforcements2
 ENUN
 FADU 10
-SETVAL 0xB 0xFFFFFFFF
+SCOORD sB [-1, -1]
 TUTORIALTEXTBOXSTART
 TEXTSHOW Ch17Opening
 TEXTEND
@@ -140,7 +140,7 @@ ReinforcementEvent(Reinforcements2)
 KillThrone:
 CAM1 [0,2]
 STAL 0x16
-SETVAL 0xB 0x20009
+SCOORD sB [9, 2]
 Text(Ch17LyonDecays)
 WARP_OUT
 ENUN

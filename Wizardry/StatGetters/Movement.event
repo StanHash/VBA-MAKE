@@ -7,7 +7,7 @@ pMovModifiers: // Movement
 	POIN MAddUnitBaseMov MAddUnitMovBonus
 
 #ifdef HAX_DEBUFFS
-	POIN MDebuff_RallyModifyMov
+	POIN MDebuff_RallyModifyMov-1
 #endif // HAX_DEBUFFS
 
 #ifdef HAX_SKILL_CELERITY

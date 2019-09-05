@@ -95,18 +95,22 @@
 } while (0)
 
 #define SAVE_UNIT_PLAYER_COMMON \
-	/* 000 */ u8 supports[7];   \
-	/* 056 */ SAVE_UNIT_COMMON; \
-	/* 284 */ unsigned exp : 7; \
-	/* 291 */ /* end */
+	/* 000 */ u8 supports[6];   \
+	/* 048 */ SAVE_UNIT_COMMON; \
+	/* 276 */ unsigned exp : 7; \
+	/* 283 */ /* end */
 
 #define PackSaveUnitPlayerCommon(apSaveUnit, apUnit) do { \
 	PackSaveUnitCommon(apSaveUnit, apUnit); \
+	for (unsigned i = 0; i < 6; ++i) \
+		(apSaveUnit)->supports[i] = (apUnit)->supports[i]; \
 	(apSaveUnit)->exp = (apUnit)->exp; \
 } while (0)
 
 #define UnpackSaveUnitPlayerCommon(apSaveUnit, apUnit) do { \
 	UnpackSaveUnitCommon(apSaveUnit, apUnit); \
+	for (unsigned i = 0; i < 6; ++i) \
+		(apUnit)->supports[i] = (apSaveUnit)->supports[i]; \
 	(apUnit)->exp = ((apSaveUnit)->exp != ((1 << 7)-1)) ? (apSaveUnit)->exp : -1; \
 } while (0)
 
@@ -193,19 +197,19 @@ static void PackSuspendSaveNonPlayerUnit(struct SuspendSaveNonPlayerUnit* saveUn
 	saveUnit->ai1Cur = unit->ai1data;
 	saveUnit->ai2Cur = unit->ai2data;
 	saveUnit->aiConf = unit->ai3And4;
-	saveUnit->aiFlag = unit->_u0A_saved;
+	saveUnit->aiFlag = unit->aiFlag;
 }
 
 static void UnpackSuspendSaveNonPlayerUnit(struct SuspendSaveNonPlayerUnit* saveUnit, struct Unit* unit) {
 	UnpackSaveUnitCommon(saveUnit, unit);
 	UnpackSaveUnitSuspendExtra(saveUnit, unit);
 
-	unit->ai1        = saveUnit->ai1;
-	unit->ai2        = saveUnit->ai2;
-	unit->ai1data    = saveUnit->ai1Cur;
-	unit->ai2data    = saveUnit->ai2Cur;
-	unit->ai3And4    = saveUnit->aiConf;
-	unit->_u0A_saved = saveUnit->aiFlag;
+	unit->ai1     = saveUnit->ai1;
+	unit->ai2     = saveUnit->ai2;
+	unit->ai1data = saveUnit->ai1Cur;
+	unit->ai2data = saveUnit->ai2Cur;
+	unit->ai3And4 = saveUnit->aiConf;
+	unit->aiFlag  = saveUnit->aiFlag;
 
 	// Initialize unit supports
 	// Since this is a non-player unit, save supports doesn't matter?

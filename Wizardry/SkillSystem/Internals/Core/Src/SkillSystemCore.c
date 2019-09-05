@@ -7,79 +7,131 @@ extern const u16 SkillDescTable[];
 extern const u16 DefaultSkillDesc;
 
 /*!
- * \param unit the unit who's skills to get
- * \param buffer the buffer in which to write null-terminated skill list
- * \return number of skills written to buffer
+ * \param unit unit
+ * \return pointer to read-write skill array of (size is at least SKILL_SAVED_COUNT)
  */
-int SS_GetUnitSkillList(const struct Unit* unit, u8 buffer[SKILL_BUFFER_SIZE]) {
+u8* SS_GetUnitSkillArray(struct Unit* unit)
+{
+	return unit->supports;
+}
+
+/*!
+ * \param unit unit
+ */
+void SS_ClearUnitSkills(struct Unit* unit)
+{
+	memset(SS_GetUnitSkillArray(unit), 0, SKILL_SAVED_COUNT);
+}
+
+/*!
+ * \param unit the unit who's skill count to get
+ * \return number of skills the unit current has
+ */
+int SS_CountUnitSkills(struct Unit* unit)
+{
 	unsigned count = 0;
+	const u8* list = SS_GetUnitSkillArray(unit);
 
-	// TODO: The idea is that this will eventually be modular
-	// And call functions from an arbitrary list
+	while (count < SKILL_SAVED_COUNT)
+	{
+		if (!list[count])
+			break;
 
-	// Get personal skill
-
-	unsigned personalSkill = PersonalSkillTable[unit->pCharacterData->number];
-
-	if (personalSkill)
-		buffer[count++] = personalSkill;
-
-	// Get class skill
-
-	unsigned classSkill = ClassSkillTable[unit->pClassData->number];
-
-	if (classSkill)
-		buffer[count++] = classSkill;
-
-	// Get learned skills
-	count += SS_GetUnitLearnedSkillList(unit, buffer + count);
-
-	// getting the learning skill list already adds a null-terminator
-	// buffer[count] = 0; // null-terminate list
+		count++;
+	}
 
 	return count;
 }
 
 /*!
- * \param list skill list to search in. This can be any length.
- * \param skillId skill id to check for
- * \return non-zero if skill is listed
- *
- * note: this checks for special skill ids 0 and 0xFF and returns accordingly
+ * \param unit the unit to check whether it has the skill
+ * \param sid skill id to check for
+ * \return non-zero if unit has the skill
  */
-int SS_IsSkillInList(const u8* list, unsigned skillId) {
-	if (skillId == SKILL_NEVER_ID)
+int SS_UnitHasSkill(struct Unit* unit, unsigned sid)
+{
+	if (sid == SKILL_NEVER_ID)
 		return FALSE;
 
-	if (skillId == SKILL_ALWAYS_ID)
+	if (sid == SKILL_ALWAYS_ID)
 		return TRUE;
 
-	for (unsigned i = 0; list[i]; ++i)
-		if (skillId == list[i])
+	const u8* list = SS_GetUnitSkillArray(unit);
+
+	for (unsigned i = 0; i < SKILL_SAVED_COUNT; ++i)
+	{
+		if (sid == list[i])
 			return TRUE;
+	}
 
 	return FALSE;
 }
 
 /*!
- * \param unit the unit to check whether it has the skill
- * \param skillId skill id to check for
- * \return non-zero if unit has the skill
+ * \param unit unit
+ * \return error code (slot id on success)
  */
-int SS_UnitHasSkill(const struct Unit* unit, unsigned skillId) {
-	u8 skills[SKILL_BUFFER_SIZE];
+int SS_UnitGetFreeSkillSlot(struct Unit* unit)
+{
+	u8* learnedSkills = SS_GetUnitSkillArray(unit);
 
-	SS_GetUnitSkillList(unit, skills);
+	for (unsigned i = 0; i < SKILL_SAVED_COUNT; ++i)
+		if (!learnedSkills[i])
+			return i;
 
-	return SS_IsSkillInList(skills, skillId);
+	return SKILL_LEARN_ERR_NO_ROOM;
 }
 
 /*!
- * \param skillId skill id
+ * \param unit unit
+ * \param slot the slot in which the skill to forget resides
+ */
+void SS_UnitForgetSkillSlot(struct Unit* unit, unsigned slot)
+{
+	u8* learnedSkills = SS_GetUnitSkillArray(unit);
+
+	for (unsigned i = slot; i < (SKILL_SAVED_COUNT-1); ++i)
+		learnedSkills[i] = learnedSkills[i+1];
+
+	learnedSkills[SKILL_SAVED_COUNT-1] = 0;
+}
+
+/*!
+ * \param unit unit
+ * \param slot skill slot
+ * \param sid skill id to put in slot
+ */
+void SS_UnitSetSkillSlot(struct Unit* unit, unsigned slot, unsigned sid)
+{
+	SS_GetUnitSkillArray(unit)[slot] = sid;
+}
+
+/*!
+ * \param unit the unit who to learn the skill to
+ * \param sid skill id
+ * \return error code (zero/SKILL_LEARN_SUCCESS on success)
+ */
+int SS_UnitLearnSkill(struct Unit* unit, unsigned sid)
+{
+	if (SS_UnitHasSkill(unit, sid))
+		return SKILL_LEARN_ERR_ALREADY_KNOWN;
+
+	int slot = SS_UnitGetFreeSkillSlot(unit);
+
+	if (slot < 0)
+		return slot; // probably SKILL_LEARN_ERR_NO_ROOM
+
+	SS_UnitSetSkillSlot(unit, slot, sid);
+
+	return SKILL_LEARN_SUCCESS;
+}
+
+/*!
+ * \param sid skill id
  * \return text id refering to skill description
  */
-int SS_GetSkillDescId(int skillId) {
-	unsigned desc = SkillDescTable[skillId];
-
+int SS_GetSkillDescId(unsigned sid)
+{
+	unsigned desc = SkillDescTable[sid];
 	return (desc ? desc : DefaultSkillDesc);
 }

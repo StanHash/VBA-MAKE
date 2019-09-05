@@ -18,10 +18,6 @@
 #include "Src/SSLearningLevelUp.lyn.event"
 
 ALIGN 4
-gpSSLearningState:
-	WORD $2026E20
-
-ALIGN 4
 gPopup_SS_SkillLearned:
 	Popup_SetSound(0x5A)
 
@@ -40,5 +36,36 @@ gPopup_SS_SkillLearned:
 
 PopRSetPopupCodeHandlers(POPR_SKILL_ICON_COMPONENT, gSS_PopRComponent_SkillIcon)
 // TODO: PopRSetPopupCodeHandlers(POPR_SKILL_NAME_COMPONENT, gSS_PopRComponent_SkillName)
+
+// Skill Learning ASM compat wrappers
+#include "Src/SkillAdderLegacy.lyn.event"
+
+// Compat Aliases
+
+#ifndef SetSymbolDefined
+	// SetSymbol macro as an alternative to "Name = Value" (for backwards/ColorzCore compatibility)
+
+	#define SetSymbolDefined
+	#define SetSymbol(__aName, __aValue) "PUSH; ORG (__aValue); __aName:; POP"
+#endif // SetSymbolDefined
+
+SetSymbol(SkillAdder, SkillAdderLegacy-1)
+
+// ========================
+// = SKILL LEARNING HOOKS =
+// ========================
+
+{
+
+#include "Src/UnitLoadingHook.lyn.event"
+
+PUSH
+
+	ORG $17EF4
+		jumpToHack(UnitLoadingHook)
+
+POP
+
+}
 
 #endif // CSKILLS_LEVELUP_LEARNING

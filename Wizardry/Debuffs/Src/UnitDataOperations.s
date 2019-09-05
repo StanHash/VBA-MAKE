@@ -1,10 +1,11 @@
-.thumb
 
-.global DebuffClearUnit
-.type   DebuffClearUnit, %function
+	.thumb
 
-.global DebuffCopyUnit
-.type   DebuffCopyUnit, %function
+	.global DebuffClearUnit
+	.type   DebuffClearUnit, %function
+
+	.global DebuffCopyUnit
+	.type   DebuffCopyUnit, %function
 
 DebuffClearUnit:
 	push {r4-r5, lr}
@@ -32,8 +33,8 @@ DebuffClearUnit:
 	pop {r3}
 BXR3:	bx  r3
 
-.pool
-.align
+	.pool
+	.align
 
 DebuffCopyUnit:
 	push {r4-r6, lr}
@@ -63,5 +64,5 @@ DebuffCopyUnit:
 	pop {r0}
 	bx  r0
 
-.pool
-.align
+	.pool
+	.align

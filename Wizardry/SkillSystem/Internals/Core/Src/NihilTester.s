@@ -1,14 +1,15 @@
-.thumb
 
-@ NihilTester - given ram data in r0 and skill number in r1, changes r1 to 0xFF before passing it to SkillTester when:
-@ the skill is a skill that Nihil nullifies/negates (so if in the NegatedSkills list)
-@ the skill is being tested in a battle or whilst targeting an enemy
-@ the skill to be tested belongs to either the attacker or the defender (so they are in a battle/targeting)
-@ skill 0 is always true, skill FF is always false.
-@ I probably was really wasteful with the registers but oh well I did not think about that until I had tested a billion skills and I lazy
+	.thumb
 
-.global NihilTester
-.type   NihilTester, %function
+	@ NihilTester - given ram data in r0 and skill number in r1, changes r1 to 0xFF before passing it to SkillTester when:
+	@ the skill is a skill that Nihil nullifies/negates (so if in the NegatedSkills list)
+	@ the skill is being tested in a battle or whilst targeting an enemy
+	@ the skill to be tested belongs to either the attacker or the defender (so they are in a battle/targeting)
+	@ skill 0 is always true, skill FF is always false.
+	@ I probably was really wasteful with the registers but oh well I did not think about that until I had tested a billion skills and I lazy
+
+	.global NihilTester
+	.type   NihilTester, %function
 
 NihilTester:
 	push {r4-r7, lr}
@@ -103,21 +104,14 @@ NihilTester:
 	@ = PART II: CATCH THEM ALL =
 	@ ===========================
 
-	@ Get Skills in buffer at sp
-
-	mov r0, r7 @ arg r0 = unit
-	mov r1, sp @ arg r1 = buffer
-
-	bl SS_GetUnitSkillList
-
 	@ Check if Catch Them All is in the unit skill list
 
-	mov r0, sp    @ arg r0 = list
+	mov r0, r7    @ arg r0 = unit
 
 	adr  r1, lCatchThemAllId
 	ldrb r1, [r1] @ arg r1 = skill id
 
-	bl SS_IsSkillInList
+	bl SS_UnitHasSkill
 
 	@ If the unit has catch them all, return true
 
@@ -126,10 +120,10 @@ NihilTester:
 
 	@ Check for the skill the standard way
 
-	mov r0, sp @ arg r0 = list
+	mov r0, r7 @ arg r0 = unit
 	mov r1, r6 @ arg r1 = skill id
 
-	bl SS_IsSkillInList
+	bl SS_UnitHasSkill
 
 	b .End
 
@@ -148,10 +142,12 @@ NihilTester:
 	pop {r1}
 	bx r1
 
-.align
+	.align
+
 lCatchThemAllId:
 	.byte CatchEmAllID
 
-.align
+	.align
+
 lNihilId:
 	.byte NihilID

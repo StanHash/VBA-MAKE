@@ -13,7 +13,7 @@ pLuckModifiers: // Luck
 	POIN MAddEquipLck
 
 #ifdef HAX_DEBUFFS
-	POIN MDebuff_ModifyLck MDebuff_RallyModifyLck
+	POIN MDebuff_ModifyLck-1 MDebuff_RallyModifyLck-1
 #endif // HAX_DEBUFFS
 
 #ifdef __DebuffMinZero__

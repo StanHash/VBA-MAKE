@@ -169,7 +169,7 @@ scRecruitTalk1: {
 
 	Text(Ch1WithoutMember)
 
-	SVAL 0x3 ChestKey
+	SVAL s3 ChestKey
 	GIVEITEMTO 0xFFFF
 
 	NoFade
@@ -211,7 +211,7 @@ scVillageCheck: {
 
 	BEQ  0 rB r0
 
-	SVAL 0xB 0x1000D
+	SCOORD sB [13, 1]
 	TILECHANGE 0xFFFF
 
 	ENUT 10

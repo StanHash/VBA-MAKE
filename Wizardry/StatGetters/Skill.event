@@ -13,7 +13,7 @@ pSkillModifiers: // Skill
 	POIN MAddEquipSkl
 
 #ifdef HAX_DEBUFFS
-	POIN MDebuff_ModifySkl MDebuff_RallyModifySkl MDebuff_RallyModifySpectrum
+	POIN MDebuff_ModifySkl-1 MDebuff_RallyModifySkl-1 MDebuff_RallyModifySpectrum-1
 #endif // HAX_DEBUFFS
 
 #ifdef __DebuffMinZero__

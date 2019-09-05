@@ -13,7 +13,7 @@ pSpeedModifiers: // Speed
 	POIN MAddEquipSpd
 
 #ifdef HAX_DEBUFFS
-	POIN MDebuff_ModifySpd MDebuff_RallyModifySpd MDebuff_RallyModifySpectrum
+	POIN MDebuff_ModifySpd-1 MDebuff_RallyModifySpd-1 MDebuff_RallyModifySpectrum-1
 #endif // HAX_DEBUFFS
 
 #ifdef HAX_SKILL_LND

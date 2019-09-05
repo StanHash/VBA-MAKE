@@ -1,6 +1,13 @@
 #ifndef CSKILLS_CORE
 #define CSKILLS_CORE
 
+// CSkills, Skill system rewrite by Stan
+
+// What changes:
+// This doesn't use BWL to store skills. Instead, it uses support data.
+// This means that all 6 skills can be stored for all 135 or so units.
+// (As opposed to 4 skills for around 70 units and no character overlap)
+
 // =================================
 // = PUBLIC SKILL SYSTEM FUNCTIONS =
 // =================================
@@ -10,7 +17,7 @@
 
 // ASM Wrappers for compat and stuff
 #include "Src/SkillGetterLegacy.lyn.event"
-#include "Src/NihilTester.lyn.event" // TODO: move elsewhere (not core enough)
+// #include "Src/NihilTester.lyn.event" // TODO: move elsewhere (not core enough) TODO: rewrite as battle calc
 #include "Src/SkillDescHelpTextLadder.lyn.event" // TODO: move elsewhere (mss helpers)
 
 #ifndef SetSymbolDefined
@@ -23,7 +30,7 @@
 // for-compatibility-and-without-thumb-bit aliases
 // the plan is to eventually not need those
 
-SetSymbol(SkillTester,     NihilTester-1)
+SetSymbol(SkillTester,     SS_UnitHasSkill-1)
 SetSymbol(Skill_Getter,    SkillGetterLegacy-1)
 SetSymbol(SkillDescGetter, SkillDescHelpTextLadder-1)
 

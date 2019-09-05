@@ -13,7 +13,7 @@ pPowerModifiers: // Power
 	POIN MAddEquipPower
 
 #ifdef HAX_DEBUFFS
-	POIN MDebuff_ModifyStr MDebuff_RallyModifyStr MDebuff_RallyModifySpectrum
+	POIN MDebuff_ModifyStr-1 MDebuff_RallyModifyStr-1 MDebuff_RallyModifySpectrum-1
 #endif // HAX_DEBUFFS
 
 #ifdef HAX_SKILL_LND

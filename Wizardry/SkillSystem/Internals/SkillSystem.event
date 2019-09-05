@@ -1,9 +1,10 @@
 // Skill System replacing favouritism stat
 #include "Repointbuffer.event"
-#include "FE8WeaponRankOnLevelup/FE8WeaponRankOnLevelupEA.txt"
+
+// TODO: take the PopR one from the skill system once internet is back up
+//#include "FE8WeaponRankOnLevelup/FE8WeaponRankOnLevelupEA.txt"
 
 #include "Core/SkillSystemCore.event"
-#include "Learning/SkillSystemLearning.event"
 #include "LevelUpLearning/CSkillsLevelupLearning.event"
 
 DefaultSkillDesc:
@@ -76,24 +77,15 @@ POP
 }
 
 ALIGN 4
-AnimsOnPopupHack:
-#include "Animsonhack75ca8.lyn.event"
-WORD LearnedSkillText
-
-AddSkillsOnLoad:
-#incbin "Unitloading.dmp"
-POIN LevelUpSkillTable
-POIN SkillAdder
-POIN ChargeupTable
-POIN Skill_Getter
-
 RTextLoop:
 #incbin "Rtextloop.dmp"
 POIN Skill_Getter
 
+ALIGN 4
 Rerun_Battle_Calcs:
 #incbin "RerunBattleCalcs.dmp"
 
+ALIGN 4
 Unset_Attack_Flag_2:
 #incbin "ClearAttackFlag.dmp"
 

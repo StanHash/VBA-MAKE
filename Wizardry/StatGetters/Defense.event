@@ -13,7 +13,7 @@ pDefenseModifiers: // Defense
 	POIN MAddEquipDef
 
 #ifdef HAX_DEBUFFS
-	POIN MDebuff_ModifyDef MDebuff_RallyModifyDef MDebuff_RallyModifySpectrum
+	POIN MDebuff_ModifyDef-1 MDebuff_RallyModifyDef-1 MDebuff_RallyModifySpectrum-1
 #endif // HAX_DEBUFFS
 
 #ifdef HAX_SKILL_LND

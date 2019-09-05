@@ -13,7 +13,7 @@ pResistanceModifiers: // Resistance
 	POIN MAddEquipResistance MAddPureWaterBarrierMod
 
 #ifdef HAX_DEBUFFS
-	POIN MDebuff_ModifyRes MDebuff_RallyModifyRes MDebuff_RallyModifySpectrum
+	POIN MDebuff_ModifyRes-1 MDebuff_RallyModifyRes-1 MDebuff_RallyModifySpectrum-1
 #endif // HAX_DEBUFFS
 
 #ifdef HAX_SKILL_LND

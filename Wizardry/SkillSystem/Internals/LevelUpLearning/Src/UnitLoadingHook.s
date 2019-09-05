@@ -13,9 +13,9 @@ ReturnLocation = 0x8017EFC+1
 UnitLoadingHook:
 	push {r4-r7, lr}
 
-	mov r5, r0 @ r5 = unit
+	mov r5, r0 @ var r5 = unit
 
-	bl SS_InitializeUnitLearnedSkills
+	bl SS_UnitAutolevelSkills
 
 	@ Restore replaced code
 

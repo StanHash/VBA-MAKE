@@ -41,7 +41,7 @@ EVENT_SYMBOLS := VBAR.sym.event
 $(ROM_TARGET): $(EVENT_MAIN) $(EVENT_DEPENDS) $(ROM_SOURCE)
 	@echo Building $(ROM_TARGET).
 	@cp -f $(ROM_SOURCE) $(ROM_TARGET)
-	@$(CCEA) A FE8 -output:$(ROM_TARGET) -input:$(EVENT_MAIN) || (rm $(ROM_TARGET) && false)
+	@$(CCEA) A FE8 -output:$(ROM_TARGET) -input:$(EVENT_MAIN) --nocash-sym || (rm $(ROM_TARGET) && false)
 
 # Dependency making rule
 # The sed invocation is to convert windows dir separators ('\') to unix ('/', so make doesn't break)
@@ -86,13 +86,7 @@ WRITANS_DEFINITIONS := Writans/TextDefinitions.event
 # Make text installer and definitions from text
 $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS): $(WRITANS_TEXT_MAIN) $(WRITANS_ALL_TEXT)
 	$(NOTIFY_PROCESS)
-	@$(TEXT_PROCESS) $(WRITANS_TEXT_MAIN) $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS)
-
-# Convert formatted text to insertable binary
-# Nulling output because it's annoying
-%.fetxt.dmp: %.fetxt
-	$(NOTIFY_PROCESS)
-	@$(PARSEFILE) $< -o $@ > /dev/null
+	@$(TEXT_PROCESS) $(WRITANS_TEXT_MAIN) --installer $(WRITANS_INSTALLER) --definitions $(WRITANS_DEFINITIONS) --parser-exe $(PARSEFILE)
 
 # ==========
 # = TABLES =

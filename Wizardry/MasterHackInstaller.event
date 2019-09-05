@@ -84,6 +84,12 @@ POP
 // It's annoying :( I'm not using it
 // #include "QoL/MovementArrowHack/MovementArrowHack.event"
 
+// TODO: Rewrite support system to use freed space in Bwl instead
+
+#include "Misc/RemoveSupports.event" // Remove supports to make room in unit (6 bytes)
+#include "BriefBwl/BriefBwl.event" // Shrink BWL data use to make room in bwl (11 bytes)
+
+// Per change Battle quotes
 #include "PerChapterBattleQuotes/PerChapterBattleQuotes.event"
 
 //Improved Sound Mixer

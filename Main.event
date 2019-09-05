@@ -81,7 +81,7 @@ ORG FreeSpace
 
     #include "Spritans/Portraits.event"
     #include "Spritans/Misc/MasterGraphicsInstaller.event"
-    #include "Spritans/BattlePalettes/PaletteSetup.event"   
+    #include "Spritans/BattlePalettes/PaletteSetup.event"
 
     // Music
 
@@ -93,7 +93,6 @@ ORG FreeSpace
 
     // Ensure we did not get part free space
     ASSERT (FreeSpaceEnd - CURRENTOFFSET)
-
 #else
     ERROR You are not assembling FE8 events!
 #endif

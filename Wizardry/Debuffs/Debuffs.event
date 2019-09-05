@@ -42,7 +42,7 @@ SetPostBattleDebuffs:
 */
 
 DebuffDepletionProcHook:
-	PROC_CALL_ROUTINE($018858) // replaced
+	PROC_CALL_ROUTINE($018859) // replaced
 	PROC_CALL_ROUTINE(Debuff_TurnUpdate)
 
 	PROC_JUMP($59A2A8) // go back

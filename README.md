@@ -45,7 +45,7 @@ The setup required to build this is very much similar to what you need for [FE-C
 - python 3 in your path
 - A non-standard EA as `Tools/EventAssembler` (see CHAX for details and link), used for generation make dependencies
   - Right now this also requires a custom build of [ColorzCore](https://github.com/FireEmblemUniverse/ColorzCore) (specifically from the [`core-relative-include` branch in my fork of it](https://github.com/StanHash/ColorzCore/tree/core-relative-include)), as ColorzCore is now used for the "final" pass.
-    - This also means updated raws from the official 11.1.3 Event Assembler!
+    - This also requires the raws and stdlib from [my unofficial "experimental" stdlib fork](https://github.com/StanHash/EAStandardLibrary/tree/experimental)!
       - So much stuff oof
 - Png2Dmp, PortraitFormatter and ParseFile in `Tools`
 - lyn in `Tools`

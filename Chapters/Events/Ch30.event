@@ -292,7 +292,7 @@ POIN EpilogueEvents
 POP
 
 EpilogueEvents:
-SETVAL 0xB 0xC0011
+SVAL 0xB 0xC0011
 LOMA 0x1 //Load some map
 MUSC 0x42
 FADU 16

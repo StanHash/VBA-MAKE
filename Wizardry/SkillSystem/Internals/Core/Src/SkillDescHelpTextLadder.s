@@ -1,13 +1,14 @@
-.thumb
 
-@ given a skill number in r0, get the corresponding text ID
-@ wait no circles, that's not what this does at all!
+	.thumb
 
-@ what this really is is a jump ladder for getting skill desc in stat screen help text procs
-@ the *real* skill desc getter is now in SkillSystemCore.c and is named "GetSkillDescId"
+	@ given a skill number in r0, get the corresponding text ID
+	@ wait no circles, that's not what this does at all!
 
-.global SkillDescHelpTextLadder
-.type   SkillDescHelpTextLadder, %function
+	@ what this really is is a jump ladder for getting skill desc in stat screen help text procs
+	@ the *real* skill desc getter is now in SkillSystemCore.c and is named "GetSkillDescId"
+
+	.global SkillDescHelpTextLadder
+	.type   SkillDescHelpTextLadder, %function
 
 SkillDescHelpTextLadder:
 	@ 0
@@ -45,14 +46,16 @@ SkillDescHelpTextLadder:
 	ldr r0, =gpStatScreenUnit
 	ldr r0, [r0] @ arg r0 = unit
 
-	mov r1, sp   @ arg r1 = buffer
-
-	bl SS_GetUnitSkillList
+	bl SS_CountUnitSkills
 
 	cmp r5, r0
 	bhs .End @ Skill Slot is past end of list
 
-	mov  r0, sp
+	ldr r0, =gpStatScreenUnit
+	ldr r0, [r0] @ arg r0 = unit
+
+	bl SS_GetUnitSkillArray
+
 	ldrb r0, [r0, r5]
 
 	bl SS_GetSkillDescId

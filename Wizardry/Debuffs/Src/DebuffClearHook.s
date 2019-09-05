@@ -1,7 +1,8 @@
-.thumb
 
-.global DebuffClearHook
-.type   DebuffClearHook, %function
+	.thumb
+
+	.global DebuffClearHook
+	.type   DebuffClearHook, %function
 
 DebuffClearHook:
 	ldr r3, =Debuff_ClearAll
