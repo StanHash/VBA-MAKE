@@ -1,7 +1,6 @@
 
 #include "SkillSystemOptions.event"
 #include "Internals/SkillSystem.event"
-#include "SkillLists.event" //who learns what skills when
 #include "BattleCalculations.event" //battle calcs
 #include "ChargeTable.event"
 SkillIcons:
@@ -508,4 +507,5 @@ WORD LuminaStaffOption
 #include "StanSkills/HeroesMovement/HeroesMovement.event"
 #include "PostCombatSkills/PostCombatSkillsInstaller.event"
 
-#include "SkillRemovalMenu/RemoveSkillMenu.event"
+// TODO: fix
+// #include "SkillRemovalMenu/RemoveSkillMenu.event"

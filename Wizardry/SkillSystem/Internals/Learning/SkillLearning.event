@@ -1,5 +1,5 @@
-#ifndef CSKILLS_LEVELUP_LEARNING
-#define CSKILLS_LEVELUP_LEARNING
+#ifndef CSKILLS_LEARNING
+#define CSKILLS_LEARNING
 
 #ifndef HAX_POPR
 	ERROR "CSkills LevelUp Learning requires PopR to be installed!"
@@ -68,4 +68,4 @@ POP
 
 }
 
-#endif // CSKILLS_LEVELUP_LEARNING
+#endif // CSKILLS_LEARNING

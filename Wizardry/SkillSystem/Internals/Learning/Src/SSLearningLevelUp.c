@@ -2,7 +2,8 @@
 #include "SkillSystem.h"
 #include "PopupRework.h"
 
-extern const u8* const LevelUpSkillTable[];
+extern const u8* const ClassSkillLists[];
+extern const u8* const CharacterSkillLists[];
 
 // Skill id and forgot skill slot id occupy what were previously padding bytes in the battle unit
 
@@ -20,16 +21,39 @@ extern const u8* const LevelUpSkillTable[];
  */
 unsigned SS_UnitGetLevelUpSkill(struct Unit* unit, unsigned level)
 {
-	const u8* levelUpSkills = LevelUpSkillTable[unit->pClassData->number];
+	const u8* charSkills = CharacterSkillLists[unit->pCharacterData->number];
 
-	if (levelUpSkills)
+	if (charSkills)
 	{
-		while (levelUpSkills[0])
-		{
-			if (level == levelUpSkills[0])
-				return levelUpSkills[1];
+		unsigned unitLevel = (UNIT_CATTRIBUTES(unit) & CA_PROMOTED)
+			? 20 + unit->level
+			: unit->level;
 
-			levelUpSkills = levelUpSkills + 2;
+		unsigned unitClass = unit->pCharacterData->number;
+
+		while (charSkills[0])
+		{
+			unsigned level = charSkills[0];
+			unsigned klass = charSkills[1];
+
+			if ((klass == 0) || (klass == unitClass))
+				if (level == unitLevel)
+					return charSkills[2];
+
+			charSkills = charSkills + 3;
+		}
+	}
+
+	const u8* classSkills = ClassSkillLists[unit->pClassData->number];
+
+	if (classSkills)
+	{
+		while (classSkills[0])
+		{
+			if (level == classSkills[0])
+				return classSkills[1];
+
+			classSkills = classSkills + 2;
 		}
 	}
 
@@ -43,21 +67,44 @@ void SS_UnitAutolevelSkills(struct Unit* unit)
 {
 	SS_ClearUnitSkills(unit);
 
-	const u8* levelUpSkills = LevelUpSkillTable[unit->pClassData->number];
+	const u8* charSkills = CharacterSkillLists[unit->pCharacterData->number];
 
-	if (levelUpSkills)
+	if (charSkills)
 	{
-		while (levelUpSkills[0])
+		unsigned unitLevel = (UNIT_CATTRIBUTES(unit) & CA_PROMOTED)
+			? 20 + unit->level
+			: unit->level;
+
+		unsigned unitClass = unit->pCharacterData->number;
+
+		while (charSkills[0])
 		{
-			unsigned level = levelUpSkills[0];
+			unsigned level = charSkills[0];
+			unsigned klass = charSkills[1];
+
+			if ((klass == 0) || (klass == unitClass))
+				if ((level == 0xFF) || (level <= unitLevel))
+					SS_UnitLearnSkill(unit, charSkills[2]);
+
+			charSkills = charSkills + 3;
+		}
+	}
+
+	const u8* classSkills = ClassSkillLists[unit->pClassData->number];
+
+	if (classSkills)
+	{
+		while (classSkills[0])
+		{
+			unsigned level = classSkills[0];
 
 			// Skill is learned if learning level is lower than unit level,
 			// Or learning level is 0xFF (used to give promoted generics unpromoted classes' skills)
 
 			if ((level == 0xFF) || (level <= unit->level))
-				SS_UnitLearnSkill(unit, levelUpSkills[1]);
+				SS_UnitLearnSkill(unit, classSkills[1]);
 
-			levelUpSkills = levelUpSkills + 2;
+			classSkills = classSkills + 2;
 		}
 	}
 }

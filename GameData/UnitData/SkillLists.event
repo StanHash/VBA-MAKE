@@ -1,0 +1,258 @@
+#ifndef GAMEDATA_SKILLLISTS_INCLUDED
+#define GAMEDATA_SKILLLISTS_INCLUDED
+
+// This file defines skill lists for characters and classes
+// This is required by the SkillCharacter and SkillClass tables
+
+// =====================
+// = CLASS SKILL LISTS =
+// =====================
+
+// Class skill lists are the simpler kind of list:
+// Each entry is two bytes:
+// - the first is which level the skill is learned at
+// - the second is the skill id
+// The list is terminated by a single zero
+
+// Special level values:
+// - 0xFF means that the skill will be learned on load (and only then!). This is useful to allow promoted generics to learn class skills from their base class.
+// - 1 means that the skill will be learned when promoting into the class (and also on load).
+
+CavalryClassSkillList:
+	BYTE 1 CantoID
+	BYTE 0
+
+ThiefClassSkillList:
+	BYTE 1 CunningID
+	BYTE 0
+
+AssassinClassSkillList:
+	BYTE 1 LethalityID
+	BYTE 0
+
+RogueClassSkillList:
+	BYTE 1 LockTouchID
+	BYTE 0
+
+RangerClassSkillList:
+	BYTE 1 CantoPlusID
+	BYTE 0
+
+DancerClassSkillList:
+	BYTE 1 DanceID
+	BYTE 0
+
+DragonClassSkillList:
+	BYTE 1 DragonsBloodID
+	BYTE 0
+
+CritUpClassSkillList:
+	BYTE 1 CritUpID
+	BYTE 0
+
+SummonerClassSkillList:
+	BYTE 1 SummonID
+	BYTE 0
+
+DonkeyKongClassSkillList:
+	BYTE 0xFF NihilID
+	BYTE 0xFF RightfulGodID
+	BYTE 0xFF BaneID
+	BYTE 0xFF SummonID
+	BYTE 0xFF ReliefID
+	BYTE 0xFF AnathemaID
+	BYTE 0
+
+// =========================
+// = CHARACTER SKILL LISTS =
+// =========================
+
+// Character skill lists at similar to class skill lists, but they take an additional byte
+// Each entry is three bytes:
+// - the first is which *effective* level the skill is learned at (effective means add 20 if promoted)
+// - the second is which class the character needs to be in to learn the skill. This is meant to allow character-specific skill differences reguarding branching promotions.
+// - the third is the skill id
+// The list is terminated by a single zero
+
+// Special level values
+// - 0xFF means that the skill will be learned on load (and only then!).
+// - 21 means that the skill will be learned when promoting into the class (and also on load).
+
+VoidSkillList:
+	BYTE 1  0 ShoveID
+	BYTE 10 0 NihilID
+	BYTE 25 0 AetherID
+	BYTE 0
+
+TimSkillList:
+	BYTE 10 0 SmiteID
+	BYTE 25 0 CounterID
+	BYTE 0
+
+TamSkillList:
+	BYTE 10 0 PivotID
+	BYTE 25 0 DeathBlowID
+	BYTE 0
+
+JeromeSkillList:
+	BYTE 1  0 RepositionID
+	BYTE 10 0 GaleforceID
+	BYTE 25 0 ParagonID
+	BYTE 0
+
+LeeroySkillList:
+	BYTE 10 0 ProvokeID
+	BYTE 25 0 FuryID
+	BYTE 0
+
+AnnaMyrmSkillList:
+	BYTE 10 0 LuckySevenID
+	BYTE 25 0 DespoilID
+	BYTE 0
+
+BedeSkillList:
+	BYTE 10 0 RallySpectrumID
+	BYTE 25 0 LiveToServeID
+	BYTE 0
+
+JaySkillList:
+	BYTE 10 0      AdeptID
+	BYTE 25 Sniper GaleforceID
+	BYTE 25 Ranger CertainBlowID
+	BYTE 0
+
+NotArchSkillList:
+	BYTE 10 0          GambleID
+	BYTE 25 Sage       SlayerID
+	BYTE 25 MageKnight LuminaID // allowing him to still wield Divine and Lightning, of course
+	BYTE 0
+
+KristenSkillList:
+	BYTE 10 0 IntimidateID
+	BYTE 25 0 DartingBlowID
+	BYTE 0
+
+BobSkillList:
+	BYTE  1 0 SwapID
+	BYTE 10 0 CelerityID
+	BYTE 25 0 PassID
+	BYTE 0
+
+RosheaSkillList:
+	BYTE 10 0 StrongRiposteID
+	BYTE 25 0 ElbowRoomID
+	BYTE 0
+
+PrineSkillList:
+	BYTE 10 0 FrenzyID
+	BYTE 25 0 CharmID
+	BYTE 0
+
+EdgeSkillList:
+	BYTE 10 0 WrathID
+	BYTE 25 0 AxebreakerID
+	BYTE 0
+
+SamsonSkillList:
+	BYTE 10 0 QuickDrawID
+	BYTE 25 0 LungeID
+	BYTE 0
+
+ArveSkillList:
+	BYTE 10 0 LuminaID
+	BYTE 25 0 LancebreakerID
+	BYTE 0
+
+TyeSkillList:
+	BYTE 10 0 ProvokeID
+	BYTE 25 0 RallyMovID
+	BYTE 0
+
+CeliciaSkillList:
+	BYTE 10 0 AcrobatID
+	BYTE 25 0 AdeptID
+	BYTE 0
+
+EevsterSkillList:
+	BYTE 10 0 SealLukID
+	BYTE 25 0 NihilID
+	BYTE 0
+
+AnnaWyvSkillList:
+	BYTE 10 0 SavageBlowID
+	BYTE 25 0 DespoilID
+	BYTE 0
+
+NikitaSkillList:
+	BYTE 10 0 RenewalID
+	BYTE 25 0 ArmoredBlowID
+	BYTE 0
+
+AnnaRogueSkillList:
+	BYTE 10 0 ArmsthriftID
+	BYTE 25 0 DespoilID
+	BYTE 0
+
+EdgeworthSkillList:
+	BYTE  1 0 RallyDefID
+	BYTE  3 0 RallyResID
+	BYTE  6 0 RallyStrID
+	BYTE 10 0 RallySpdID
+	BYTE 15 0 RallyMovID
+	BYTE 20 0 RallySpectrumID
+	BYTE 0
+
+ZigludoSkillList:
+	BYTE 10 0 FieryBloodID
+	BYTE 25 0 IgnisID
+	BYTE 40 0 PersonalityID
+	BYTE 0
+
+KagaSkillList:
+	BYTE  1 0 WaryFighterID
+	BYTE  5 0 LungeID
+	BYTE 15 0 CelerityID
+	BYTE 0
+
+DootSkillList:
+	BYTE 10 0 MiracleID
+	BYTE 25 0 DeathBlowID
+	BYTE 0
+
+CelicaSkillList:
+	BYTE 10 0 CounterMagicID
+	BYTE 25 0 CharmID
+	BYTE 40 0 NiceThighsID
+	BYTE 0
+
+DoowileSkillList:
+	BYTE  5 0 SavageBlowID
+	BYTE 15 0 LifetakerID
+	BYTE 0
+
+EvilFloSkillList:
+	BYTE 10 0 MaleficAuraID
+	BYTE 25 0 TomebreakerID
+	BYTE 0
+
+BjoernSkillList:
+	BYTE 10 0 LiveToServeID
+	BYTE 25 0 RenewalID
+	BYTE 0
+
+JakeSkillList:
+	BYTE 1 0 SwordbreakerID
+	BYTE 0
+
+MarfSkillList:
+	BYTE 1 0 LunaID
+	BYTE 0
+
+TikiSkillList: // TODO
+MarkSkillList: // TODO
+	BYTE 0
+
+LungeSkillList:
+	BYTE 1 0 LungeID 0
+
+#endif // GAMEDATA_SKILLLISTS_INCLUDED

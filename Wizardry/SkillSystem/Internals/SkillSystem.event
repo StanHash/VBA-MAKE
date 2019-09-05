@@ -5,7 +5,7 @@
 //#include "FE8WeaponRankOnLevelup/FE8WeaponRankOnLevelupEA.txt"
 
 #include "Core/SkillSystemCore.event"
-#include "LevelUpLearning/CSkillsLevelupLearning.event"
+#include "Learning/SkillLearning.event"
 
 DefaultSkillDesc:
 	SHORT SS_SkillsDefaultRText
@@ -90,6 +90,6 @@ Unset_Attack_Flag_2:
 #incbin "ClearAttackFlag.dmp"
 
 // #include "LevelPopups.event"
-#include "MapAnimsRoutines.event"
-#include "Popupdisplayroutines.event"
+// #include "MapAnimsRoutines.event"
+// #include "Popupdisplayroutines.event"
 #include "HPHealing.event"

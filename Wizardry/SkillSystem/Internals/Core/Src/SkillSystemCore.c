@@ -1,8 +1,5 @@
 #include "SkillSystem.h"
 
-extern const u8 PersonalSkillTable[];
-extern const u8 ClassSkillTable[];
-
 extern const u16 SkillDescTable[];
 extern const u16 DefaultSkillDesc;
 

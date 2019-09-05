@@ -1,0 +1,257 @@
+INLINE CharacterSkillLists,Skill list address
+None,0
+Void,VoidSkillList|IsPointer
+Tim,TimSkillList|IsPointer
+Tam,TamSkillList|IsPointer
+Jerome,JeromeSkillList|IsPointer
+Leeroy,LeeroySkillList|IsPointer
+AnnaMyrm,AnnaMyrmSkillList|IsPointer
+Bede,BedeSkillList|IsPointer
+Jay,JaySkillList|IsPointer
+Not Arch,NotArchSkillList|IsPointer
+Kirsten,KristenSkillList|IsPointer
+Bob,BobSkillList|IsPointer
+Roshea,RosheaSkillList|IsPointer
+Prine,PrineSkillList|IsPointer
+Edge,EdgeSkillList|IsPointer
+Ephraim,0
+Samson,SamsonSkillList|IsPointer
+Arve,ArveSkillList|IsPointer
+Tye,TyeSkillList|IsPointer
+Celicia,CeliciaSkillList|IsPointer
+Eevster,EevsterSkillList|IsPointer
+AnnaWyv,AnnaWyvSkillList|IsPointer
+Nikita,NikitaSkillList|IsPointer
+AnnaRogue,AnnaRogueSkillList|IsPointer
+Edgeworth,EdgeworthSkillList|IsPointer
+Zigludo,ZigludoSkillList|IsPointer
+Kaga,KagaSkillList|IsPointer
+Doot,DootSkillList|IsPointer
+Celica,CelicaSkillList|IsPointer
+Doowile,DoowileSkillList|IsPointer
+Evil Florina,EvilFloSkillList|IsPointer
+Bjoern,BjoernSkillList|IsPointer
+Jake,JakeSkillList|IsPointer
+Marf,MarfSkillList|IsPointer
+Tiki,TikiSkillList|IsPointer
+Lyon,0
+Mark,MarkSkillList|IsPointer
+Glen,0
+Selena,0
+Valter,0
+Riev,0
+Caellach,0
+Fado,0
+Ismaire,0
+Hayden,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+Lyon's Summon,0
+0,0
+0,0
+Florina's Summon,0
+Arve's Summon,0
+Dracozombie (Ch 17),0
+Morva (Ch 28),0
+Orson (Ch 27),0
+Grit (Ch 15),0
+Selena (Ch 24),0
+Valter (Prologue),0
+Breguet (Ch 1) (NPC civilian),0
+Bone (Ch 2),0
+Bazba (Ch 3),0
+Entombed (Ch 4),0
+Saara (Ch 5),0
+Mr Bones (Ch 23),0
+Murray (Ch 7),0
+Tirado (Ch 8),0
+Binks (Ch 9),0
+Pablo (Ch 10),0
+Maelduin (Ch 12A),0
+Aias (Ch 13),0
+Carlyle (Ch 14),0
+Caellach (Ch 26),0
+Pablo (also Ch 13),0
+0,0
+Gorgon (Ch 18),0
+Riev (Ch 19 & 20),0
+0,0
+0,0
+Gheb (Ch 12),0
+Beran (Ch 10B),0
+Cyclops (Ch 12B),0
+Great Knight (Ch 11),0
+Deathgoyle (Ch 11B),0
+Entombed (Monster Boss),0
+Lyria (Ch20),0
+Meriah (Ch19),0
+Plum (Ch20),0
+Yuni (Ch20),0
+Hunter (Ch 16),0
+0,0
+Brigand,0
+0,0
+O'Neill (Prologue),0
+Glen (Ch 19),0
+Zonta (Ch 6),0
+Vigarde (Ch 18),0
+Lyon (Ch Final),0
+Orson (Ch 16),0
+Maeda(ch20),0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+Grado Soldier (Special),0
+Grado Soldier 1 (Normal),0
+Grado Soldier 2,0
+Grado Soldier 3,0
+Grado Soldier 4,0
+Grado Soldier 5,0
+Grado Soldier 6,0
+Grado Soldier 7,0
+Grado Soldier 8,0
+Grado Soldier 9,0
+Grado Soldier 10 (Duessel's),0
+Grado Soldier 11 (Duessel's),0
+Grado Soldier 12 (Duessel's),0
+Grado Soldier 13,0
+Grado Remnant 1 (Main),0
+Cutthroat,0
+Grado Remnant 2 (Cutscene and C16 only?),0
+Grado Remnant 3 (C16 only?),0
+Grado Remnant 4 (C16 only?),0
+Lennon,0
+Paul,0
+Ringo,0
+Harrison,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+Mercenary (C9A),0
+Mercenary (C10A),0
+Merc Remnant (C13A),0
+Monster,0
+Monster,0
+Monster(C25),0
+Monster,0
+Monster,0
+Monster,0
+Monster,0
+Monster,0
+Monster,0
+Monster,0
+Monster,0
+Monster,0
+Monster,0
+Monster,0
+Lunge Monster,LungeSkillList|IsPointer
+Monster,0
+Monster,0
+Monster,0
+Monster,0
+Monster,0
+Demon King,0
+0,0
+Frelian,0
+Frelian,0
+0,0
+0,0
+not tatara,0
+Tatara,0
+0,0
+Hayden (Frelia),0
+Mansel,0
+Edge's Ally (Ch. 9),0
+Banana (Ch25),0
+Ismaire (Jehanna),0
+(Generic soldier),0
+Rausten Knight,0
+Rausten Knight,0
+(Untested Beyond this point),0
+(Untested Beyond this point),0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0
+0,0

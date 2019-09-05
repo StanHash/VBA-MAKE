@@ -3,19 +3,20 @@
 
 #include "TableHelpers.event"
 
-#include "Tables/SkillSystem/ClassSkills.event"
-#include "Tables/SkillSystem/LearnedSkills.event"
-#include "Tables/SkillSystem/CharacterSkills.event"
-#include "Tables/SkillSystem/SkillAnimations.event"
 #include "Tables/SkillSystem/SkillDescriptions.event"
+#include "Tables/SkillSystem/SkillAnimations.event"
 
 #include "Tables/ChapterData/ChapterData.event"
 #include "Tables/ChapterData/ForceDeploy.event"
 
-#include "Tables/UnitData/Character.event"
-#include "Tables/UnitData/Class.event"
-#include "Tables/UnitData/Promotion.event"
-#include "Tables/UnitData/SummonCharacter.event"
+#include "UnitData/Tables/Character.event"
+#include "UnitData/Tables/Class.event"
+#include "UnitData/Tables/Promotion.event"
+#include "UnitData/Tables/SummonCharacter.event"
+
+#include "UnitData/SkillLists.event"
+#include "UnitData/Tables/SkillClass.event"
+#include "UnitData/Tables/SkillCharacter.event"
 
 #include "Tables/Ending/EndingTitle.event"
 #include "Tables/Ending/EndingText.event"
