@@ -19,9 +19,9 @@ bx r1
 
 LearnSkill:
 ldr r0, TextID
-blh String_GetFromIndex
+blh GetStringFromIndex
 mov r4, r0
-blh GetStringTextWidth
+blh Text_GetStringTextWidth
 mov r7, r0
 add r7, #0x10
 add r0, r7, #7
@@ -45,14 +45,14 @@ ldr r0, =0x8803bd0
 ldr r1, =0x6002100
 swi #0x12
 ldr r0, TextID
-blh String_GetFromIndex
+blh GetStringFromIndex
 mov r4, r0
 mov r0, r5
 mov r1, #0
 strb r1, [r0, #3]
 mov r0, r5
 mov r1, r4
-blh Text_AppendString
+blh Text_DrawString
 add r1, r6, #2
 lsl r1, #3
 mov r0, #0xe0

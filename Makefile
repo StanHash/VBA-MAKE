@@ -132,7 +132,7 @@ $(WRITANS_INSTALLER) $(WRITANS_DEFINITIONS): $(WRITANS_TEXT_MAIN) $(WRITANS_ALL_
 # = OBJECTS & DMPS =
 # ==================
 
-LYN_REFERENCE := Tools/CLib/reference/FE8U-20181105.o
+LYN_REFERENCE := Tools/CLib/reference/FE8U-20190316.o
 
 # OBJ to event
 %.lyn.event: %.o $(LYN_REFERENCE)

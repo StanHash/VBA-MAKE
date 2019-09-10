@@ -2,7 +2,7 @@
 #define HAX_POPR
 
 // Popup rework
-// hack by Stan
+// hack by StanH_
 
 #include "PopupReworkInternal.event"
 

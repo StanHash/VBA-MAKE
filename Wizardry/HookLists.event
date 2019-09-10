@@ -15,9 +15,7 @@ gBattlePopupTable:
 	PopRBattlePopup(PopR_InitWeaponBroke, 0x592420, 90) // duration was 96 in vanilla but I like roundness
 	PopRBattlePopup(PopR_InitWRankUp,     0x592468, 90) // same
 
-#ifdef CSKILLS_LEVELUP_LEARNING
 	PopRBattlePopup(SS_PopR_InitSkillLearning, gPopup_SS_SkillLearned, 90)
-#endif
 
 	PopRBattlePopupEnd
 
@@ -32,11 +30,13 @@ gPromotionPopupTable:
 	PopRBattlePopup(PopR_InitLightRankNew, gPopup_PopR_NewWType, 90) // same
 	PopRBattlePopup(PopR_InitElderRankNew, gPopup_PopR_NewWType, 90) // same
 
+	PopRBattlePopup(SS_PopR_InitSkillLearning, gPopup_SS_SkillLearned, 90)
+
 	PopRBattlePopupEnd
 
-// =========================
-// = FUNCTIONS ON LEVEL-UP =
-// =========================
+// =======================================
+// = FUNCTIONS ON LEVEL-UP AND PROMOTION =
+// =======================================
 // Managed by ModLu
 
 ALIGN 4
@@ -56,9 +56,25 @@ gLevelUpFuncList:
 
 #endif // NO_GROWTHS
 
-#ifdef CSKILLS_LEVELUP_LEARNING
 	POIN SSLearn_UnitLevelUp // skill learning on level up
-#endif
+
+	WORD 0 // End
+
+ALIGN 4
+gPromotionFuncList:
+	POIN MLUPromStandardStatGains // Vanilla promotion stat gain routine
+	POIN MLUPromStandardWRankGains // Vanilla weapon rank gain routine
+	POIN MLUPromStandardExpLevel // Vanilla exp/level reset routine
+
+	POIN SSLearn_UnitPromote // skill learning on promotion
+
+	WORD 0 // End
+
+ALIGN 4
+gMakePromoteGainsFuncList:
+	POIN MLUStandardGainDiff // Vanilla stat gain difference routine
+
+	POIN SSLearn_UnitGainDiff // skill learned on promotion
 
 	WORD 0 // End
 
@@ -71,9 +87,7 @@ ALIGN 4
 gUnit2BattleFuncList:
 	POIN UnitToBattleVanilla
 
-#ifdef CSKILLS_LEVELUP_LEARNING
-	POIN SSLearn_OnBattleUnitInit
-#endif // CSKILLS_LEVELUP_LEARNING
+	POIN SS_OnBattleUnitInit
 
 	WORD 0
 
@@ -81,9 +95,7 @@ ALIGN 4
 gBattle2UnitFuncList:
 	POIN BattleToUnitVanilla
 
-#ifdef CSKILLS_LEVELUP_LEARNING
-	POIN SSLearn_OnBattleUnitDeinit
-#endif // CSKILLS_LEVELUP_LEARNING
+	POIN SS_OnBattleUnitDeinit
 
 	WORD 0
 

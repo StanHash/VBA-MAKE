@@ -37,7 +37,7 @@
 	
 	ALIGN 4
 	Capture_Events:
-	SETVAL 0x5 0x0
+	SVAL 0x5 0x0
 	LABEL 0xFF //Loop_Through_Inventory:
 	ASMC Put_Item_In_Slot3|1 //grabs item at slot 4 and puts in r3, updates 4 with ptr to next item, updates counter
 	GIVEITEMTO 0xFFFF

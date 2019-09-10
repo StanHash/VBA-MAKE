@@ -5,11 +5,6 @@
 extern const u8* const ClassSkillLists[];
 extern const u8* const CharacterSkillLists[];
 
-// Skill id and forgot skill slot id occupy what were previously padding bytes in the battle unit
-
-#define BU_SKILL_LEARNED(bu)     (*((u8*) (((void*) (bu)) + 0x58)))
-#define BU_SKILL_FORGET_SLOT(bu) (*((s8*) (((void*) (bu)) + 0x7F)))
-
 // =======================
 // = SKILL LEARNING CORE =
 // =======================
@@ -17,37 +12,34 @@ extern const u8* const CharacterSkillLists[];
 /*!
  * \param unit unit
  * \param level level
+ * \param classId class to check skills for
  * \return skill they would learn (zero if none)
  */
-unsigned SS_UnitGetLevelUpSkill(struct Unit* unit, unsigned level)
+unsigned SS_GetLevelUpSkill(unsigned level, unsigned charId, unsigned classId)
 {
-	const u8* charSkills = CharacterSkillLists[unit->pCharacterData->number];
+	const u8* charSkills = CharacterSkillLists[charId];
 
 	if (charSkills)
 	{
-		unsigned unitLevel = (UNIT_CATTRIBUTES(unit) & CA_PROMOTED)
-			? 20 + unit->level
-			: unit->level;
-
-		unsigned unitClass = unit->pCharacterData->number;
-
 		while (charSkills[0])
 		{
-			unsigned level = charSkills[0];
+			unsigned skLvl = charSkills[0];
 			unsigned klass = charSkills[1];
 
-			if ((klass == 0) || (klass == unitClass))
-				if (level == unitLevel)
+			if ((klass == 0) || (klass == classId))
+				if (skLvl == level)
 					return charSkills[2];
 
 			charSkills = charSkills + 3;
 		}
 	}
 
-	const u8* classSkills = ClassSkillLists[unit->pClassData->number];
+	const u8* classSkills = ClassSkillLists[classId];
 
 	if (classSkills)
 	{
+		level = Mod(level, 20);
+
 		while (classSkills[0])
 		{
 			if (level == classSkills[0])
@@ -58,6 +50,21 @@ unsigned SS_UnitGetLevelUpSkill(struct Unit* unit, unsigned level)
 	}
 
 	return 0;
+}
+
+/*!
+ * \param unit unit
+ * \param level level
+ * \return skill they would learn (zero if none)
+ */
+unsigned SS_UnitGetLevelUpSkill(struct Unit* unit)
+{
+	return SS_GetLevelUpSkill(
+		(UNIT_CATTRIBUTES(unit) & CA_PROMOTED)
+			? 20 + unit->level
+			: unit->level,
+		unit->pCharacterData->number,
+		unit->pClassData->number);
 }
 
 /*!
@@ -135,37 +142,40 @@ static void SS_PopRSkillIcon_Display(struct PopupReworkProc* proc, struct TextHa
 	LoadIconPalette(0, proc->pop.iconPalId);
 }
 
-// ===========================
-// = BATTLE UNIT INIT/DEINIT =
-// ===========================
-
-void SSLearn_OnBattleUnitInit(struct BattleUnit* bu, struct Unit* unit)
-{
-	BU_SKILL_LEARNED(bu) = 0;
-	BU_SKILL_FORGET_SLOT(bu) = (-1);
-}
-
-void SSLearn_OnBattleUnitDeinit(struct Unit* unit, struct BattleUnit* bu)
-{
-	if (BU_SKILL_FORGET_SLOT(bu) >= 0)
-		SS_UnitForgetSkillSlot(unit, BU_SKILL_FORGET_SLOT(bu));
-
-	if (BU_SKILL_LEARNED(bu))
-	{
-		int slot = SS_UnitGetFreeSkillSlot(unit);
-
-		if (slot >= 0)
-			SS_UnitSetSkillSlot(unit, slot, BU_SKILL_LEARNED(bu));
-	}
-}
-
 // ==============
 // = ModLU Hook =
 // ==============
 
 void SSLearn_UnitLevelUp(struct BattleUnit* bu)
 {
-	BU_SKILL_LEARNED(bu) = SS_UnitGetLevelUpSkill(&bu->unit, bu->unit.level);
+	BU_SKILL_LEARNED(bu) = SS_UnitGetLevelUpSkill(&bu->unit);
+}
+
+void SSLearn_UnitPromote(struct Unit* unit, u8 classId)
+{
+	// TODO: figure out how to do skill forgetting on promotion
+
+	unsigned learn = SS_GetLevelUpSkill(21, unit->pCharacterData->number, classId);
+
+	if (learn)
+	{
+		SS_UnitLearnSkill(unit, learn);
+	}
+}
+
+void SSLearn_UnitGainDiff(struct BattleUnit* bu, struct Unit* unit)
+{
+	u8* newSkills = SS_GetUnitSkillArray(&bu->unit);
+	u8* oldSkills = SS_GetUnitSkillArray(unit);
+
+	for (unsigned i = 0; i < SKILL_SAVED_COUNT; ++i)
+	{
+		if (newSkills[i] != oldSkills[i])
+		{
+			BU_SKILL_LEARNED(bu) = newSkills[i];
+			return;
+		}
+	}
 }
 
 // =============
@@ -174,17 +184,17 @@ void SSLearn_UnitLevelUp(struct BattleUnit* bu)
 
 int SS_PopR_InitSkillLearning(void)
 {
-	if (BU_SKILL_LEARNED(&gActiveBattleUnit))
+	if (BU_SKILL_LEARNED(&gBattleActor))
 	{
-		SetPopupItem(BU_SKILL_LEARNED(&gActiveBattleUnit));
-		BU_SKILL_LEARNED(&gActiveBattleUnit) = 0;
+		SetPopupItem(BU_SKILL_LEARNED(&gBattleActor));
+		BU_SKILL_LEARNED(&gBattleActor) = 0;
 
 		return TRUE;
 	}
-	else if (BU_SKILL_LEARNED(&gTargetBattleUnit))
+	else if (BU_SKILL_LEARNED(&gBattleTarget))
 	{
-		SetPopupItem(BU_SKILL_LEARNED(&gTargetBattleUnit));
-		BU_SKILL_LEARNED(&gTargetBattleUnit) = 0;
+		SetPopupItem(BU_SKILL_LEARNED(&gBattleTarget));
+		BU_SKILL_LEARNED(&gBattleTarget) = 0;
 
 		return TRUE;
 	}

@@ -497,7 +497,7 @@ WORD LuminaStaffOption
 
 #include "OtherSkills/RandomMugs.event"
 #include "TeqSkills/FE8StealPlus/FE8StealPlusEA.txt"
-#include "TeqSkills/FE8Capture/FE8CaptureMasterEAFile.txt"
+// #include "TeqSkills/FE8Capture/FE8CaptureMasterEAFile.txt"
 #include "TeqSkills/FE8Nullify/Nullify.event"
 
 #include "AuraSkills/AuraSkillsInstaller.event"

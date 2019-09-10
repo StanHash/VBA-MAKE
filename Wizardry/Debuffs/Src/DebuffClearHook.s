@@ -10,7 +10,7 @@ DebuffClearHook:
 
 	@ restore replaced stuff
 
-	ldr r3, =RefreshEntityMaps
+	ldr r3, =RefreshEntityBmMaps
 	bl  BXR3
 
 	ldr r3, =SMS_UpdateFromGameData

@@ -49,13 +49,13 @@ NihilTester:
 
 	ldrb r0, [r7, #0x0B]
 
-	ldr  r4, =gActiveBattleUnit
+	ldr  r4, =gBattleActor
 	ldrb r4, [r4, #0x0B]
 
 	cmp r0, r4 @check if the skill to test is from the attacker (compares allegiance byte of attacker and unit whose skill is being tested)
 	beq .NihilIsAttacker
 
-	ldr  r4, =gTargetBattleUnit
+	ldr  r4, =gBattleTarget
 	ldrb r4, [r4, #0x0B]
 
 	cmp r0, r4 @check if the skill to test is from the defender (compares allegiance byte of defender and unit whose skill is being tested)
@@ -64,14 +64,14 @@ NihilTester:
 	b .NihilEnd @ if neither, skill is never negated, I think this last condition is met when checking for nearby auras and such
 
 .NihilIsAttacker:
-	ldr r0, =gTargetBattleUnit @ prepare to get defender skills
-	@ ldr r5, =gActiveBattleUnit @ and to set lethality to 0 if we find nihil
+	ldr r0, =gBattleTarget @ prepare to get defender skills
+	@ ldr r5, =gBattleActor @ and to set lethality to 0 if we find nihil
 
 	b .NihilCheckOther
 
 .NihilIsDefender:
-	ldr r0, =gActiveBattleUnit @ prepare to get attacker skills
-	@ ldr r5, =gTargetBattleUnit @ and to set lethality to 0 if we find nihil
+	ldr r0, =gBattleActor @ prepare to get attacker skills
+	@ ldr r5, =gBattleTarget @ and to set lethality to 0 if we find nihil
 
 .NihilCheckOther:
 	@ Check if Nihil is in opposing unit skill list

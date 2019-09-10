@@ -7,14 +7,14 @@
 
 static int IsUnitInUnitArray(struct Unit* unit)
 {
-	ptrdiff_t diff = (unit - gUnitArray);
+	ptrdiff_t diff = (unit - gUnitArrayBlue);
 	return (diff >= 0) && (diff < 137);
 }
 
 struct DebuffEntry* Debuff_GetEntryForUnit(struct Unit* unit)
 {
 	if (unit->pCharacterData && IsUnitInUnitArray(unit))
-		return gpDebuffTable + (unit - gUnitArray);
+		return gpDebuffTable + (unit - gUnitArrayBlue);
 
 	return NULL;
 }

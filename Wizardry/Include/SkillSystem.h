@@ -28,6 +28,11 @@ enum
 	SKILL_LEARN_ERR_NO_ROOM       = -3,
 };
 
+// Skill id and forgot skill slot id occupy what were previously padding bytes in the battle unit
+
+#define BU_SKILL_LEARNED(bu)     (*((u8*) (((void*) (bu)) + 0x58)))
+#define BU_SKILL_FORGET_SLOT(bu) (*((s8*) (((void*) (bu)) + 0x7F)))
+
 // in SkillSystemCore
 
 u8* SS_GetUnitSkillArray(struct Unit* unit);
@@ -42,7 +47,7 @@ int SS_GetSkillDescId(unsigned sid);
 
 // in SSLearningLevelUp
 
-unsigned SS_UnitGetLevelUpSkill(struct Unit* unit, unsigned level);
+unsigned SS_UnitGetLevelUpSkill(struct Unit* unit);
 void SS_UnitAutolevelSkills(struct Unit* unit);
 
 #endif // FE8_SKILL_SYSTEM_H

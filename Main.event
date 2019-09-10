@@ -1,6 +1,8 @@
 #ifndef MAIN
 #define MAIN
 
+#define DEBUG
+
 #ifdef _FE8_
 
 #include "EAstdlib.event"

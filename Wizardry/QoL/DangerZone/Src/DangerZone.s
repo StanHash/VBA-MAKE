@@ -12,7 +12,7 @@ DangerZoneHook:
 	@ Known state:
 	@ r6 = E_PLAYERPHASE proc
 
-	ldr  r1, =gKeyStatus
+	ldr  r1, =gKeyState
 	ldrh r1, [r1, #0x08] @ KeyStatus.pressedKeys
 
 	mov r0, #0x04 @ Select button
@@ -47,7 +47,7 @@ YesSelect:
 	mov r0, r6
 	mov r1, #12
 
-	ldr r3, =GotoProcLabel
+	ldr r3, =ProcGoto
 	bl  BXR3
 
 	@ go to end of function

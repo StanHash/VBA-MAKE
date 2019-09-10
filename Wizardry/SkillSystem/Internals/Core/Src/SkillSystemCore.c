@@ -132,3 +132,28 @@ int SS_GetSkillDescId(unsigned sid)
 	unsigned desc = SkillDescTable[sid];
 	return (desc ? desc : DefaultSkillDesc);
 }
+
+// ===========================
+// = BATTLE UNIT INIT/DEINIT =
+// ===========================
+// For BattleUnitHook
+
+void SS_OnBattleUnitInit(struct BattleUnit* bu, struct Unit* unit)
+{
+	BU_SKILL_LEARNED(bu) = 0;
+	BU_SKILL_FORGET_SLOT(bu) = (-1);
+}
+
+void SS_OnBattleUnitDeinit(struct Unit* unit, struct BattleUnit* bu)
+{
+	if (BU_SKILL_FORGET_SLOT(bu) >= 0)
+		SS_UnitForgetSkillSlot(unit, BU_SKILL_FORGET_SLOT(bu));
+
+	if (BU_SKILL_LEARNED(bu))
+	{
+		int slot = SS_UnitGetFreeSkillSlot(unit);
+
+		if (slot >= 0)
+			SS_UnitSetSkillSlot(unit, slot, BU_SKILL_LEARNED(bu));
+	}
+}

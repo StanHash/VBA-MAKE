@@ -6,5 +6,5 @@ void SUD_SaveDebuffs(void* target, unsigned size) {
 }
 
 void SUD_LoadDebuffs(void* source, unsigned size) {
-	gpReadSramFast(source, gpDebuffTable, size);
+	ReadSramFast(source, gpDebuffTable, size);
 }

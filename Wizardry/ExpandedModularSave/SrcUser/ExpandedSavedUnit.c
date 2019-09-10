@@ -91,7 +91,7 @@
 	for (unsigned i = 0, w = 0; i < 8; ++i) \
 		if (((apSaveUnit)->wRankBit & (1 << i))) \
 			(apUnit)->ranks[i] = (apSaveUnit)->wRanks[w++]; \
-	SetUnitHP((apUnit), GetUnitMaxHP((apUnit))); \
+	SetUnitHp((apUnit), GetUnitMaxHp((apUnit))); \
 } while (0)
 
 #define SAVE_UNIT_PLAYER_COMMON \
@@ -215,7 +215,7 @@ static void UnpackSuspendSaveNonPlayerUnit(struct SuspendSaveNonPlayerUnit* save
 	// Since this is a non-player unit, save supports doesn't matter?
 
 	if (unit->pCharacterData)
-		InitUnitSupports(unit);
+		UnitLoadSupports(unit);
 }
 
 void ESU_SaveGameUnits(void* target, unsigned size) {
@@ -241,7 +241,7 @@ void ESU_LoadGameUnits(void* source, unsigned size) {
 		struct GameSaveUnit saveUnit;
 		memset(&saveUnit, 0, sizeof(saveUnit));
 
-		gpReadSramFast(source + i*sizeof(saveUnit), &saveUnit, sizeof(saveUnit));
+		ReadSramFast(source + i*sizeof(saveUnit), &saveUnit, sizeof(saveUnit));
 		UnpackGameSaveUnit(&saveUnit, unit);
 	}
 }
@@ -269,7 +269,7 @@ void ESU_LoadSuspendPlayerUnits(void* source, unsigned size) {
 		struct SuspendSavePlayerUnit saveUnit;
 		memset(&saveUnit, 0, sizeof(saveUnit));
 
-		gpReadSramFast(source + i*sizeof(saveUnit), &saveUnit, sizeof(saveUnit));
+		ReadSramFast(source + i*sizeof(saveUnit), &saveUnit, sizeof(saveUnit));
 		UnpackSuspendSavePlayerUnit(&saveUnit, unit);
 	}
 }
@@ -297,7 +297,7 @@ void ESU_LoadSuspendGreenUnits(void* source, unsigned size) {
 		struct SuspendSaveNonPlayerUnit saveUnit;
 		memset(&saveUnit, 0, sizeof(saveUnit));
 
-		gpReadSramFast(source + i*sizeof(saveUnit), &saveUnit, sizeof(saveUnit));
+		ReadSramFast(source + i*sizeof(saveUnit), &saveUnit, sizeof(saveUnit));
 		UnpackSuspendSaveNonPlayerUnit(&saveUnit, unit);
 	}
 }
@@ -325,7 +325,7 @@ void ESU_LoadSuspendEnemyUnits(void* source, unsigned size) {
 		struct SuspendSaveNonPlayerUnit saveUnit;
 		memset(&saveUnit, 0, sizeof(saveUnit));
 
-		gpReadSramFast(source + i*sizeof(saveUnit), &saveUnit, sizeof(saveUnit));
+		ReadSramFast(source + i*sizeof(saveUnit), &saveUnit, sizeof(saveUnit));
 		UnpackSuspendSaveNonPlayerUnit(&saveUnit, unit);
 	}
 }

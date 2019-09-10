@@ -4,7 +4,7 @@
 .type   LToggleHook, %function
 
 LToggleHook:
-	ldr  r1, =gKeyStatus
+	ldr  r1, =gKeyState
 	ldrh r1, [r1, #4]
 
 	@ r2 = 0x200 (L Button Mask)

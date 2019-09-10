@@ -15,7 +15,7 @@
 	#define POPR_SKILL_NAME_COMPONENT 0x0E
 #endif // POPR_SKILL_NAME_COMPONENT
 
-#include "Src/SSLearningLevelUp.lyn.event"
+#include "Src/CSkillLearning.lyn.event"
 
 ALIGN 4
 gPopup_SS_SkillLearned:

@@ -44,8 +44,6 @@ void LoadSavedUnit(void* source, struct Unit* unit) __attribute__((long_call));
 void SaveWMStuff(void*, void*) __attribute__((long_call));
 void LoadWMStuff(void*, void*) __attribute__((long_call));
 
-extern u8 gSomeWMEventRelatedStruct;
-
 void StoreRNStateToActionStruct(void) __attribute__((long_call));
 void LoadRNStateFromActionStruct(void) __attribute__((long_call));
 
@@ -55,6 +53,6 @@ void LoadRNStateFromActionStruct(void) __attribute__((long_call));
 void PackUnitStructForSuspend(struct Unit* unit, void* target) __attribute__((long_call));
 void UnpackUnitStructFromSuspend(void* source, struct Unit* unit) __attribute__((long_call));
 
-void Set0203EDB4(u32 value) __attribute__((long_call));
+void SetBonusContentClaimFlags(u32 value) __attribute__((long_call));
 
 #endif // MODULAR_SAVE_H

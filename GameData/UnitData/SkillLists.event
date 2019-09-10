@@ -81,6 +81,7 @@ DonkeyKongClassSkillList:
 VoidSkillList:
 	BYTE 1  0 ShoveID
 	BYTE 10 0 NihilID
+	BYTE 21 0 NihilID
 	BYTE 25 0 AetherID
 	BYTE 0
 

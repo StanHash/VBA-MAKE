@@ -78,7 +78,7 @@ lop:
 	@          @ arg r0 = unit
 	mov r1, r4 @ arg r1 = battle unit
 
-	ldr r3, =CheckForLevelUpCaps
+	ldr r3, =CheckBattleUnitStatCaps
 	bl  BXR3
 
 	@ That's it! We at the end
