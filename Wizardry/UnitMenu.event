@@ -27,17 +27,11 @@ PUSH
 	ORG $1D450
 		BYTE $14 // right x coord (open 2)
 
-	/*
-
-	Goddammit Teq (capture hooks here too)
-
 	ORG $22882
 		BYTE $01 // left x coord (go back 1)
 
 	ORG $22884
 		BYTE $14 // right x coord (go back 1)
-
-	*/
 
 	ORG $22818
 		BYTE $01 // left x coord (go back 2)
@@ -107,7 +101,7 @@ UnitMenuTable:
 	UM_Arena
 	
 	// Shove & cie
-	MenuCommand(UM_Shove,      UM_ShoveDesc,      NormalText, prShoveCommand_Usability,      prShoveCommand_Effect)
+	MenuCommand(UM_Shove,      UM_ShoveDesc,      NormalText, CmdShoveIsAvailable,           CmdShoveEffect)
 	MenuCommand(UM_Smite,      UM_SmiteDesc,      NormalText, prSmiteCommand_Usability,      prSmiteCommand_Effect)
 	MenuCommand(UM_Pivot,      UM_PivotDesc,      NormalText, prPivotCommand_Usability,      prPivotCommand_Effect)
 	MenuCommand(UM_Reposition, UM_RepositionDesc, NormalText, prRepositionCommand_Usability, prRepositionCommand_Effect)

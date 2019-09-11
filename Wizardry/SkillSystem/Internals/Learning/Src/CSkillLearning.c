@@ -153,14 +153,12 @@ void SSLearn_UnitLevelUp(struct BattleUnit* bu)
 
 void SSLearn_UnitPromote(struct Unit* unit, u8 classId)
 {
-	// TODO: figure out how to do skill forgetting on promotion
+	// TODO: figure out how to do skill forgetting on promotion here
 
 	unsigned learn = SS_GetLevelUpSkill(21, unit->pCharacterData->number, classId);
 
 	if (learn)
-	{
 		SS_UnitLearnSkill(unit, learn);
-	}
 }
 
 void SSLearn_UnitGainDiff(struct BattleUnit* bu, struct Unit* unit)

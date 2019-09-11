@@ -1,0 +1,15 @@
+#ifndef CMOVEMENT_INCLUDED
+#define CMOVEMENT_INCLUDED
+
+gShoveSkillId: BYTE ShoveID
+gShoveActId:   BYTE ACTION_PUSH
+
+ALIGN 2
+gShoveHelpMsg: SHORT 2
+
+#include "Src/CMovCommon.lyn.event"
+#include "Src/CMovPush.lyn.event"
+
+InjectUnitAction(ACTION_PUSH, ActionRoutine(ActPush))
+
+#endif // CMOVEMENT_INCLUDED

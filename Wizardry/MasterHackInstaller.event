@@ -140,6 +140,8 @@ POP
 
 #include "StatGetters/InstallStatGetters.event"
 
+#include "Skills/CMovement/CMovement.event"
+
 #include "UnitMenu.event"
 #include "HookLists.event"
 
