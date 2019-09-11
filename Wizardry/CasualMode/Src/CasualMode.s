@@ -31,11 +31,11 @@ CasualModeHook:
 	orr r0, r1  @ r0 = r0 | -r0 (top bit is zero if neither r0 or -r0 is negative, so if r0 = 0)
 	lsr r0, #31 @ only get top (sign) bit
 
-	mov r1, #1     @ r1 = 1
-
 	mov r2, #1     @ r2 = 1
 	add r1, r0, #2 @ r1 = 2 + CasualMode
 	lsl r2, r1     @ r2 = (1 << (2 + CasualMode)) = US_DEAD or US_NOT_DEPLOYED
+
+	mov r1, #1     @ r1 = 1
 
 	@ Update unit state
 
