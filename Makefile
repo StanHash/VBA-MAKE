@@ -12,13 +12,8 @@ $(shell mkdir -p $(CACHE_DIR) > /dev/null)
 # = MAIN TARGET =
 # ===============
 
-# When making, we want the dependency file to be regenerated
-# So we use this phony rule to delete it and call make recursively
-# To make the target ROM (which depends on said dependency file)
-
 hack:
-	@rm -f $(EVENT_DEPENDS)
-	@$(MAKE) $(ROM_TARGET)
+	$(MAKE) $(ROM_TARGET)
 
 # =================
 # = THE BUILDFILE =
@@ -32,23 +27,16 @@ ROM_TARGET    := VBAR.gba
 EVENT_MAIN    := Main.event
 
 # EA Secondary outupt files
-EVENT_DEPENDS := $(CACHE_DIR)/Main.d
 EVENT_SYMBOLS := VBAR.sym.event
 
-# Make the target ROM from events and source ROMs
-# Depends on the dependency file so we ensure it being generated
-# (The depency file will list all other files the ROM depends on)
-$(ROM_TARGET): $(EVENT_MAIN) $(EVENT_DEPENDS) $(ROM_SOURCE)
+# EA Dependencies
+EVENT_DEPENDS := $(shell $(EADEP) $(EVENT_MAIN) -I $(realpath .)/Tools/EventAssembler --add-missings)
+
+# ROM making rule
+$(ROM_TARGET): $(ROM_SOURCE) $(EVENT_MAIN) $(EVENT_DEPENDS)
 	@echo Building $(ROM_TARGET).
 	@cp -f $(ROM_SOURCE) $(ROM_TARGET)
 	@$(CCEA) A FE8 -output:$(ROM_TARGET) -input:$(EVENT_MAIN) --nocash-sym || (rm $(ROM_TARGET) && false)
-
-# Dependency making rule
-# The sed invocation is to convert windows dir separators ('\') to unix ('/', so make doesn't break)
-$(EVENT_DEPENDS):
-	@echo Refreshing dependencies.
-	@$(EA) A FE8 -output $(ROM_TARGET) -input $(EVENT_MAIN) -MM -MG -MT $(EVENT_DEPENDS) -MF $(EVENT_DEPENDS)
-	@sed -i s/\\\\/\\//g $(EVENT_DEPENDS)
 
 # =============
 # = PORTRAITS =
@@ -57,10 +45,12 @@ $(EVENT_DEPENDS):
 PORTRAIT_LIST      := Spritans/PortraitList.txt
 PORTRAIT_INSTALLER := Spritans/Portraits.event
 
+PORTRAIT_DMPS      := $(shell $(PORTRAIT_PROCESS) $(PORTRAIT_LIST) --list-files)
+
 # Make the portrait installer
-$(PORTRAIT_INSTALLER): $(PORTRAIT_LIST)
+$(PORTRAIT_INSTALLER): $(PORTRAIT_LIST) $(PORTRAIT_DMPS)
 	$(NOTIFY_PROCESS)
-	@$(PORTRAIT_PROCESS) $< $@
+	@$(PORTRAIT_PROCESS) $< -o $@
 
 # Convert a png to portrait components
 %_mug.dmp %_palette.dmp %_frames.dmp %_minimug.dmp: %.png
@@ -154,7 +144,7 @@ LYN_REFERENCE := Tools/CLib/reference/FE8U-20190316.o
 # = ASSEMBLY/COMPILATION =
 # ========================
 
-# Setting C/ASM include directories up (there is none yet)
+# Setting C/ASM include directories up
 INCLUDE_DIRS := Tools/CLib/include Wizardry/Include
 INCFLAGS     := $(foreach dir, $(INCLUDE_DIRS), -I "$(dir)")
 
@@ -217,7 +207,6 @@ ifeq ($(MAKECMDGOALS),clean)
 
   # All files that are going to be cleaned
   ALL_TO_CLEAN := \
-    $(EVENT_DEPENDS) \
     $(ROM_TARGET) \
     $(EVENT_SYMBOLS) \
     $(TABLE_EVENTS) \
@@ -242,6 +231,5 @@ clean:
 # ========================
 
 ifneq ($(MAKECMDGOALS),clean)
-  -include $(EVENT_DEPENDS)
   -include $(wildcard $(CACHE_DIR)/*.d)
 endif
