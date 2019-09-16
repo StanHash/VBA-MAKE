@@ -46,11 +46,11 @@
 	
 	ALIGN 4
 	New_Battle_Anims_Off_Right_TSA:
-	#incbin "NewBattleAnimsOffRightTSA.dmp"
+	#incbin "NewBattleAnimsOffRightTSA.bin"
 	
 	ALIGN 4
 	New_Battle_Anims_Off_Left_TSA:
-	#incbin "NewBattleAnimsOffLeftTSA.dmp"
+	#incbin "NewBattleAnimsOffLeftTSA.bin"
 	
 	ALIGN 4
 	Show_Battle_Stats:
