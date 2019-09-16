@@ -36,7 +36,7 @@ EVENT_DEPENDS := $(shell $(EADEP) $(EVENT_MAIN) -I $(realpath .)/Tools/EventAsse
 $(ROM_TARGET): $(ROM_SOURCE) $(EVENT_MAIN) $(EVENT_DEPENDS)
 	@echo Building $(ROM_TARGET).
 	@cp -f $(ROM_SOURCE) $(ROM_TARGET)
-	@$(CCEA) A FE8 -output:$(ROM_TARGET) -input:$(EVENT_MAIN) --nocash-sym || (rm $(ROM_TARGET) && false)
+	@$(EA) A FE8 -output:$(ROM_TARGET) -input:$(EVENT_MAIN) --nocash-sym || (rm $(ROM_TARGET) && false)
 
 # =============
 # = PORTRAITS =
